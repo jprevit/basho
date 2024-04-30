@@ -30,4 +30,11 @@ footer {
   place-content: center;
   height: 32px;
 }
+
+main {
+  background-image: url("src/assets/img/traditional-art.Jpeg");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: #77C5E3;
+}
 </style>
