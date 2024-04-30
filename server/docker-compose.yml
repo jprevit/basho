@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    image: your-dockerhub-username/basho:latest
+    restart: unless-stopped
+    env_file:
+      - basho-env
+    ports:
+      - "3000:3000"
