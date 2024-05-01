@@ -4,7 +4,7 @@
 
 export class Wrestler{
   constructor(data){
-    
+    this.id = data.id
       this.name = data.name,
       this.currentRank = data.currentRank,
       this.stable = data.stable,
