@@ -19,4 +19,7 @@ export class WrestlersController extends BaseController {
             next(error)
         }
     }
+
+
+
 }
