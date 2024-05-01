@@ -9,7 +9,6 @@ export class LeaguesController extends BaseController {
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
-            .post('/pickwrestlers', this.addWrestlertoStable)
     }
 
     async createNewLeague(request, response, next) {

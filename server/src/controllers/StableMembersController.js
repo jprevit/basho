@@ -16,7 +16,7 @@ export class StableMembersController extends BaseController {
         try {
             const user = request.userInfo
             const stableMemberData = request.body
-            stableMemberData.accountId = user.id
+            stableMemberData.playerId = user.id
             const stableMember = await stableMembersService.addWrestlertoStable(stableMemberData)
             response.send(stableMember)
         } catch (error) {
