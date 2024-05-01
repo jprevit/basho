@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <section class="row mainbg">
+  <section id="mainrow" class="row mainbg">
     <section class="col-7">
       <h1>Welcome to BASHO!</h1>
       <p>Basho is the Japanese term for a sumo tournament. Here at BASHO! we make getting into sumo easy and fun! Don’t
@@ -20,5 +20,9 @@
 .grayflipper {
   filter: grayscale(1);
   transform: rotatey(180deg) translate(50px, 0px)
+}
+
+#mainrow {
+  z-index: 2;
 }
 </style>

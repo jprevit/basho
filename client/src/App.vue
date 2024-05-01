@@ -10,10 +10,13 @@ import Navbar from './components/Navbar.vue'
     <Navbar />
   </header>
   <main>
+    <div id="overlay">
+
+    </div>
     <router-view />
   </main>
-  <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+  <footer class="bg-charcoal text-light">
+    BASHO!
   </footer>
 </template>
 
@@ -23,6 +26,7 @@ import Navbar from './components/Navbar.vue'
 :root {
   --main-height: calc(100vh - 32px - 64px);
 }
+
 
 
 footer {
@@ -35,6 +39,21 @@ main {
   background-image: url("src/assets/img/traditional-art.Jpeg");
   background-position: center;
   background-size: cover;
-  background-blend-mode: #77C5E3;
+  //overlay: ;
+}
+
+#routerview {
+  z-index: 2;
+}
+
+#overlay {
+  position: absolute;
+  background-color: #77C5E3;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: .6;
 }
 </style>
