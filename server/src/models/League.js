@@ -12,7 +12,7 @@ export const LeagueSchema = new Schema({
 },
     { timestamps: true, toJSON: { virtuals: true } })
 
-LeagueSchema.virtual('Tournament', {
+LeagueSchema.virtual('tournament', {
     localField: 'tournamentId',
     ref: 'Tournament',
     foreignField: '_id',
