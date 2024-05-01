@@ -49,7 +49,7 @@
               d="m10 265.972c5.523 0 10-4.492 10-10.015s-4.477-10-10-10-10 4.478-10 10v.028c0 5.523 4.477 9.987 10 9.987z" />
           </g>
         </svg>
-        <h1 class="text-nowrap  mb-0">Learn About sumo</h1>
+        <h2 class="text-nowrap  mb-0">Learn About sumo</h2>
       </div>
     </section>
     <!-- </div> -->
