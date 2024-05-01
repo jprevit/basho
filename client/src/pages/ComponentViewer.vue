@@ -1,5 +1,14 @@
 <script setup>
 
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
+import { Wrestler } from "../models/Wrestler.js";
+
+
+
+const wrestlers = computed(() => AppState.wrestlers)
+const props = defineProps({ wrestler: { type: Wrestler, required: true } })
+
 </script>
 
 
