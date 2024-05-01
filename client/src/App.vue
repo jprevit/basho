@@ -10,9 +10,9 @@ import Navbar from './components/Navbar.vue'
     <Navbar />
   </header>
   <main>
-    <div id="overlay">
+    <!-- <div id="">
 
-    </div>
+    </div> -->
     <router-view />
   </main>
   <footer class="bg-charcoal text-light">

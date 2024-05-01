@@ -1,5 +1,30 @@
 <script setup>
+import { onMounted } from 'vue';
+import Pop from '../utils/Pop.js';
+import { wrestlersService } from '../services/WrestersService.js';
+import { tournamentsService } from '../services/TournamentsService.js';
 
+async function getAllWrestlers() {
+  try {
+    await wrestlersService.getAllWrestlers()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
+
+async function getBashoById() {
+  try {
+    await tournamentsService.getBashoById()
+  } catch (error) {
+    Pop.error(error)
+  }
+}
+
+onMounted(() => {
+  getAllWrestlers()
+  getBashoById()
+})
 </script>
 
 <template>
