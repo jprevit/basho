@@ -1,4 +1,5 @@
 <script setup>
+import CreateLeagueModal from '../components/CreateLeagueModal.vue';
 
 </script>
 
@@ -60,8 +61,11 @@
                         </g>
                     </svg>
                     <button style="border-radius: 25px;"
-                        class="btn btn-grey border border-5 border-lightblue  fs-2 w-75 py-3 mt-3">Create
+                        class="btn btn-grey border border-5 border-lightblue  fs-2 w-75 py-3 mt-3"
+                        data-bs-toggle="modal" title="create a league" data-bs-target="#createLeagueModal">Create
                         League</button>
+                    <!-- Button trigger modal -->
+
                 </div>
             </section>
         </div>
@@ -99,6 +103,8 @@
             </div>
         </section>
     </div>
+
+    <CreateLeagueModal />
 </template>
 
 <style scoped lang="scss">

@@ -8,7 +8,8 @@ export const LeagueSchema = new Schema({
     playerCapacity: { type: Number, required: true, min: 3, max: 10 },
     startDate: { type: Date, required: true, default: new Date() },
     public: { type: Boolean, required: true, default: false },
-    players: { type: Array, required: true }
+    players: { type: Array, required: true },
+    isStarted: { type: Boolean, required: true, default: false }
 },
     { timestamps: true, toJSON: { virtuals: true } })
 

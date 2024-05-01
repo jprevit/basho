@@ -9,7 +9,6 @@ export class LeaguesController extends BaseController {
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
-            .post('/:wrestlerId')
     }
 
     async createNewLeague(request, response, next) {
@@ -24,16 +23,5 @@ export class LeaguesController extends BaseController {
         }
     }
 
-    async addWrestlertoStable(request, response, next) {
-        try {
-            const user = request.userInfo
-            const wrestlerId = request.params.wrestlerId
 
-
-            const addedWrestler = await leaguesService.addWrestlertoStable(wrestlerId, user.id)
-            response.send(addedWrestler)
-        } catch (error) {
-            next(error)
-        }
-    }
 }
