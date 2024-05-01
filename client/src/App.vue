@@ -9,15 +9,13 @@ import Navbar from './components/Navbar.vue'
   <header>
     <Navbar />
   </header>
-  <main>
-    <!-- <div id="">
+  <main class="d-flex">
 
-    </div> -->
     <router-view />
   </main>
-  <footer class="bg-charcoal text-light">
+  <!-- <footer class="bg-charcoal text-light">
     BASHO!
-  </footer>
+  </footer> -->
 </template>
 
 <style lang="scss">
@@ -36,9 +34,9 @@ footer {
 }
 
 main {
-  background-image: url("src/assets/img/traditional-art.Jpeg");
-  background-position: center;
-  background-size: cover;
+  // background-image: url("src/assets/img/traditional-art.Jpeg");
+  // background-position: center;
+  // background-size: cover;
   //overlay: ;
 }
 
@@ -46,14 +44,13 @@ main {
   z-index: 2;
 }
 
-#overlay {
-  position: absolute;
-  background-color: #77C5E3;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: .6;
-}
-</style>
+// #overlay {
+//   position: absolute;
+//   background-color: #77C5E3;
+//   z-index: 1;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   opacity: .6;
+// }</style>
