@@ -22,8 +22,8 @@
       </section>
     </section>
 
-    <section class="row flex-grow-1 d-flex bg-charcoal justify-content-center text-center text-light m-0">
-      <div class="col-4 d-flex justify-content-center align-items-center">
+    <section class="row flex-grow-1 d-flex bg-charcoal justify-content-center text-center text-light m-0 py-1">
+      <div class="col d-flex justify-content-center align-items-center">
         <svg id="Capa_1" class="" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="50"
           fill="#f8f9fd" xmlns="http://www.w3.org/2000/svg">
           <g>
