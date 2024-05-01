@@ -8,3 +8,4 @@ export const TournamentSchema = new Schema({
 }, {
     timestamps: true, toJSON: { virtuals: true }
 })
+
