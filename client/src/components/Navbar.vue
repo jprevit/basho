@@ -20,7 +20,7 @@ function toggleTheme() {
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark bg-charcoal px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-row align-items-center">
+      <div class="d-flex flex-row align-items-center ps-3">
         <svg id="Capa_1" enable-background="new 0 0 512 512" height="51" viewBox="0 0 512 512" width="51"
           xmlns="http://www.w3.org/2000/svg" fill="#77C5E3">
           <g>
@@ -36,7 +36,7 @@ function toggleTheme() {
             </g>
           </g>
         </svg>
-        <h1 class="text-lightblue">BASHO!</h1>
+        <h1 class="text-lightblue ms-2 me-4 mt-3">BASHO!</h1>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -44,20 +44,28 @@ function toggleTheme() {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto gap-4">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-lightblue lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'About' }" target="_blank"
+            class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
             Leagues
           </router-link>
         </li>
+        <li>
+          <a class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase"
+            href="https://sumowrestling.fandom.com/wiki/Sumowrestling_Wiki">
+            Learn
+          </a>
+        </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
-      <div>
+      <!-- <div>
         <button class="btn text-light" @click="toggleTheme"
           :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
           <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
         </button>
-      </div>
+      </div> -->
+      <button class="btn btn-sm btn-rounded rounded-pill fw-bold px-4 mx-2 bg-sand">Sign Up</button>
       <Login />
     </div>
   </nav>
