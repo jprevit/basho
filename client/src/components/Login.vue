@@ -15,8 +15,8 @@ async function logout() {
 </script>
 
 <template>
-  <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+  <span class="navbar-text ">
+    <button class="btn selectable text-lightblue lighten-30 text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user?.isAuthenticated">
       Login
     </button>
@@ -31,11 +31,12 @@ async function logout() {
         <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
+              <div class="list-group-item dropdown-item list-group-item-action text-lightblue">
                 Manage Account
               </div>
             </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
+            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable text-lightblue"
+              @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
             </div>
