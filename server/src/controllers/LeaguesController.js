@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
+import { leaguesService } from "../services/LeaguesService.js";
 
 
 export class LeaguesController extends BaseController {
@@ -14,7 +15,9 @@ export class LeaguesController extends BaseController {
         try {
             const user = request.userInfo
             const leagueData = request.body
-            response.send("makin a league")
+            leagueData.creatorId = user.id
+            const newLeague = await leaguesService.createNewLeague(leagueData)
+            response.send(newLeague)
         } catch (error) {
             next(error)
         }
