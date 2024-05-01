@@ -40,9 +40,11 @@ onMounted(() => {
             Don’t
             worry about having to learn all the terms upfront, get competing with your friends right away!</p>
         </div>
-        <button style="border-radius: 25px;"
-          class="btn btn-grey border border-5 border-lightblue ms-5 fs-2 w-50 py-3 mt-5">Get
-          Started</button>
+        <RouterLink :to="{ name: 'GetStarted' }">
+          <button style="border-radius: 25px;"
+            class="btn btn-grey border border-5 border-lightblue ms-5 fs-2 w-50 py-3 mt-5">Get
+            Started</button>
+        </RouterLink>
       </section>
       <section class="col-md-5 d-none d-md-flex">
         <img src="src\assets\img\sumo-kick.png" class="grayflipper">

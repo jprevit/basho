@@ -1,5 +1,14 @@
 <script setup>
 
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
+import { Wrestler } from "../models/Wrestler.js";
+
+
+
+const wrestlers = computed(() => AppState.wrestlers)
+const props = defineProps({ wrestler: { type: Wrestler, required: true } })
+
 </script>
 
 
@@ -10,31 +19,30 @@
     </div>
     <div class="section">
       <h2>Rikishi Cards</h2>
-      <div class="col-3">
+      <div class="col-6 col-md-4  col-lg-3">
         <section class="container text-center rikishi-card">
 
-          <div class="row rikishi-card-top mx-3">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt perferendis recusandae iusto a illo
-              corrupti laudantium nemo inventore! Maiores ad veniam
-              ducimus dolor.</p>
+          <div class="row rikishi-card-top mx-1 text-primary">
+
           </div>
 
-          <hr class="opacity-100 border-5 text-primary my-0" />
+          <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
 
-          <div class="row rikishi-card-center text center">
-            <h3 class="">Rikishi Name</h3>
-            <h5>Hatamoto</h5>
+          <div class="row rikishi-card-center text center border-primary border-bottom border-5 border-top border-5">
+            <h3 class="">Terunofuji</h3>
+            <h5>Yokozuna 1</h5>
           </div>
 
-          <hr class="opacity-100 border-5 text-primary my-0" />
+          <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
 
-          <div class="row rikishi-card-bottom mx-3 bg-charcoal text-white">
+          <div
+            class="row p-3 pb-0 rikishi-card-bottom mx-1 border-bottom border-start border-end border-primary border-5 bg-charcoal text-white">
             <div class="col-4">
               <h6 class="fw-bold">64%</h6>
               <p>Career</p>
             </div>
             <div class="col-4">
-              <h3 class="border border-3 border-primary p-4 basho-rank">1</h3>
+              <h3 class="border border-3 border-primary bg-white text-charcoal p-4 basho-rank">1</h3>
             </div>
             <div class="col-4">
               <h6 class="fw-bold">5-1</h6>
@@ -55,18 +63,20 @@
 .rikishi-card {
   .rikishi-card-top {
     border-top-right-radius: 2em;
+    height: 20dvh;
     border-top-left-radius: 2em;
-    background-image: url("src/assets/img/gold-coin-background.png");
+    // background-image: url("src/assets/img/gold-coin-background.png"); //if we get wrestler photos with transparent backgrounds
+    background-image: url("https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: top;
   }
 
   .rikishi-card-middle {}
 
   .rikishi-card-bottom {
-    border-width: 0px 6px 6px 6px;
-    border-style: solid;
-    border-color: rgb(38, 38, 239);
+    // border-width: 0px 6px 6px 6px;
+    // border-style: solid;
+    // border-color: rgb(38, 38, 239);
     border-bottom-right-radius: 2em;
     border-bottom-left-radius: 2em;
 
