@@ -2,6 +2,12 @@
 @import "./_utilities.scss";
 @import "./loaders.scss";
 
+
+.text-shadow {
+  text-shadow: 0em 0.1em 0.2em #000000;
+}
+
+
 body {
   overscroll-behavior: none;
 }
@@ -20,4 +26,3 @@ main {
 a {
   text-decoration: none;
 }
-
