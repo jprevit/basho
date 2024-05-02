@@ -1,6 +1,8 @@
 import { logger } from "../utils/Logger.js"
-import { sumoApi } from "./AxiosService.js"
+import { api, sumoApi } from "./AxiosService.js"
 import { AppState } from "../AppState.js"
+import { Wrestler } from "../models/Wrestler.js"
+import { StableMember } from "../models/StableMember.js"
 
 
 class WrestlersService {
@@ -31,20 +33,32 @@ class WrestlersService {
     }
 
 
-    getRandomWrestler(){
+   async getRandomWrestler(){
         for (let i = 0; i < 5; i++) {
         const wrestlerToIndex = Math.floor(Math.random() * AppState.tournamentWrestlers.length)
         const randomWrestler = AppState.tournamentWrestlers[wrestlerToIndex]
         AppState.tournamentWrestlers.splice(wrestlerToIndex, 1)
         logger.log('Random  Wrestler', randomWrestler)
-    
-        
-        AppState.activeStableWrestlers.push(randomWrestler)
+
+        await this.addWrestlerToStable(randomWrestler)
+
+
     }
-logger.log('Stable', AppState.activeStableWrestlers)
-logger.log('Tournament Wrestlers', AppState.tournamentWrestlers)
+    logger.log('Stable', AppState.activeStableWrestlers)
+    logger.log('Tournament Wrestlers', AppState.tournamentWrestlers)
+}
+
+async addWrestlerToStable(wrestlerData){
+    const response = await api.post('api/stablemembers', wrestlerData)
+    logger.log(`Adding ${wrestlerData.name} to Stable`)
+    const wrestler = new StableMember(response.data)
     
-    }
+    AppState.activeStableWrestlers.push(wrestler.leagueId, wrestler.wrestlerId)
+
+}
+
+
+
 }
 
 export const wrestlersService = new WrestlersService

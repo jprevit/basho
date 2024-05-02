@@ -16,9 +16,11 @@ function test() {
     <section v-if="wrestler" class="container-fluid">
         <section class="row">
             <div class="col p-0 text-center">
-                <img class="pfp rounded-pill"
-                    src="https://cdn.discordapp.com/attachments/1234923682137243649/1234936338222940332/sumo-not-found.png?ex=663485d7&is=66333457&hm=0cd6e5505573a012f3b41f0b773ea31c169aeb97ea501012a77a83d76ecb78df&"
-                    alt="player pfp">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <img class="pfp" src="https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg">
+                    </div>
+                </div>
                 <p>{{ wrestler.name }}</p>
             </div>
         </section>
@@ -29,13 +31,11 @@ function test() {
             <div class="col p-0 text-center">
                 <div class="row justify-content-center">
                     <div class="col">
-                        <div class="pfp-wrapper">
-                            <img @click="test" class="pfp"
-                                src="https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg">
-                        </div>
+                        <img class="pfp"
+                            src="https://media.discordapp.net/attachments/1234923682137243649/1234936338222940332/sumo-not-found.png?ex=663485d7&is=66333457&hm=0cd6e5505573a012f3b41f0b773ea31c169aeb97ea501012a77a83d76ecb78df&=&format=webp&quality=lossless">
                     </div>
                 </div>
-                <p @click="test">Place Holder Wrestler</p>
+                <p>Place Holder Wrestler</p>
             </div>
         </section>
     </section>
@@ -46,9 +46,9 @@ function test() {
 <style lang="scss" scoped>
 // dont touch this here be dragons
 .pfp {
-    --zoom: 3;
+    --zoom: 2;
     --x: 50%;
-    --y: 50%;
+    --y: 65%;
     transform: scale(var(--zoom));
     transform-origin: var(--x) var(--y);
     clip-path: inset(calc((1 - 1/var(--zoom)) * (var(--y))) calc((1 - 1/var(--zoom)) * (100% - var(--x))) calc((1 - 1/var(--zoom)) * (100% - var(--y))) calc((1 - 1/var(--zoom)) * (var(--x))) round 50%);

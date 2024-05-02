@@ -5,6 +5,7 @@ import { wrestlersService } from '../services/WrestersService.js';
 import { tournamentsService } from '../services/TournamentsService.js';
 import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
+import { leaguesService } from "../services/LeaguesService.js";
 
 async function getAllWrestlers() {
   try {
@@ -45,11 +46,21 @@ async function draftStable() {
   }
 }
 
+async function createNewLeague() {
+  try {
+    await leaguesService.createNewLeague()
+  } catch (error) {
+    Pop.toast('Could not create league', 'error')
+    logger.error(error)
+  }
+}
+
 
 onMounted(() => {
   getAllWrestlers()
   getBashoById()
   getWrestlerById()
+  createNewLeague()
 })
 </script>
 
