@@ -5,6 +5,7 @@ import { wrestlersService } from '../services/WrestersService.js';
 import { tournamentsService } from '../services/TournamentsService.js';
 import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
+import { leaguesService } from "../services/LeaguesService.js";
 
 async function getAllWrestlers() {
   try {
@@ -46,10 +47,13 @@ async function draftStable() {
 }
 
 
+
+
 onMounted(() => {
   getAllWrestlers()
   getBashoById()
   getWrestlerById()
+
 })
 </script>
 
