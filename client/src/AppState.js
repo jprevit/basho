@@ -25,6 +25,9 @@ export const AppState = reactive({
   /**@type {Wrestler[]} */
   tournamentWrestlers: [],
 
+/**@type {Wrestler[]} */
+activeStableWrestlers:[],
+
   /**@type {Player[]} */
   activePlayers:[]
 })

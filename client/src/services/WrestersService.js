@@ -20,7 +20,7 @@ class WrestlersService {
         // logger.log("Getting Random Wrestler", randomWrestler)
     }
 
-    async draftStable() {
+    draftStable() {
         const eastWrestlers = AppState.activeTournament.eastWrestlers
         const westWrestlers = AppState.activeTournament.westWrestlers
         const tournamentWrestlers = []
@@ -28,6 +28,25 @@ class WrestlersService {
         AppState.tournamentWrestlers = tournamentWrestlers
         logger.log("Getting Active Stable Members", AppState.tournamentWrestlers)
     }
+
+
+    getRandomWrestler(){
+        const wrestlerToIndex = Math.floor(Math.random() * AppState.tournamentWrestlers.length)
+        const randomWrestler = AppState.tournamentWrestlers[wrestlerToIndex]
+        logger.log(randomWrestler)
+    }
+addToStable(){
+    for (let i = 0; i < 5; i++) {
+
+      
+        const element = array[i];
+        
+    }
+    if (AppState.activeStableWrestlers.length < 5){
+    const stableWrestlers = []
+    
+    }
+}
 
 
 }
