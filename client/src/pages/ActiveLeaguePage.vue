@@ -73,8 +73,8 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
 
     <!-- <PlayerHead /> -->
 
-    <section id="drafting" class="grid-wrapper">
-        <div class="player-sidebar-col">
+    <section id="drafting" class="grid-wrapper container-fluid bg-mainblue">
+        <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
             <PlayerHead />
             <PlayerHead />
@@ -85,19 +85,49 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
             <PlayerHead />
             <PlayerHead />
         </div>
-        <div class="player-draft-picks d-flex">
-            <WrestlerCard />
-            <WrestlerCard />
-            <WrestlerCard />
-            <WrestlerCard />
-            <WrestlerCard />
+        <div
+            class="player-draft-picks d-flex row justify-content-around bg-charcoal border-bottom border-gold border-5 py-4">
+            <div class="col-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2">
+                <WrestlerCard />
+            </div>
         </div>
-        <div class="wrestlers-to-draft d-flex flex-wrap">Wrestlers to pick from
-            <WrestlerCard />
-            <WrestlerCard />
-            <WrestlerCard />
-            <WrestlerCard />
-            <WrestlerCard />
+        <div class="wrestlers-to-draft d-flex row justify-content-around wrester-draft-bg-img py-4">
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
+            <div class="col-2 mx-2">
+                <WrestlerCard />
+            </div>
         </div>
     </section>
 </template>
@@ -122,6 +152,7 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
     grid-row: 1/3;
     max-height: 100%;
     overflow-y: scroll;
+    margin-right: 13px;
 }
 
 .player-draft-picks {
@@ -132,7 +163,14 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
 .wrestlers-to-draft {
     grid-column: 2;
     grid-row: 2;
-    max-height: 100%;
     overflow-y: scroll;
+}
+
+.wrester-draft-bg-img {
+    background-image: url(src/assets/img/sumo-ring-grey.jpg);
+    object-fit: cover;
+    background-position: 50% 40%;
+    background-size: 120%;
+
 }
 </style>
