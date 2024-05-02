@@ -5,6 +5,7 @@ import { Tournament } from "./Tournament.js"
 export class League{
     constructor(data){
         this.id = data.id
+        this.leagueName = data.leagueName
         this.creatorId = data.creatorId
         this.creator = new Account(data.creator)
         this.tournamentId = data.tournamentId
