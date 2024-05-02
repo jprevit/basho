@@ -6,6 +6,7 @@ import { Wrestler } from "../models/Wrestler.js";
 import WrestlerCard from "../components/WrestlerCard.vue";
 import DraftCard from "../components/DraftCard.vue";
 import PlayerHead from "../components/PlayerHead.vue";
+import WrestlerHead from "../components/WrestlerHead.vue";
 
 
 
@@ -111,6 +112,9 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
     <div class="row justify-content-center">
       <div class="col-2">
         <PlayerHead />
+      </div>
+      <div class="col-2">
+        <WrestlerHead />
       </div>
     </div>
   </div>

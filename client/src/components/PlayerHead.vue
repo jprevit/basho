@@ -25,7 +25,7 @@ const props = defineProps({ player: { type: Player, required: true } })
                 <img class="pfp rounded-pill"
                     src="	https://s.gravatar.com/avatar/c9174347320c2d85224c…&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fis.png"
                     alt="placeholder">
-                <p>Place Holder</p>
+                <p>Place Holder Player</p>
             </div>
         </section>
     </section>
