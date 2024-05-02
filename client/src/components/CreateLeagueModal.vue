@@ -30,11 +30,11 @@ async function createLeague() {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="createLeagueModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="createLeagueModalLabel">Create League</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="createLeague()">
+                    <form class="container" @submit.prevent="createLeague()">
                         <div class="row mb-2">
                             <div class="form-floating">
                                 <input v-model="leagueData.leagueName" type="text" class="form-control" id="leagueName"
