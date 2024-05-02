@@ -8,6 +8,7 @@ export class WrestlersController extends BaseController {
         super('/rikishis')
         this.router
             .get('', this.getAllWrestlers)
+            .get('/:rikishiId', this.getWrestlerById)
     }
 
     async getAllWrestlers(request, response, next) {
@@ -20,6 +21,16 @@ export class WrestlersController extends BaseController {
         }
     }
 
+
+    async getWrestlerById(request, response, next) {
+        try {
+            const wrestlerId = request.params.rikishiId
+            const wrestler = await wrestlersService.getWrestlerById(wrestlerId)
+            response.send(wrestler)
+        } catch (error) {
+            next(error)
+        }
+    }
 
 
 }
