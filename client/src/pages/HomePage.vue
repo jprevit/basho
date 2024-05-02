@@ -36,8 +36,9 @@ async function getWrestlerById() {
 
 async function draftStable() {
   try {
-    if (AppState.activeTournament)
-      await wrestlersService.draftStable()
+    if (!AppState.activeTournament)
+      throw new Error('There is no Active Tournament')
+    await wrestlersService.draftStable()
   } catch (error) {
     Pop.toast("Couldn't Draft Stable Members")
     logger.error(error)

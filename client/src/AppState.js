@@ -2,6 +2,7 @@ import { reactive } from 'vue'
 import { Tournament } from './models/Tournament.js'
 import { Wrestler } from './models/Wrestler.js'
 import { Player } from './models/Player.js'
+import { League } from './models/League.js'
 
 
 // NOTE AppState is a reactive object to contain app level data
@@ -25,6 +26,12 @@ export const AppState = reactive({
   /**@type {Wrestler[]} */
   tournamentWrestlers: [],
 
+/**@type {Wrestler[]} */
+activeStableWrestlers:[],
+
   /**@type {Player[]} */
-  activePlayers:[]
+  activePlayers:[],
+
+  /**@type {League} */
+  activeLeague: null
 })
