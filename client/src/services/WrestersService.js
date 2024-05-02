@@ -27,28 +27,24 @@ class WrestlersService {
         tournamentWrestlers.push(...eastWrestlers, ...westWrestlers)
         AppState.tournamentWrestlers = tournamentWrestlers
         logger.log("Getting Active Stable Members", AppState.tournamentWrestlers)
+        this.getRandomWrestler()
     }
 
 
     getRandomWrestler(){
+        for (let i = 0; i < 5; i++) {
         const wrestlerToIndex = Math.floor(Math.random() * AppState.tournamentWrestlers.length)
         const randomWrestler = AppState.tournamentWrestlers[wrestlerToIndex]
-        logger.log(randomWrestler)
-    }
-addToStable(){
-    for (let i = 0; i < 5; i++) {
-
-      
-        const element = array[i];
+        AppState.tournamentWrestlers.splice(wrestlerToIndex, 1)
+        logger.log('Random  Wrestler', randomWrestler)
+    
         
+        AppState.activeStableWrestlers.push(randomWrestler)
     }
-    if (AppState.activeStableWrestlers.length < 5){
-    const stableWrestlers = []
+logger.log('Stable', AppState.activeStableWrestlers)
+logger.log('Tournament Wrestlers', AppState.tournamentWrestlers)
     
     }
-}
-
-
 }
 
 export const wrestlersService = new WrestlersService
