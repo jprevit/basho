@@ -48,14 +48,13 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto gap-4">
         <li>
-          <router-link :to="{ name: 'About' }" target="_blank"
-            class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'League' }" class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
             Leagues
           </router-link>
         </li>
         <li>
           <a class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase"
-            href="https://sumowrestling.fandom.com/wiki/Sumowrestling_Wiki">
+            href="https://sumowrestling.fandom.com/wiki/Sumowrestling_Wiki" target="_blank">
             Learn
           </a>
         </li>
