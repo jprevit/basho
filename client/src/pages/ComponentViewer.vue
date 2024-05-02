@@ -7,6 +7,8 @@ import WrestlerCard from "../components/WrestlerCard.vue";
 import DraftCard from "../components/DraftCard.vue";
 import PlayerHead from "../components/PlayerHead.vue";
 import WrestlerHead from "../components/WrestlerHead.vue";
+import MyStable from "../components/MyStable.vue";
+
 
 
 
@@ -115,6 +117,11 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
       </div>
       <div class="col-2">
         <WrestlerHead />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <MyStable />
       </div>
     </div>
   </div>
