@@ -15,10 +15,10 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
 
 
 <template>
-    <section class="container-fluid bg-charcoal text-light">
+    <section class="container-fluid bg-charcoal text-light" hidden>
         <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
         <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-        <section id="starting" class="col" hidden>
+        <section id="starting" class="col">
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
                     class="banner_img p-0">
@@ -68,20 +68,37 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
         </section>
 
         <!-- This section displayed during drafting phase -->
-        <section id="drafting" class="col">
-            <section class="row">
-                <section class="col-2 bg-mainblue">
-                    <div class="">
-                        <PlayerHead />
-                        <PlayerHead />
-                        <PlayerHead />
-                        <PlayerHead />
-                    </div>
-                </section>
-                <section class="d-flex col"></section>
-            </section>
-        </section>
 
+    </section>
+
+    <!-- <PlayerHead /> -->
+
+    <section id="drafting" class="grid-wrapper">
+        <div class="player-sidebar-col">
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+            <PlayerHead />
+        </div>
+        <div class="player-draft-picks d-flex">
+            <WrestlerCard />
+            <WrestlerCard />
+            <WrestlerCard />
+            <WrestlerCard />
+            <WrestlerCard />
+        </div>
+        <div class="wrestlers-to-draft d-flex flex-wrap">Wrestlers to pick from
+            <WrestlerCard />
+            <WrestlerCard />
+            <WrestlerCard />
+            <WrestlerCard />
+            <WrestlerCard />
+        </div>
     </section>
 </template>
 
@@ -92,5 +109,30 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
     object-position: 50% 40%;
     max-height: 30vh;
     filter: contrast(50%);
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 2;
+    height: calc(100vh - 64px);
+}
+
+.player-sidebar-col {
+    grid-column: 1;
+    grid-row: 1/3;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.player-draft-picks {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.wrestlers-to-draft {
+    grid-column: 2;
+    grid-row: 2;
+    max-height: 100%;
+    overflow-y: scroll;
 }
 </style>
