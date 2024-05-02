@@ -5,6 +5,7 @@ import { AppState } from "../AppState.js";
 import { Wrestler } from "../models/Wrestler.js";
 import WrestlerCard from "../components/WrestlerCard.vue";
 import DraftCard from "../components/DraftCard.vue";
+import PlayerHead from "../components/PlayerHead.vue";
 
 
 
@@ -106,6 +107,11 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
       <section>
         <DraftCard />
       </section>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <PlayerHead />
+      </div>
     </div>
   </div>
 
