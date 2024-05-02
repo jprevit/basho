@@ -22,20 +22,61 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
     </div>
     <div class="section">
       <h2>Rikishi Cards</h2>
-      <div v-for="wrestler in wrestlers" :key="wrestler.id" class="col-6 col-md-4  ol-lg-3">
-        <WrestlerCard :wrestler="wrestler" />
-        <!-- <section class="container text-center rikishi-card">
-
-          <div class="row rikishi-card-top mx-1 text-primary">
+      <section class="container text-center rikishi-card border-dark border-bottom border-3">
+        <div class="row">
+          <div class="col-2 my-3 rikishi-photo-round border border-3 border-gold text-primary">
           </div>
 
-          <div class="row rikishi-card-center text center border-primary border-bottom border-5 border-top border-5">
+          <div class="col-4 text-start">
             <h3 class="">Terunofuji</h3>
             <h5>Yokozuna 1</h5>
           </div>
+          <div class="col-6">
+            <div class="row align-content-center bg-charcoal text-white">
+              <div class="col-4">
+                <h6 class="m-auto fw-bold">64%</h6>
+                <p>Career</p>
+              </div>
+              <div class="col-4">
+                <h6 class="m-auto fw-bold">5-1</h6>
+                <p>Basho</p>
+              </div>
+              <div class="col-4">
+                <h3 class="m-auto border border-3 border-primary bg-white text-charcoal p-4 basho-rank">1</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+      </section>
+      <div class="col-6 col-md-4  ol-lg-3">
+        <WrestlerCard />
+      </div>
+      <div v-for="wrestler in wrestlers" :key="wrestler.id" class="col-6 col-md-4  ol-lg-3">
+        <WrestlerCard :wrestler="wrestler" />
+
+        <!-- <div class="container">
+        <section class="container text-center rikishi-card">
+
+          <div class="row rikishi-card-top rounded-top-4 mx-1 text-primary">
+
+          </div>
+
+
+          <div class="row rikishi-card-center text center border-primary border-bottom border-5 border-top border-5">
+            <h3 class="mt-1 mb-0">Terunofuji</h3>
+            <h5>Yokozuna 1</h5>
+          </div>
+
 
           <div
-            class="row p-3 pb-0 rikishi-card-bottom mx-1 border-bottom border-start border-end border-primary border-5 bg-charcoal text-white">
+            class="row p-3 pb-0 rikishi-card-bottom mx-1 border-bottom border-start border-end border-primary rounded-bottom-4 border-5 bg-charcoal text-white">
             <div class="col-4">
               <h6 class="fw-bold">64%</h6>
               <p>Career</p>
@@ -48,44 +89,19 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
               <p>Basho</p>
             </div>
           </div>
+        </section>
+      </div> -->
 
 
-        </section> -->
+
       </div>
     </div>
 
-    <div class="section">
+    <div class="row">
       <h2>Draft Cards</h2>
       <section>
         <DraftCard />
       </section>
-      <!-- <section class="container text-center rikishi-card">
-
-          <div class="row rikishi-card-top mx-1 text-primary">
-          </div>
-
-          <div class="row rikishi-card-center text center border-primary border-bottom border-5 border-top border-5">
-            <h3 class="">Terunofuji</h3>
-            <h5>Yokozuna 1</h5>
-          </div>
-
-          <div
-            class="row p-3 pb-0 rikishi-card-bottom mx-1 border-bottom border-start border-end border-primary border-5 bg-charcoal text-white">
-            <div class="col-4">
-              <h6 class="fw-bold">64%</h6>
-              <p>Career</p>
-            </div>
-            <div class="col-4">
-              <h3 class="border border-3 border-primary bg-white text-charcoal p-4 basho-rank">1</h3>
-            </div>
-            <div class="col-4">
-              <h6 class="fw-bold">5-1</h6>
-              <p>Basho</p>
-            </div>
-          </div>
-
-
-        </section> -->
     </div>
   </div>
 
@@ -96,9 +112,7 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
 <style lang="scss" scoped>
 .rikishi-card {
   .rikishi-card-top {
-    border-top-right-radius: 2em;
     height: 20dvh;
-    border-top-left-radius: 2em;
     // background-image: url("src/assets/img/gold-coin-background.png"); //if we get wrestler photos with transparent backgrounds
     background-image: url("https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg");
     background-size: cover;
@@ -107,24 +121,22 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
 
   .rikishi-card-middle {}
 
-  .rikishi-card-bottom {
-    // border-width: 0px 6px 6px 6px;
-    // border-style: solid;
-    // border-color: rgb(38, 38, 239);
-    border-bottom-right-radius: 2em;
-    border-bottom-left-radius: 2em;
+  .rikishi-card-bottom {}
+}
 
-  }
-
-  // hr {
-  //   opacity: 100;
-  //   border-bottom: 3px solid rgb(38, 38, 239);
-  //   margin: 0;
-  // }
+.rikishi-photo-round {
+  height: 80px;
+  width: 80px;
+  border-radius: 50em;
+  // background-image: url("src/assets/img/gold-coin-background.png"); //if we get wrestler photos with transparent backgrounds
+  background-image: url("https://www.sumo.or.jp/img/sumo_data/rikishi/60x60/20110008.jpg");
+  background-size: cover;
+  background-position: top;
 }
 
 .basho-rank {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  aspect-ratio: 1/1;
 }
 </style>
