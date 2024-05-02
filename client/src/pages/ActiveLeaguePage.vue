@@ -17,7 +17,8 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
 <template>
     <section class="container-fluid bg-charcoal text-light">
         <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
-        <section v-if="activeLeagueState == 'starting'" id="starting">
+        <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
+        <section id="starting" class="col" hidden>
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
                     class="banner_img p-0">
@@ -65,9 +66,20 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
                 </div>
             </section>
         </section>
-        <!-- This section displayed during drafting phase -->
-        <section v-if="leagueState.drafting" id="drafting">
 
+        <!-- This section displayed during drafting phase -->
+        <section id="drafting" class="col">
+            <section class="row">
+                <section class="col-2 bg-mainblue">
+                    <div class="">
+                        <PlayerHead />
+                        <PlayerHead />
+                        <PlayerHead />
+                        <PlayerHead />
+                    </div>
+                </section>
+                <section class="d-flex col"></section>
+            </section>
         </section>
 
     </section>
