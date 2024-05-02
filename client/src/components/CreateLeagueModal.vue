@@ -2,21 +2,24 @@
 import { Modal } from 'bootstrap';
 import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
+import { leaguesService } from "../services/LeaguesService.js";
+import { logger } from "../utils/Logger.js";
 
 
 const leagueData = ref({
     leagueName: '',
-    maxPlayers: null,
-    public: false
+    playerCapacity: null,
+    public: false,
+    tournamentId: null
 })
 
 
-async function createLeague() {
+async function createNewLeague() {
     try {
-        console.log('hi')
+        await leaguesService.createNewLeague(leagueData.value)
     } catch (error) {
-        Pop.toast('could not create league', 'error')
-        console.error(error)
+        Pop.toast('Could not create league', 'error')
+        logger.error(error)
     }
 }
 </script>
@@ -34,7 +37,7 @@ async function createLeague() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="container" @submit.prevent="createLeague()">
+                    <form class="container" @submit.prevent="createNewLeague()">
                         <div class="row mb-2">
                             <div class="form-floating">
                                 <input v-model="leagueData.leagueName" type="text" class="form-control" id="leagueName"
@@ -51,14 +54,14 @@ async function createLeague() {
                                 </div>
                             </div>
                             <div class="col-6">
-                                <label for="maxPlayers" class="me-2">Max Players</label>
-                                <input id="maxPlayers" type="number" required="true" min="3" max="10"
-                                    class="form-control">
+                                <label for="playerCapacity" class="me-2">Max Players</label>
+                                <input v-model="leagueData.playerCapacity" id="playerCapacity" type="number"
+                                    required="true" min="3" max="10" class="form-control">
                             </div>
                         </div>
 
                         <div class="row justify-content-center justify-content-md-end text-end mt-2 pe-3">
-                            <button type="button" class="btn btn-mainblue col-10 col-md-4">Save changes</button>
+                            <button type="submit" class="btn btn-mainblue col-10 col-md-4">Save changes</button>
                         </div>
 
 

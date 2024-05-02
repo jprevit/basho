@@ -46,21 +46,14 @@ async function draftStable() {
   }
 }
 
-async function createNewLeague() {
-  try {
-    await leaguesService.createNewLeague()
-  } catch (error) {
-    Pop.toast('Could not create league', 'error')
-    logger.error(error)
-  }
-}
+
 
 
 onMounted(() => {
   getAllWrestlers()
   getBashoById()
   getWrestlerById()
-  createNewLeague()
+
 })
 </script>
 
