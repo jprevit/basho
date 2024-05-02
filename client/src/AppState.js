@@ -19,5 +19,11 @@ export const AppState = reactive({
   wrestlers: [],
 
   /** @type {Wrestler} */
-  activeWrestler: null
+  activeWrestler: null,
+
+  // Logged in and go to your leagues = 'myLeagues' 
+  // Starting phase = 'starting'
+  // Drafting phase = 'drafting'
+  // active/daily score tally = 'active'
+  leagueState: 'myLeagues'
 })

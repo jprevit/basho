@@ -48,7 +48,8 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto gap-4">
         <li>
-          <router-link :to="{ name: 'League' }" class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'ActiveLeague' }"
+            class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
             Leagues
           </router-link>
         </li>
