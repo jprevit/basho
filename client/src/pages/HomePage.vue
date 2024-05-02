@@ -19,7 +19,6 @@ async function getAllWrestlers() {
 async function getBashoById() {
   try {
     await tournamentsService.getBashoById()
-    draftStable()
   } catch (error) {
     Pop.error(error)
   }
@@ -39,7 +38,8 @@ async function draftStable() {
   try {
     if (!AppState.activeTournament)
       throw new Error('There is no Active Tournament')
-    await wrestlersService.draftStable()
+    await wrestlersService.getRandomWrestler()
+    // await wrestlersService.draftStable()
   } catch (error) {
     Pop.toast("Couldn't Draft Stable Members")
     logger.error(error)
@@ -76,6 +76,7 @@ onMounted(() => {
             Started</button>
         </RouterLink>
       </section>
+      <button @click="draftStable()">test drafting</button>
       <section class="col-md-5 d-none d-md-flex">
         <img src="src\assets\img\sumo-kick.png" class="sumoStomp">
       </section>

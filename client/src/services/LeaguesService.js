@@ -13,6 +13,8 @@ leagueData.tournamentId = AppState.activeTournament.id
 console.log('tournament id', AppState.activeTournament);
     const response = await api.post('api/leagues', leagueData)
     logger.log('Creating new league', response)
+    AppState.activeLeague = response.data
+    console.log("active league", AppState.activeLeague);
   }
 
 }
