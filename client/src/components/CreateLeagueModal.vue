@@ -27,8 +27,8 @@ async function createLeague() {
     <!-- Modal -->
     <div class="modal fade" id="createLeagueModal" tabindex="-1" aria-labelledby="createLeagueModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog ">
+            <div class="modal-content bg-darkblue">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="createLeagueModalLabel">Create League</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -42,7 +42,7 @@ async function createLeague() {
                                 <label for="leagueName" class="ms-3">League Name</label>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-6">
                                 <div class="form-check">
                                     <label for="publicCheck" class="form-check-label me-2">Public</label>
@@ -52,20 +52,19 @@ async function createLeague() {
                             </div>
                             <div class="col-6">
                                 <label for="maxPlayers" class="me-2">Max Players</label>
-                                <input id="maxPlayers" type="number" required="true" min="3" max="10">
+                                <input id="maxPlayers" type="number" required="true" min="3" max="10"
+                                    class="form-control">
                             </div>
                         </div>
 
-
+                        <div class="row justify-content-center justify-content-md-end text-end mt-2 pe-3">
+                            <button type="button" class="btn btn-mainblue col-10 col-md-4">Save changes</button>
+                        </div>
 
 
 
                     </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
