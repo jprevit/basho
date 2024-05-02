@@ -47,7 +47,7 @@ onMounted(() => {
         </RouterLink>
       </section>
       <section class="col-md-5 d-none d-md-flex">
-        <img src="src\assets\img\sumo-kick.png" class="grayflipper">
+        <img src="src\assets\img\sumo-kick.png" class="sumoStomp">
       </section>
     </section>
 
@@ -88,7 +88,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-.grayflipper {
+.sumoStomp {
   filter: grayscale(1);
   transform: rotatey(180deg) translate(50px, 0px);
   max-width: 100%;
