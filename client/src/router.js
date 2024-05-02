@@ -17,6 +17,11 @@ const routes = [
     component: loadPage('LeaguePage')
   },
   {
+    path: '/activeLeague',
+    name: 'ActiveLeague',
+    component: loadPage('ActiveLeaguePage')
+  },
+  {
     path: '/get-started',
     name: 'GetStarted',
     component: loadPage('GetStartedPage')

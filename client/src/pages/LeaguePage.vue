@@ -1,5 +1,7 @@
 <script setup>
 
+
+const leagueState = { finalize: }
 </script>
 
 <template>
@@ -8,6 +10,4 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
