@@ -17,6 +17,10 @@ console.log('tournament id', AppState.activeTournament);
     console.log("active league", AppState.activeLeague);
   }
 
+  async getActiveLeague(){
+    await leaguesService.getActiveLeague()
+  }
+
 }
 
 

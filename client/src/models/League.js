@@ -31,7 +31,7 @@ export class League{
 }
 
 function createTournamentWrestlers(westWrestlers, eastWrestlers){
-    const tournamentWrestlers = []
+    let tournamentWrestlers = []
     tournamentWrestlers.push(...eastWrestlers, ...westWrestlers)
     console.log('tournament wrestlers in model', tournamentWrestlers);
     return tournamentWrestlers
