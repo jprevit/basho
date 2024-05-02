@@ -20,9 +20,16 @@ export class League{
         //this.joinCode = data.joinCode
         this.players = data.players
         this.state = data.state
+        this.tournamentWrestlers = data.tournamentWrestlers? data.tournamentWrestlers: createTournamentWrestlers(this.tournament.westWrestlers, this.tournament.eastWrestlers)
 
         // NOTE - In many of our previous projects we have made the virtuals of models with a ternary, so that if there is no data to create a class from, it sets as null, if you are having issues with models try that
         //example: 
         //'this.player = new Account(data.player)' should be turned into 'this.player = data.player ? new Account(data.player) : null'
     }
+}
+
+function createTournamentWrestlers(westWrestlers, eastWrestlers){
+    const tournamentWrestlers = []
+    tournamentWrestlers.push(...eastWrestlers, ...westWrestlers)
+    return tournamentWrestlers
 }

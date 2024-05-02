@@ -9,7 +9,8 @@ export const LeagueSchema = new Schema({
     startDate: { type: Date, required: true, default: new Date() },
     public: { type: Boolean, required: true, default: false },
     players: { type: Array, required: true },
-    state: { type: String, required: true, default: 'starting' }
+    state: { type: String, required: true, default: 'starting' },
+    tournamentWrestlers: { type: Array, requred: true }
 },
     { timestamps: true, toJSON: { virtuals: true } })
 
