@@ -1,19 +1,23 @@
 <script setup>
+import { computed } from 'vue';
 import PlayerHead from '../components/PlayerHead.vue';
+import { AppState } from '../AppState.js';
 
-const leagueState = {
-    starting: 'starting',
-    drafting: 'drafting',
-    running: 'running',
-    ended: 'ended'
-}
+const activeLeagueState = computed(() => AppState.activeLeague.state)
+
+// const leagueState = {
+//     starting: 'starting',
+//     drafting: 'drafting',
+//     running: 'running',
+//     ended: 'ended'
+// }
 </script>
 
 
 <template>
     <section class="container-fluid bg-charcoal text-light">
         <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
-        <section v-if="leagueState.starting" id="starting">
+        <section v-if="activeLeagueState == 'starting'" id="starting">
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
                     class="banner_img p-0">
@@ -61,7 +65,10 @@ const leagueState = {
                 </div>
             </section>
         </section>
+        <!-- This section displayed during drafting phase -->
+        <section v-if="leagueState.drafting" id="drafting">
 
+        </section>
 
     </section>
 </template>

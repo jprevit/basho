@@ -19,7 +19,7 @@ export class League{
         //NOTE we may use join code later, just using this.id for now
         //this.joinCode = data.joinCode
         this.players = data.players
-        this.started = data.started
+        this.state = data.state
 
         // NOTE - In many of our previous projects we have made the virtuals of models with a ternary, so that if there is no data to create a class from, it sets as null, if you are having issues with models try that
         //example: 
