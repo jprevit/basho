@@ -1,9 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { AppState } from '../AppState.js';
 
 const theme = ref(loadState('theme') || 'light')
+const user = computed(() => AppState.account)
 
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
@@ -65,7 +67,7 @@ function toggleTheme() {
           <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
         </button>
       </div> -->
-      <button class="btn btn-sm btn-rounded rounded-pill fw-bold px-4 mx-2 bg-sand">Sign Up</button>
+      <button v-if="!user" class="btn btn-sm btn-rounded rounded-pill fw-bold px-4 mx-2 bg-sand">Sign Up</button>
       <Login />
     </div>
   </nav>
