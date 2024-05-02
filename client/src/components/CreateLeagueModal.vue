@@ -13,10 +13,22 @@ const leagueData = ref({
     tournamentId: null
 })
 
+function resetForm() {
+    leagueData.value = {
+        leagueName: '',
+        playerCapacity: null,
+        public: false,
+        tournamentId: null
+    }
+}
 
 async function createNewLeague() {
     try {
         await leaguesService.createNewLeague(leagueData.value)
+        resetForm()
+        Modal.getOrCreateInstance('#createLeagueModal').hide()
+
+
     } catch (error) {
         Pop.toast('Could not create league', 'error')
         logger.error(error)
