@@ -3,6 +3,8 @@ import { onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { wrestlersService } from '../services/WrestersService.js';
 import { tournamentsService } from '../services/TournamentsService.js';
+import { logger } from "../utils/Logger.js";
+import { AppState } from "../AppState.js";
 
 async function getAllWrestlers() {
   try {
@@ -16,14 +18,37 @@ async function getAllWrestlers() {
 async function getBashoById() {
   try {
     await tournamentsService.getBashoById()
+    draftStable()
   } catch (error) {
     Pop.error(error)
   }
+
 }
+
+async function getWrestlerById() {
+  try {
+    await wrestlersService.getWrestlerById()
+  } catch (error) {
+    Pop.toast("Couldn't get Wrestler By Id", 'error')
+    logger.error(error)
+  }
+}
+
+async function draftStable() {
+  try {
+    if (AppState.activeTournament)
+      await wrestlersService.draftStable()
+  } catch (error) {
+    Pop.toast("Couldn't Draft Stable Members")
+    logger.error(error)
+  }
+}
+
 
 onMounted(() => {
   getAllWrestlers()
   getBashoById()
+  getWrestlerById()
 })
 </script>
 
