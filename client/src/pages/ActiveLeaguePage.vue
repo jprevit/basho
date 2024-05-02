@@ -1,7 +1,12 @@
 <script setup>
 import PlayerHead from '../components/PlayerHead.vue';
 
-
+const leagueState = {
+    starting: 'starting',
+    drafting: 'drafting',
+    running: 'running',
+    ended: 'ended'
+}
 </script>
 
 
