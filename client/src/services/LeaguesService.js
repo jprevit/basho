@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { AppState } from "../AppState.js"
 import { League } from "../models/League.js"
+import { router } from "../router.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { tournamentsService } from "./TournamentsService.js"
@@ -19,7 +20,10 @@ console.log('tournament id', AppState.activeTournament);
 const response = await api.post('api/leagues', leagueData)
     logger.log('Creating new league', response.data)
 const newLeague = new League(response.data)
+
+// router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
 AppState.leagues.push(newLeague)
+// router.push(`activeLeague/${newLeague.id}`)
 
 console.log('league actually created', AppState.leagues);
 AppState.activeLeague=newLeague
@@ -29,10 +33,13 @@ return newLeague
     // AppState.activeLeague = response.data
   }
 
+
+
+
+
   async getLeagueById(leagueId){
     const response = await api.get(`api/leagues/${leagueId}`)
     console.log('found league', leagueId);
-
   }
 
 }

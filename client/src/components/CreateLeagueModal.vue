@@ -30,7 +30,8 @@ async function createNewLeague() {
         const newLeague = await leaguesService.createNewLeague(leagueData.value)
         resetForm()
         Modal.getOrCreateInstance('#createLeagueModal').hide()
-        router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
+
+        // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
 
     } catch (error) {
         Pop.toast('Could not create league', 'error')

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AppState } from "../AppState.js"
 import { Tournament } from "../models/Tournament.js"
 import { sumoApi } from "./AxiosService.js"
@@ -35,6 +36,13 @@ class TournamentsService{
         console.log('Active Tournament from tournaments service', AppState.activeTournament)
         return activeBasho
     }
+
+
+    // async getTournamentById(){
+    //     const newTournament = 
+    // }
+
+
 }
 
 export const tournamentsService = new TournamentsService
