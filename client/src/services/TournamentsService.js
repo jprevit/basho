@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { AppState } from "../AppState.js"
 import { Tournament } from "../models/Tournament.js"
-import { sumoApi } from "./AxiosService.js"
+import { api, sumoApi } from "./AxiosService.js"
 
 
 class TournamentsService{
@@ -29,11 +29,15 @@ class TournamentsService{
         // console.log(datesResponse.data[bashoDateIndex])
 
         const randomBasho = await sumoApi.get(`basho/${datesResponse.data[bashoDateIndex]}/banzuke/Makuuchi`)
-        console.log(randomBasho)
+        console.log(randomBasho.data)
 
         const activeBasho = new Tournament(randomBasho.data)
+        const dbBasho = await api.post(`api/tournaments`, activeBasho)
+        console.log('dbBasho',dbBasho)
         AppState.activeTournament = activeBasho
+        AppState.allTournaments.push(activeBasho)
         console.log('Active Tournament from tournaments service', AppState.activeTournament)
+        console.log('All Tournaments from tournaments service', AppState.allTournaments)
         return activeBasho
     }
 
