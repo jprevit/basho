@@ -14,6 +14,8 @@ export class LeaguesController extends BaseController {
 
     async createNewLeague(request, response, next) {
         try {
+
+            console.log('request', request);
             const user = request.userInfo
             const leagueData = request.body
             leagueData.creatorId = user.id

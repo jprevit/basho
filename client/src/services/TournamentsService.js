@@ -33,7 +33,9 @@ class TournamentsService{
 
         const activeBasho = new Tournament(randomBasho.data)
         AppState.activeTournament = activeBasho
+        AppState.allTournaments.push(activeBasho)
         console.log('Active Tournament from tournaments service', AppState.activeTournament)
+        console.log('All Tournaments from tournaments service', AppState.allTournaments)
         return activeBasho
     }
 

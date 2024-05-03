@@ -15,8 +15,12 @@ export const AppState = reactive({
 
   /** @type {Tournament[]} */
   accountTournaments: [],
+
   /** @type {Tournament} */
   activeTournament: null,
+
+  /**@type {Tournament[]} */
+  allTournaments:[],
 
   /** @type {Wrestler[]} */
   wrestlers: [],
