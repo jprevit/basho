@@ -179,8 +179,28 @@ async function getLeagueById() {
                 <section class="row fw-bold align-items-center bg-lightblue ps-4 py-2 fs-5">
                     <p class="p-0 m-0">34% Wins | 12-8 </p>
                 </section>
-                <section class="row ">
-                    <WrestlerHead />
+                <section class="row justify-content-around p-3">
+                    <div class="col-2">
+                        <WrestlerHead />
+                        <div class="row justify-content-around">
+                            <span
+                                class="col-2 bg-light p-0 rank-circle fw-bold fs-5 border border-gold border-3">1</span>
+                            <span class="col-5 standings fw-bold text-light ">5-1 <i
+                                    class=" fs-1 mdi mdi-arrow-up-thick text-success"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
                 </section>
 
             </div>
@@ -228,5 +248,20 @@ async function getLeagueById() {
     background-position: 50% 40%;
     background-size: 120%;
 
+}
+
+.rank-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.standings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 </style>
