@@ -51,7 +51,7 @@ async function populateAllTournaments() {
     await tournamentsService.populateAllTournaments()
   }
   catch (error) {
-    Pop.error(error);
+    Pop.toast(error);
     console.error(error);
   }
 }
