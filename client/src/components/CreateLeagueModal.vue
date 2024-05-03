@@ -57,7 +57,7 @@ async function createNewLeague() {
                         <div class="row mb-2">
                             <div class="form-floating">
                                 <input v-model="leagueData.leagueName" type="text" class="form-control" id="leagueName"
-                                    placeholder="Enter Your League's Name" minlength="3" maxlength="25">
+                                    placeholder="Enter Your League's Name" minlength="3" maxlength="25" required>
                                 <label for="leagueName" class="ms-3">League Name</label>
                             </div>
                         </div>
@@ -65,14 +65,14 @@ async function createNewLeague() {
                             <div class="col-6">
                                 <div class="form-check">
                                     <label for="publicCheck" class="form-check-label me-2">Public</label>
-                                    <input v-model="leagueData.public" id="publicCheck" type="checkbox" required="true"
+                                    <input v-model="leagueData.public" id="publicCheck" type="checkbox"
                                         class="form-check-control">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <label for="playerCapacity" class="me-2">Max Players</label>
-                                <input v-model="leagueData.playerCapacity" id="playerCapacity" type="number"
-                                    required="true" min="3" max="10" class="form-control">
+                                <input v-model="leagueData.playerCapacity" id="playerCapacity" type="number" required
+                                    min="3" max="10" class="form-control">
                             </div>
                         </div>
 
