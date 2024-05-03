@@ -46,7 +46,7 @@ let placeholderWrestlers = [1, 2, 3, 4, 5]
                                     1</h6>
                             </div>
                             <div class="col-6 d-flex justify-content-start align-items-center">
-                                <p class="m-0 fw-bold">4-2</p>
+                                <p class="m-0 fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
                             </div>
                         </div>
                     </div>
