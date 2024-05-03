@@ -83,12 +83,10 @@ async function getLeagueById() {
             </section>
         </section>
 
-        <!-- This section displayed during drafting phase -->
 
     </section>
 
-    <!-- <PlayerHead /> -->
-
+    <!-- This section displayed during drafting phase -->
     <section id="drafting" class="grid-wrapper container-fluid bg-mainblue">
         <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
@@ -102,7 +100,7 @@ async function getLeagueById() {
             <PlayerHead />
         </div>
         <div
-            class="player-draft-picks d-flex row justify-content-around bg-charcoal border-bottom border-gold border-5 py-4">
+            class="player-draft-picks d-flex row justify-content-around bg-charcoal border-bottom border-gold border-5 py-4 text-light">
             <div class="col-2">
                 <WrestlerCard />
             </div>
