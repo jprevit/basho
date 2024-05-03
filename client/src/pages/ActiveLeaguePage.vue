@@ -86,7 +86,7 @@ async function getLeagueById() {
     </section>
 
     <!-- This section displayed during drafting phase -->
-    <section id="drafting" class="grid-wrapper container-fluid sumostandingbg" hidden>
+    <section id="drafting" class="grid-wrapper container-fluid sumostandingbg">
         <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
             <PlayerHead />
@@ -145,7 +145,7 @@ async function getLeagueById() {
     </section>
 
     <!-- This section displayed during running phase -->
-    <section id="running" class="container-fluid sumostandingbg">
+    <section id="running" class="container-fluid sumostandingbg" hidden>
         <section class="row  bgopacitylight py-3 pb-4 sticky-top">
             <div class="col">
                 <div class="row justify-content-around">
