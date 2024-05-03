@@ -8,9 +8,9 @@ export class League{
         this.id = data.id
         this.leagueName = data.leagueName
         this.creatorId = data.creatorId
-        this.creator = new Account(data.creator)
+        this.creator = data.creator ? new Account(data.creator) : null
+        this.tournament = data.tournament ? new Tournament(data.tournament) : null
         this.tournamentId = data.tournamentId
-        this.tournament = new Tournament(data.tournament)
         this.draftId = data.draftId
         this.draft = data.draft ? new Draft(data.draft) : null
         this.stableCapacity = data.stableCapacity
