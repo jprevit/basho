@@ -12,6 +12,11 @@ class TournamentsService {
         const dates = await dbContext.TournamentDates.find()
         return dates
     }
+    async postTournament(tournament) {
+        const newTournament = await dbContext.Tournament.create(tournament)
+        return newTournament
+    }
+
 
 }
 
