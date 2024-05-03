@@ -7,7 +7,7 @@ let placeholderWrestlers = [1, 2, 3, 4, 5]
 
 <template>
     <div class="container-fluid">
-        <div class="row ">
+        <div class="row">
             <div class="col-2 rounded-start bg-darkblue text-light text-center">
                 <div class="row">
                     <div class="col">
