@@ -1,8 +1,8 @@
 import { Schema } from "mongoose";
 
 export const StableMemberSchema = new Schema({
-    wrestlerId: { type: Number, required: true },
-    leagueId: { type: String, required: true, },
+    wrestlerId: { type: String, required: true, ref: 'Wrestler' },
+    leagueId: { type: String, required: true, ref: 'League' },
     playerId: { type: Schema.ObjectId, required: true, ref: 'Player' },
 }, {
     timestamps: true, toJSON: { virtuals: true }

@@ -7,15 +7,24 @@ let placeholderWrestlers = [1, 2, 3, 4, 5]
 
 <template>
     <div class="container-fluid">
-        <div class="row ">
+        <div class="row">
             <div class="col-2 rounded-start bg-darkblue text-light text-center">
                 <div class="row">
                     <div class="col">
                         <h2 class="mt-1"><i class="text-gold mdi mdi-medal"></i>1</h2>
                         <hr />
                         <PlayerHead />
-                        <hr />
-                        <h5 class="text">00</h5>
+                        <div class="text row justify-content-around">
+                            <div class="col-3">
+                                <span class="text-gold fw-bold fs-5">
+                                    23
+                                </span>
+                            </div>
+                            <div class="col-4 text-green fs-5">
+                                <span>5</span>
+                                <i class="mdi mdi-arrow-up"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,7 +46,7 @@ let placeholderWrestlers = [1, 2, 3, 4, 5]
                                     1</h6>
                             </div>
                             <div class="col-6 d-flex justify-content-start align-items-center">
-                                <p class="m-0 fw-bold">4-2</p>
+                                <p class="m-0 fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
                             </div>
                         </div>
                     </div>

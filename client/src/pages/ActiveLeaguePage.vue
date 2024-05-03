@@ -5,6 +5,7 @@ import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
 import { leaguesService } from "../services/LeaguesService.js";
 import { useRoute } from "vue-router";
+import MyStable from '../components/MyStable.vue';
 
 const activeLeagueState = computed(() => AppState.activeLeague.state)
 const route = useRoute()
@@ -31,10 +32,10 @@ async function getLeagueById() {
 
 
 <template>
-    <section class="container-fluid bg-charcoal text-light" hidden>
-        <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
-        <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-        <section id="starting" class="col">
+    <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
+    <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
+    <section id="starting" class="container-fluid bg-charcoal text-light" hidden>
+        <section class="col">
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
                     class="banner_img p-0">
@@ -82,14 +83,10 @@ async function getLeagueById() {
                 </div>
             </section>
         </section>
-
-        <!-- This section displayed during drafting phase -->
-
     </section>
 
-    <!-- <PlayerHead /> -->
-
-    <section id="drafting" class="grid-wrapper container-fluid bg-mainblue">
+    <!-- This section displayed during drafting phase -->
+    <section id="drafting" class="grid-wrapper container-fluid sumostandingbg">
         <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
             <PlayerHead />
@@ -102,7 +99,7 @@ async function getLeagueById() {
             <PlayerHead />
         </div>
         <div
-            class="player-draft-picks d-flex row justify-content-around bg-charcoal border-bottom border-gold border-5 py-4">
+            class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
             <div class="col-2">
                 <WrestlerCard />
             </div>
@@ -119,7 +116,7 @@ async function getLeagueById() {
                 <WrestlerCard />
             </div>
         </div>
-        <div class="wrestlers-to-draft d-flex row justify-content-around wrester-draft-bg-img py-4">
+        <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
             <div class="col-2 mx-2">
                 <WrestlerCard />
             </div>
@@ -145,6 +142,28 @@ async function getLeagueById() {
                 <WrestlerCard />
             </div>
         </div>
+    </section>
+
+    <!-- This section displayed during running phase -->
+    <section id="running" class="container-fluid sumostandingbg" hidden>
+        <section class="row  bgopacitylight py-3 pb-4 sticky-top">
+            <div class="col">
+                <div class="row justify-content-around">
+                    <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
+                    <h3 class="col-5 text-end">Basho Date: June 2021</h3>
+                </div>
+                <div class="row justify-content-between px-5">
+                    <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>
+                    <button class="btn btn-mainblue rounded-pill col-2">Next Day</button>
+                </div>
+            </div>
+        </section>
+        <section class="row p-5 bgopacitydark gap-5">
+            <MyStable />
+            <MyStable />
+            <MyStable />
+            <MyStable />
+        </section>
     </section>
 </template>
 
@@ -182,11 +201,17 @@ async function getLeagueById() {
     overflow-y: scroll;
 }
 
-.wrester-draft-bg-img {
-    background-image: url(src/assets/img/sumo-ring-grey.jpg);
-    object-fit: cover;
-    background-position: 50% 40%;
-    background-size: 120%;
+.sumostandingbg {
+    background-image: url(src/assets/img/sumo-around-ring.jpg);
+}
 
+.bgopacitydark {
+    background-blend-mode: overlay;
+    background-color: rgba(65, 65, 65, 0.9);
+}
+
+.bgopacitylight {
+    background-blend-mode: overlay;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 </style>
