@@ -14,7 +14,7 @@
 
       <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
 
-      <div class="row rikishi-card-center text center border-primary border-bottom border-5 border-top border-5">
+      <div class="row rikishi-card-center text-center border-primary border-bottom border-5 border-top border-5">
         <h3 class="">Terunofuji</h3>
         <h5>Yokozuna 1</h5>
       </div>
