@@ -87,7 +87,7 @@ async function getLeagueById() {
     </section>
 
     <!-- This section displayed during drafting phase -->
-    <section id="drafting" class="grid-wrapper container-fluid bg-mainblue">
+    <section id="drafting" class="grid-wrapper container-fluid bg-mainblue" hidden>
         <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
             <PlayerHead />
@@ -143,6 +143,39 @@ async function getLeagueById() {
                 <WrestlerCard />
             </div>
         </div>
+    </section>
+
+    <section id="running" class="container-fluid bg-darkblue">
+        <section class="row bg-light py-3 pb-4">
+            <div class="col">
+                <div class="row justify-content-around">
+                    <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
+                    <h3 class="col-5 text-end">Basho Date: June 2021</h3>
+                </div>
+                <div class="row justify-content-between px-5">
+                    <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>
+                    <button class="btn btn-mainblue rounded-pill col-2">Next Day</button>
+                </div>
+            </div>
+        </section>
+        <section class="row bg-mainblue rounded">
+            <div class="col-2 bg-darkblue">
+                <div class="row justify-content-center text-center text-light">
+                    <p class="fs-1 fw-bold"><i class="mdi mdi-medal text-gold"></i> 1</p>
+                </div>
+                <hr class="text-light" />
+                <PlayerHead />
+                <div class="row justify-content-evenly">
+                    <div class="col-5 text-center">
+                        #PTS
+                    </div>
+                    <div class="col-5 text-center">
+                        #Diff
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </section>
 </template>
 
