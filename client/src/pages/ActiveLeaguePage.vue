@@ -83,13 +83,11 @@ async function getLeagueById() {
             </section>
         </section>
 
-        <!-- This section displayed during drafting phase -->
 
     </section>
 
-    <!-- <PlayerHead /> -->
-
-    <section id="drafting" class="grid-wrapper container-fluid bg-mainblue">
+    <!-- This section displayed during drafting phase -->
+    <section id="drafting" class="grid-wrapper container-fluid bg-mainblue" hidden>
         <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
             <PlayerHead />
@@ -102,7 +100,7 @@ async function getLeagueById() {
             <PlayerHead />
         </div>
         <div
-            class="player-draft-picks d-flex row justify-content-around bg-charcoal border-bottom border-gold border-5 py-4">
+            class="player-draft-picks d-flex row justify-content-around bg-charcoal border-bottom border-gold border-5 py-4 text-light">
             <div class="col-2">
                 <WrestlerCard />
             </div>
@@ -146,6 +144,68 @@ async function getLeagueById() {
             </div>
         </div>
     </section>
+
+    <!-- This section displayed during running phase -->
+    <section id="running" class="container-fluid bg-darkblue">
+        <section class="row bg-light py-3 pb-4">
+            <div class="col">
+                <div class="row justify-content-around">
+                    <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
+                    <h3 class="col-5 text-end">Basho Date: June 2021</h3>
+                </div>
+                <div class="row justify-content-between px-5">
+                    <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>
+                    <button class="btn btn-mainblue rounded-pill col-2">Next Day</button>
+                </div>
+            </div>
+        </section>
+        <section class="row bg-mainblue rounded">
+            <div class="col-2 bg-darkblue">
+                <div class="row justify-content-center text-center text-light">
+                    <p class="fs-1 fw-bold"><i class="mdi mdi-medal text-gold"></i> 1</p>
+                </div>
+                <hr class="text-light" />
+                <PlayerHead />
+                <div class="row justify-content-evenly">
+                    <div class="col-5 text-center">
+                        #PTS
+                    </div>
+                    <div class="col-5 text-center">
+                        #Diff
+                    </div>
+                </div>
+            </div>
+            <div class="col ">
+                <section class="row fw-bold align-items-center bg-lightblue ps-4 py-2 fs-5">
+                    <p class="p-0 m-0">34% Wins | 12-8 </p>
+                </section>
+                <section class="row justify-content-around p-3">
+                    <div class="col-2">
+                        <WrestlerHead />
+                        <div class="row justify-content-around">
+                            <span
+                                class="col-2 bg-light p-0 rank-circle fw-bold fs-5 border border-gold border-3">1</span>
+                            <span class="col-5 standings fw-bold text-light ">5-1 <i
+                                    class=" fs-1 mdi mdi-arrow-up-thick text-success"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                    <div class="col-2">
+                        <WrestlerHead />
+                    </div>
+                </section>
+
+            </div>
+        </section>
+    </section>
 </template>
 
 
@@ -188,5 +248,20 @@ async function getLeagueById() {
     background-position: 50% 40%;
     background-size: 120%;
 
+}
+
+.rank-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.standings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 </style>
