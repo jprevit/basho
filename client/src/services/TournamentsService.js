@@ -30,7 +30,7 @@ class TournamentsService{
         console.log('all tournaments in appstate', AppState.allTournaments);
       }
     async getBashoById(){
-        const datesResponse = await sumoApi.get('/bashoIds')
+        const datesResponse = await sumoApi.get('bashoIds')
         // console.log("the dates 📅", datesResponse.data)
         const bashoDateIndex = Math.floor(Math.random() * this.availableDates.length)
         // console.log(datesResponse.data[bashoDateIndex])

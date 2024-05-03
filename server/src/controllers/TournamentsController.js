@@ -11,9 +11,9 @@ export class TournamentsController extends BaseController {
         this.router
             .get('/bashoIds', this.getAllBashoDates)
             .get('/basho/:bashoId/banzuke/Makuuchi', this.getBashoById)
-            .get(`/api/tournaments`, this.getAllTournaments)
+            .get('', this.getAllTournaments)
             .use(Auth0Provider.getAuthorizedUserInfo)
-            .post('/api/tournaments', this.postTournament)
+            .post('', this.postTournament)
 
     }
 
