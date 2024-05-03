@@ -145,6 +145,7 @@ async function getLeagueById() {
         </div>
     </section>
 
+    <!-- This section displayed during running phase -->
     <section id="running" class="container-fluid bg-darkblue">
         <section class="row bg-light py-3 pb-4">
             <div class="col">
@@ -174,7 +175,15 @@ async function getLeagueById() {
                     </div>
                 </div>
             </div>
+            <div class="col ">
+                <section class="row fw-bold align-items-center bg-lightblue ps-4 py-2 fs-5">
+                    <p class="p-0 m-0">34% Wins | 12-8 </p>
+                </section>
+                <section class="row ">
+                    <WrestlerHead />
+                </section>
 
+            </div>
         </section>
     </section>
 </template>

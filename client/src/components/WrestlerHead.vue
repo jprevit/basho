@@ -31,8 +31,7 @@ function test() {
             <div class="col p-0 text-center">
                 <div class="row justify-content-center">
                     <div class="col">
-                        <img class="pfp"
-                            src="https://media.discordapp.net/attachments/1234923682137243649/1234936338222940332/sumo-not-found.png?ex=663485d7&is=66333457&hm=0cd6e5505573a012f3b41f0b773ea31c169aeb97ea501012a77a83d76ecb78df&=&format=webp&quality=lossless">
+                        <img class="pfp" src="src\assets\img\sumo-not-found.png">
                     </div>
                 </div>
                 <p>Place Holder Wrestler</p>
