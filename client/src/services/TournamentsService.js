@@ -22,6 +22,13 @@ class TournamentsService{
     "202203",
     "202201"]
 
+    async populateAllTournaments() {
+        const allTournaments = await api.get('api/tournaments')
+        console.log('all tournaments', allTournaments.data);
+        const tournaments = allTournaments.data.map(tournament => new Tournament(tournament))
+        AppState.allTournaments = tournaments
+        console.log('all tournaments in appstate', AppState.allTournaments);
+      }
     async getBashoById(){
         const datesResponse = await sumoApi.get('/bashoIds')
         // console.log("the dates 📅", datesResponse.data)

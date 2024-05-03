@@ -1,6 +1,7 @@
 import auth0provider, { Auth0Provider } from "@bcwdev/auth0provider";
 import { tournamentsService } from "../services/TournamentsService.js";
 import BaseController from "../utils/BaseController.js";
+import { response } from "express";
 
 
 
@@ -10,6 +11,7 @@ export class TournamentsController extends BaseController {
         this.router
             .get('/bashoIds', this.getAllBashoDates)
             .get('/basho/:bashoId/banzuke/Makuuchi', this.getBashoById)
+            .get(`/api/tournaments`, this.getAllTournaments)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('/api/tournaments', this.postTournament)
 
@@ -42,6 +44,16 @@ export class TournamentsController extends BaseController {
         }
         catch (error) {
             next(error)
+        }
+    }
+
+
+    async getAllTournaments(request, response, send) {
+        try {
+            const allTournaments = await tournamentsService.getAllTournaments()
+            response.send(allTournaments)
+        } catch (error) {
+
         }
     }
 }
