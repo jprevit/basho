@@ -167,11 +167,11 @@ async function getLeagueById() {
                 <hr class="text-light" />
                 <PlayerHead />
                 <div class="row justify-content-evenly">
-                    <div class="col-5 text-center">
-                        #PTS
+                    <div class="col-5 text-center text-gold fs-4 fw-bold">
+                        23
                     </div>
-                    <div class="col-5 text-center">
-                        #Diff
+                    <div class="col-5 fs-4 justify-content-center text-center standings text-green">
+                        <span>+2</span><i class=" mdi mdi-arrow-up "></i>
                     </div>
                 </div>
             </div>
@@ -184,9 +184,9 @@ async function getLeagueById() {
                         <WrestlerHead />
                         <div class="row justify-content-around">
                             <span
-                                class="col-2 bg-light p-0 rank-circle fw-bold fs-5 border border-gold border-3">1</span>
-                            <span class="col-5 standings fw-bold text-light ">5-1 <i
-                                    class=" fs-1 mdi mdi-arrow-up-thick text-success"></i></span>
+                                class="col-2 bg-light p-0 rank-circle fw-bold fs-5 border border-gold border-3 ">1</span>
+                            <span class="col-5 standings fw-bold text-light justify-content-center ">5-1 <i
+                                    class=" fs-4 mdi mdi-arrow-up text-green"></i></span>
                         </div>
                     </div>
                     <div class="col-2">
