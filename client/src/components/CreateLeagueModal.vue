@@ -4,7 +4,9 @@ import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { leaguesService } from "../services/LeaguesService.js";
 import { logger } from "../utils/Logger.js";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 
 const leagueData = ref({
     leagueName: '',
@@ -24,10 +26,10 @@ function resetForm() {
 
 async function createNewLeague() {
     try {
-        await leaguesService.createNewLeague(leagueData.value)
+        const newLeague = await leaguesService.createNewLeague(leagueData.value)
         resetForm()
         Modal.getOrCreateInstance('#createLeagueModal').hide()
-
+        router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
 
     } catch (error) {
         Pop.toast('Could not create league', 'error')

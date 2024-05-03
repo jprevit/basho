@@ -33,6 +33,9 @@ activeStableWrestlers:[],
   /**@type {Player[]} */
   activePlayers:[],
 
+/**@type {League[]} */
+leagues:[],
+
   /**@type {League} */
   activeLeague: null
 })

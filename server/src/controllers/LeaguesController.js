@@ -8,7 +8,6 @@ export class LeaguesController extends BaseController {
         super('api/leagues')
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
-            // .put('', this.draftWrestler)
             .post('', this.createNewLeague)
     }
 
@@ -24,8 +23,6 @@ export class LeaguesController extends BaseController {
         }
     }
 
-    // async draftWrestler(){
 
-    // }
 
 }

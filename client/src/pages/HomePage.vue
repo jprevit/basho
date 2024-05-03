@@ -75,8 +75,8 @@ onMounted(() => {
             class="btn btn-grey border border-5 border-lightblue ms-5 fs-2 w-50 py-3 mt-5">Get
             Started</button>
         </RouterLink>
+        <button @click="draftStable()" class="btn btn-link text-white">test drafting</button>
       </section>
-      <button @click="draftStable()">test drafting</button>
       <section class="col-md-5 d-none d-md-flex">
         <img src="src\assets\img\sumo-kick.png" class="sumoStomp">
       </section>
