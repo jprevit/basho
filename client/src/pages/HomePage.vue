@@ -46,10 +46,21 @@ async function draftStable() {
   }
 }
 
+async function populateAllTournaments() {
+  try {
+    await tournamentsService.populateAllTournaments()
+  }
+  catch (error) {
+    Pop.error(error);
+    console.error(error);
+  }
+}
+
 
 
 
 onMounted(() => {
+  populateAllTournaments()
   // getAllWrestlers()
   // getBashoById()
   // getWrestlerById()

@@ -22,6 +22,9 @@ class TournamentsService{
     "202203",
     "202201"]
 
+    populateAllTournaments() {
+        throw new Error("Method not implemented.")
+      }
     async getBashoById(){
         const datesResponse = await sumoApi.get('/bashoIds')
         // console.log("the dates 📅", datesResponse.data)
