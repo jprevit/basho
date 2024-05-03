@@ -5,6 +5,7 @@ import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
 import { leaguesService } from "../services/LeaguesService.js";
 import { useRoute } from "vue-router";
+import MyStable from '../components/MyStable.vue';
 
 const activeLeagueState = computed(() => AppState.activeLeague.state)
 const route = useRoute()
@@ -147,7 +148,7 @@ async function getLeagueById() {
 
     <!-- This section displayed during running phase -->
     <section id="running" class="container-fluid bg-darkblue">
-        <section class="row bg-light py-3 pb-4">
+        <section class="row bg-light py-3 pb-4 sticky-top">
             <div class="col">
                 <div class="row justify-content-around">
                     <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
@@ -159,51 +160,11 @@ async function getLeagueById() {
                 </div>
             </div>
         </section>
-        <section class="row bg-mainblue rounded">
-            <div class="col-2 bg-darkblue">
-                <div class="row justify-content-center text-center text-light">
-                    <p class="fs-1 fw-bold"><i class="mdi mdi-medal text-gold"></i> 1</p>
-                </div>
-                <hr class="text-light" />
-                <PlayerHead />
-                <div class="row justify-content-evenly">
-                    <div class="col-5 text-center text-gold fs-4 fw-bold">
-                        23
-                    </div>
-                    <div class="col-5 fs-4 justify-content-center text-center standings text-green">
-                        <span>+2</span><i class=" mdi mdi-arrow-up "></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col ">
-                <section class="row fw-bold align-items-center bg-lightblue ps-4 py-2 fs-5">
-                    <p class="p-0 m-0">34% Wins | 12-8 </p>
-                </section>
-                <section class="row justify-content-around p-3">
-                    <div class="col-2">
-                        <WrestlerHead />
-                        <div class="row justify-content-around">
-                            <span
-                                class="col-2 bg-light p-0 rank-circle fw-bold fs-5 border border-gold border-3 ">1</span>
-                            <span class="col-5 standings fw-bold text-light justify-content-center ">5-1 <i
-                                    class=" fs-4 mdi mdi-arrow-up text-green"></i></span>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <WrestlerHead />
-                    </div>
-                    <div class="col-2">
-                        <WrestlerHead />
-                    </div>
-                    <div class="col-2">
-                        <WrestlerHead />
-                    </div>
-                    <div class="col-2">
-                        <WrestlerHead />
-                    </div>
-                </section>
-
-            </div>
+        <section class="row p-5 bg-charcoal gap-5">
+            <MyStable />
+            <MyStable />
+            <MyStable />
+            <MyStable />
         </section>
     </section>
 </template>
@@ -240,28 +201,5 @@ async function getLeagueById() {
     grid-column: 2;
     grid-row: 2;
     overflow-y: scroll;
-}
-
-.wrester-draft-bg-img {
-    background-image: url(src/assets/img/sumo-ring-grey.jpg);
-    object-fit: cover;
-    background-position: 50% 40%;
-    background-size: 120%;
-
-}
-
-.rank-circle {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.standings {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 </style>
