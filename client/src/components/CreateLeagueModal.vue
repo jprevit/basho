@@ -15,6 +15,7 @@ const leagueData = ref({
     tournamentId: null
 })
 
+
 function resetForm() {
     leagueData.value = {
         leagueName: '',

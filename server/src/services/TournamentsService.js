@@ -3,13 +3,13 @@ import { dbContext } from "../db/DbContext.js"
 
 
 class TournamentsService {
-    getBashoById(bashoId) {
-        const basho = dbContext.Tournament.findById(bashoId)
+    async getBashoById(bashoId) {
+        const basho = await dbContext.Tournament.findOne({ bashoId: bashoId })
         if (!basho) throw new Error(`no basho found with id ${bashoId}`)
         return basho
     }
     async getAllBashoDates() {
-        const dates = dbContext.TournamentDates.find()
+        const dates = await dbContext.TournamentDates.find()
         return dates
     }
 

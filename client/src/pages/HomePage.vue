@@ -7,32 +7,32 @@ import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
 import { leaguesService } from "../services/LeaguesService.js";
 
-async function getAllWrestlers() {
-  try {
-    await wrestlersService.getAllWrestlers()
-  }
-  catch (error) {
-    Pop.error(error);
-  }
-}
+// async function getAllWrestlers() {
+//   try {
+//     await wrestlersService.getAllWrestlers()
+//   }
+//   catch (error) {
+//     Pop.error(error);
+//   }
+// }
 
-async function getBashoById() {
-  try {
-    await tournamentsService.getBashoById()
-  } catch (error) {
-    Pop.error(error)
-  }
+// async function getBashoById() {
+//   try {
+//     await tournamentsService.getBashoById()
+//   } catch (error) {
+//     Pop.error(error)
+//   }
 
-}
+// }
 
-async function getWrestlerById() {
-  try {
-    await wrestlersService.getWrestlerById()
-  } catch (error) {
-    Pop.toast("Couldn't get Wrestler By Id", 'error')
-    logger.error(error)
-  }
-}
+// async function getWrestlerById() {
+//   try {
+//     await wrestlersService.getWrestlerById()
+//   } catch (error) {
+//     Pop.toast("Couldn't get Wrestler By Id", 'error')
+//     logger.error(error)
+//   }
+// }
 
 async function draftStable() {
   try {
@@ -50,9 +50,9 @@ async function draftStable() {
 
 
 onMounted(() => {
-  getAllWrestlers()
-  getBashoById()
-  getWrestlerById()
+  // getAllWrestlers()
+  // getBashoById()
+  // getWrestlerById()
 
 })
 </script>
