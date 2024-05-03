@@ -6,7 +6,7 @@ import BaseController from "../utils/BaseController.js";
 
 export class TournamentsController extends BaseController {
     constructor() {
-        super('')
+        super('api/tournaments')
         this.router
             .get('/bashoIds', this.getAllBashoDates)
             .get('/basho/:bashoId/banzuke/Makuuchi', this.getBashoById)
