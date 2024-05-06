@@ -48,7 +48,8 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto gap-4">
         <li>
-          <router-link :to="{ name: 'ActiveLeague' }"
+          <!-- This button will not always go to the active league page, the ID is hard coded because you need it to use this router link, page will break if you remove the id and dont change the router link to go to a different endpoint -->
+          <router-link :to="{ name: 'ActiveLeague', params: { leagueId: '663549a2acc84c47ca1a9327' } }"
             class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
             Leagues
           </router-link>

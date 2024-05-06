@@ -17,7 +17,7 @@ const routes = [
     component: loadPage('LeaguePage')
   },
   {
-    path: '/activeLeague/',
+    path: '/activeLeague/:leagueId',
     name: 'ActiveLeague',
     component: loadPage(`ActiveLeaguePage`)
   },
@@ -30,6 +30,12 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/conversion',
+    name: 'Conversion Testing',
+    component: loadPage('ConversionTesting'),
     beforeEnter: authGuard
   },
   {

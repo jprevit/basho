@@ -38,12 +38,14 @@ class LeaguesService {
 
   async getLeagueById(leagueId) {
     const response = await api.get(`api/leagues/${leagueId}`)
-    console.log('found league', leagueId);
+    console.log('found league', response.data);
     return response
   }
 
   async joinLeagueById(leagueId){
     console.log('join league form info',leagueId)
+    const response = await this.getLeagueById(leagueId)
+    return response
   }
 
   async getAllLeagues(){

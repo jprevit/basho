@@ -1,5 +1,21 @@
 <script setup>
+import { onMounted } from 'vue';
 import CreateLeagueModal from '../components/CreateLeagueModal.vue';
+import { leaguesService } from '../services/LeaguesService.js';
+import Pop from '../utils/Pop.js';
+
+async function getAllLeagues() {
+    try {
+        await leaguesService.getAllLeagues()
+    } catch (error) {
+        Pop.toast('could not get all leagues', 'error')
+        console.error(error)
+    }
+}
+
+onMounted(() => {
+    getAllLeagues()
+})
 
 </script>
 
