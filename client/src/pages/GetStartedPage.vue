@@ -109,6 +109,7 @@ import CreateLeagueModal from '../components/CreateLeagueModal.vue';
     </div>
 
     <CreateLeagueModal />
+    <JoinLeagueModal />
 </template>
 
 <style scoped lang="scss">
