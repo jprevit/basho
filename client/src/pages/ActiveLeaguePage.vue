@@ -6,9 +6,11 @@ import Pop from "../utils/Pop.js";
 import { leaguesService } from "../services/LeaguesService.js";
 import { useRoute } from "vue-router";
 import MyStable from '../components/MyStable.vue';
+import { logger } from "../utils/Logger.js";
 
 const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
+const activePlayers = computed(() => AppState.activePlayers)
 
 const route = useRoute()
 
@@ -19,6 +21,7 @@ async function getLeagueById() {
         await leaguesService.setActiveLeague(route.params.leagueId)
     } catch (error) {
         Pop.toast('Could not get Active League by Id', 'error')
+        logger.error(error)
     }
 
 }
@@ -27,6 +30,24 @@ const leagueState = {
     drafting: 'drafting',
     running: 'running',
     ended: 'ended'
+}
+
+async function getPlayersByLeagueId() {
+    try {
+        await leaguesService.getPlayersByLeagueId(route.params.leagueId)
+    } catch (error) {
+        Pop.toast("Couldn't get Players By League Id", 'error')
+        logger.error(error)
+    }
+}
+
+async function changeLeagueState() {
+    try {
+        await leaguesService.changeLeagueState(activeLeague.value.state)
+    } catch (error) {
+        Pop.toast("Couldn't Change League State", 'error')
+        logger.error(error)
+    }
 }
 
 onMounted(() => {
@@ -39,7 +60,9 @@ onMounted(() => {
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-    <section v-if="activeLeague" id="starting" class="container-fluid bg-charcoal text-light">
+    <button @click="changeLeagueState()" class="btn btn-primary">CHANGE STATE</button>
+    <section v-if="activeLeague && activeLeague.state == 'starting'" id="starting"
+        class="container-fluid bg-charcoal text-light">
         <section class="col">
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
@@ -62,6 +85,7 @@ onMounted(() => {
                             <h1 class="m-0 p-0">Invite</h1>
                         </div>
                         <div class="col-6 text-end">
+                            <!-- FIXME This needs to be changed once we get players for the league -->
                             <p class="m-0 p-0">Remaining Positions: <i>{{ activeLeague.playerCapacity }}</i></p>
                         </div>
                         <hr />
@@ -82,7 +106,7 @@ onMounted(() => {
                 </div>
                 <div class="col-2">
                     <div class="text-end mt-2">
-                        <p>Invite Code: 12344fd</p>
+                        <p>Invite Code: {{ activeLeague.id }}</p>
                         <p role="button" class="text-red">X Close Room</p>
                     </div>
                 </div>
@@ -91,7 +115,8 @@ onMounted(() => {
     </section>
 
     <!-- This section displayed during drafting phase -->
-    <section id="drafting" class="grid-wrapper container-fluid sumostandingbg">
+    <section v-if="activeLeague && activeLeague.state == 'drafting'" id="drafting"
+        class="grid-wrapper container-fluid sumostandingbg">
         <div class="player-sidebar-col bg-mainblue">
             <PlayerHead />
             <PlayerHead />
@@ -122,35 +147,14 @@ onMounted(() => {
             </div>
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
+            <div v-for="wrestler in activeLeague.tournament.westWrestlers" :key="wrestler.rikishiId" class="col-2 mx-2">
+                <WrestlerCard :wrestler="wrestler" />
             </div>
         </div>
     </section>
 
     <!-- This section displayed during running phase -->
-    <section id="running" class="container-fluid sumostandingbg" hidden>
+    <section v-if="activeLeague && activeLeague.state == 'running'" id="running" class="container-fluid sumostandingbg">
         <section class="row  bgopacitylight py-3 pb-4 sticky-top">
             <div class="col">
                 <div class="row justify-content-around">
@@ -169,6 +173,11 @@ onMounted(() => {
             <MyStable />
             <MyStable />
         </section>
+    </section>
+
+    <!-- NOTE This is placeholder data for when the league has ended-->
+    <section v-if="activeLeague && activeLeague.state == 'ended'" id="ended" class="container-fluid sumostandingbg">
+        <div><span>ENDED</span></div>
     </section>
 </template>
 
