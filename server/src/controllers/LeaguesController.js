@@ -17,17 +17,9 @@ export class LeaguesController extends BaseController {
     }
     async createPlayer(request, response, next) {
         try {
-            const user = request.userInfo.id
-            const league = request.body
-            let newPlayerData = {
-                accountId: '',
-                leagueId: ''
-            }
-
-            newPlayerData.accountId = user
-            newPlayerData.leagueId = league
-
-
+            const userId = request.userInfo.id
+            const newPlayerData = request.body
+            newPlayerData.accountId = userId
 
             logger.log('controller sending', newPlayerData)
             const player = await leaguesService.createPlayer(newPlayerData)

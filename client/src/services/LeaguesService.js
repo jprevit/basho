@@ -7,6 +7,7 @@ import { router } from "../router.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { tournamentsService } from "./TournamentsService.js"
+import { Player } from "../models/Player.js"
 
 
 
@@ -24,13 +25,11 @@ class LeaguesService {
     AppState.activeLeague = newLeague
 
     //console.log("set league in app state")
-    
-    this.joinLeagueById(AppState.activeLeague.id)
-    
+    await this.createPlayer(AppState.activeLeague.id)
     router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
     //console.log('league created', newLeague);
 
-    //console.log("finished creating league")
+    console.log("finished creating league", AppState.activeLeague)
   }
 
   async getLeagueById(leagueId) {
@@ -42,12 +41,22 @@ class LeaguesService {
   async joinLeagueById(leagueId){
     //console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
+
+    await this.createPlayer(leagueId)
+
     AppState.activeLeague = new League(response.data)
-    await api.post(`api/leagues/${leagueId}`, leagueId)
 
     console.log("joined league ", leagueId)
-    //router.push(`activeLeague/${leagueId}`)
+    router.push(`activeLeague/${leagueId}`)
     return response
+  }
+
+  async createPlayer(leagueToJoin){
+    console.log(leagueToJoin)
+    const response =  await api.post(`api/leagues/${leagueToJoin}`, {leagueId : leagueToJoin})
+    const player = new Player(response.data)
+    AppState.activePlayers.push(player)
+    console.log("created player")
   }
 
   async getAllLeagues(){
