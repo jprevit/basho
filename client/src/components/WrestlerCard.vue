@@ -10,42 +10,39 @@ defineProps({ wrestler: { type: TournamentWrestler, required: true } })
 
 <template>
 
-  <div class="container">
-    <section class="container text-center rikishi-card">
+  <section class="container text-center rikishi-card my-3">
 
-      <div class="row rikishi-card-top rounded-top-2 mx-1 text-primary">
+    <div class="row rikishi-card-top rounded-top-2 mx-1 text-primary">
 
+    </div>
+
+    <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
+
+    <div class="row rikishi-card-center text-center border-primary border-bottom border-5 border-top border-5">
+      <h3 class="">{{ wrestler.shikonaEn }}</h3>
+      <h5>Yokozuna 1</h5>
+    </div>
+
+    <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
+
+    <div
+      class="row p-1 pb-0 mx-1 border-bottom border-start border-end border-primary rounded-bottom-2 border-5 bg-charcoal text-white">
+      <div class="col-12 col-lg-4 py-1 text-center d-flex flex-column align-items-center order-2 order-lg-1">
+        <h6 class="fw-bold m-0">64%</h6>
+        <span>Career</span>
       </div>
-
-      <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
-
-      <div class="row rikishi-card-center text-center border-primary border-bottom border-5 border-top border-5">
-        <h3 class="">{{ wrestler.shikonaEn }}</h3>
-        <h5>Yokozuna 1</h5>
+      <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center py-1 order-1 order-lg-2">
+        <h3 class="border border-3 border-primary bg-white text-charcoal align-items-center m-0 basho-rank">1</h3>
       </div>
-
-      <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
-
-      <div
-        class="row p-3 pb-0 rikishi-card-bottom mx-1 border-bottom border-start border-end border-primary rounded-bottom-2 border-5 bg-charcoal text-white">
-        <div class="col-4">
-          <h6 class="fw-bold">64%</h6>
-          <p>Career</p>
-        </div>
-        <div class="col-4 d-flex justify-content-center align-items-center">
-          <h3 class="border border-3 border-primary bg-white text-charcoal align-items-center m-0 basho-rank">1</h3>
-        </div>
-        <div class="col-4">
-          <h6 class="fw-bold">5-1</h6>
-          <p>Basho</p>
-        </div>
+      <div class="col-12 col-lg-4 py-1 text-center order-3">
+        <h6 class="fw-bold m-0">5-1</h6>
+        <span>Basho</span>
       </div>
+    </div>
 
 
-    </section>
+  </section>
 
-
-  </div>
 </template>
 
 
@@ -84,8 +81,8 @@ defineProps({ wrestler: { type: TournamentWrestler, required: true } })
 
 .basho-rank {
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   max-width: 100%;
   object-fit: contain;
   object-position: center;
