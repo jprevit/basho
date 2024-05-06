@@ -4,6 +4,7 @@ import { Wrestler } from './models/Wrestler.js'
 import { Player } from './models/Player.js'
 import { League } from './models/League.js'
 import { StableMember } from "./models/StableMember.js"
+import { TournamentWrestler } from "./models/TournamentWrestler.js"
 
 
 // NOTE AppState is a reactive object to contain app level data
@@ -20,7 +21,7 @@ export const AppState = reactive({
   activeTournament: null,
 
   /**@type {Tournament[]} */
-  allTournaments:[],
+  allTournaments: [],
 
   /** @type {Wrestler[]} */
   wrestlers: [],
@@ -28,21 +29,21 @@ export const AppState = reactive({
   /** @type {Wrestler} */
   activeWrestler: null,
 
-  /**@type {Wrestler[]} */
+  /**@type {TournamentWrestler[]} */
   tournamentWrestlers: [],
 
-/**@type {StableMember[]} */
-activeStableWrestlers:[],
+  /**@type {StableMember[]} */
+  activeStableWrestlers: [],
 
   /**@type {Player[]} */
-  activePlayers:[],
+  activePlayers: [],
 
-/**@type {League[]} */
-leagues:[],
+  /**@type {League[]} */
+  leagues: [],
 
   /**@type {League} */
   activeLeague: null,
 
   /**@type {Wrestler[]} */
-  allWrestlers:[]
+  allWrestlers: []
 })
