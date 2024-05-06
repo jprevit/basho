@@ -6,9 +6,11 @@ import { logger } from "../utils/Logger.js"
 class LeaguesService {
     async createPlayer(newPlayerData) {
 
-        const existingPlayer = await dbContext.Players.findById(newPlayerData.accountId)
+        const existingPlayer = await dbContext.Players.findOne({ accountId: newPlayerData.accountId })
         if (existingPlayer) {
-            existingPlayer.leagues.push(newPlayerData.leagueId)
+            existingPlayer.leagueId.push(newPlayerData.leagueId)
+            existingPlayer.save()
+            return existingPlayer
         }
 
 
