@@ -29,6 +29,9 @@ async function getLeagueById() {
 //     ended: 'ended'
 // }
 
+onMounted(() => {
+    getLeagueById()
+})
 
 </script>
 
