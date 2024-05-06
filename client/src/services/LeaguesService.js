@@ -18,22 +18,12 @@ class LeaguesService {
     const newLeague = new League(response.data)
     AppState.leagues.push(newLeague)
     AppState.activeLeague = newLeague
-
     console.log('active tourn 1', AppState.activeTournament);
     console.log('new league 2', newLeague);
 
     // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
     console.log('New league probably created', newLeague);
-    // AppState.leagues.push(newLeague)
 
-    // router.push(`activeLeague/${newLeague.id}`)
-
-    // console.log('league actually created', AppState.leagues); xx
-    // AppState.activeLeague=newLeague xx
-    // console.log('active league', AppState.activeLeague); xx
-    // console.log("active league", AppState.activeLeague);
-    // return newLeague xx
-    // AppState.activeLeague = response.data
   }
 
   async getLeagueById(leagueId) {
@@ -45,6 +35,7 @@ class LeaguesService {
   async joinLeagueById(leagueId){
     console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
+    await api.post(`api/leagues/${leagueId}`, leagueId)
     router.push(`activeLeague/${leagueId}`)
     return response
   }
