@@ -8,6 +8,8 @@ class LeaguesService {
 
         const existingPlayer = await dbContext.Players.findOne({ accountId: newPlayerData.accountId })
         if (existingPlayer) {
+            if (existingPlayer.leagueId.includes(newPlayerData.leagueId)) throw new Error('This player is already in this league')
+
             existingPlayer.leagueId.push(newPlayerData.leagueId)
             existingPlayer.save()
             return existingPlayer
