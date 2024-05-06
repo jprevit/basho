@@ -24,7 +24,7 @@ async function convertWrestlers() {
     try {
         const newLeague = await wrestlerConversionService.getBashoById(bashoData.value)
         resetForm()
-        Modal.getOrCreateInstance('#convertWrestlerModal').hide()
+        Modal.getOrCreateInstance('#convertWrestlersModal').hide()
 
         // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
 
