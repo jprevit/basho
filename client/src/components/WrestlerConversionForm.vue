@@ -2,7 +2,6 @@
 import { Modal } from 'bootstrap';
 import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
-import { leaguesService } from "../services/LeaguesService.js";
 import { logger } from "../utils/Logger.js";
 import { useRouter } from "vue-router";
 import { wrestlerConversionService } from "../services/WrestlerConversionService.js";
@@ -22,6 +21,7 @@ function resetForm() {
 
 async function convertWrestlers() {
     try {
+
         const newLeague = await wrestlerConversionService.getBashoById(bashoData.value)
         resetForm()
         Modal.getOrCreateInstance('#convertWrestlersModal').hide()
