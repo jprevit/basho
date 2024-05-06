@@ -13,30 +13,8 @@ export class LeaguesController extends BaseController {
             .get('/:leagueId', this.getLeagueById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
-            .post('/:leagueId', this.createPlayer)
     }
-    async createPlayer(request, response, next) {
-        try {
-            const user = request.userInfo.id
-            const league = request.body
-            let newPlayerData = {
-                accountId: '',
-                leagueId: ''
-            }
 
-            newPlayerData.accountId = user
-            newPlayerData.leagueId = league
-
-
-
-            logger.log('controller sending', newPlayerData)
-            const player = await leaguesService.createPlayer(newPlayerData)
-            response.send(player)
-
-        } catch (error) {
-            next(error)
-        }
-    }
 
     async createNewLeague(request, response, next) {
         try {

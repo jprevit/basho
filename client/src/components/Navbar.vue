@@ -1,14 +1,23 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import { AppState } from '../AppState.js';
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
+import { League } from "../models/League.js";
+import { leaguesService } from "../services/LeaguesService.js";
 
 const theme = ref(loadState('theme') || 'light')
 const user = computed(() => AppState.account)
+const allLeagues = computed(() => AppState.leagues)
 
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
+})
+
+onBeforeMount(() => {
+  getAllLeagues()
 })
 
 function toggleTheme() {
@@ -16,6 +25,17 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
 }
+
+async function getAllLeagues() {
+  try {
+    await leaguesService.getAllLeagues()
+
+  } catch (error) {
+    Pop.toast("Couldn't get all Leagues", 'error')
+    logger.error(error)
+  }
+}
+
 
 </script>
 
@@ -49,8 +69,7 @@ function toggleTheme() {
       <ul class="navbar-nav me-auto gap-4">
         <li>
           <!-- This button will not always go to the active league page, the ID is hard coded because you need it to use this router link, page will break if you remove the id and dont change the router link to go to a different endpoint -->
-          <router-link :to="{ name: 'ActiveLeague', params: { leagueId: '663549a2acc84c47ca1a9327' } }"
-            class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'League' }" class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
             Leagues
           </router-link>
         </li>
