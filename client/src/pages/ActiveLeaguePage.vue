@@ -6,9 +6,11 @@ import Pop from "../utils/Pop.js";
 import { leaguesService } from "../services/LeaguesService.js";
 import { useRoute } from "vue-router";
 import MyStable from '../components/MyStable.vue';
+import { logger } from "../utils/Logger.js";
 
 const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
+const activePlayers = computed(() => AppState.activePlayers)
 
 const route = useRoute()
 
@@ -19,6 +21,7 @@ async function getLeagueById() {
         await leaguesService.setActiveLeague(route.params.leagueId)
     } catch (error) {
         Pop.toast('Could not get Active League by Id', 'error')
+        logger.error(error)
     }
 
 }
@@ -27,6 +30,24 @@ const leagueState = {
     drafting: 'drafting',
     running: 'running',
     ended: 'ended'
+}
+
+async function getPlayersByLeagueId() {
+    try {
+        await leaguesService.getPlayersByLeagueId(route.params.leagueId)
+    } catch (error) {
+        Pop.toast("Couldn't get Players By League Id", 'error')
+        logger.error(error)
+    }
+}
+
+async function changeLeagueState() {
+    try {
+        await leaguesService.changeLeagueState(activeLeague.value.state)
+    } catch (error) {
+        Pop.toast("Couldn't Change League State", 'error')
+        logger.error(error)
+    }
 }
 
 onMounted(() => {
@@ -39,6 +60,7 @@ onMounted(() => {
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
+    <button @click="changeLeagueState()" class="btn btn-primary">CHANGE STATE</button>
     <section v-if="activeLeague && activeLeague.state == 'starting'" id="starting"
         class="container-fluid bg-charcoal text-light">
         <section class="col">
@@ -125,36 +147,14 @@ onMounted(() => {
             </div>
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
+            <div v-for="wrestler in activeLeague.tournament.westWrestlers" :key="wrestler.rikishiId" class="col-2 mx-2">
+                <WrestlerCard :wrestler="wrestler" />
             </div>
         </div>
     </section>
 
     <!-- This section displayed during running phase -->
-    <section v-if="activeLeague && activeLeague.state == 'running'" id="running" class="container-fluid sumostandingbg"
-        hidden>
+    <section v-if="activeLeague && activeLeague.state == 'running'" id="running" class="container-fluid sumostandingbg">
         <section class="row  bgopacitylight py-3 pb-4 sticky-top">
             <div class="col">
                 <div class="row justify-content-around">
