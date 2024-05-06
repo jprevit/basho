@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { createApp } from "vue"
 import App from "../App.vue"
 import { AppState } from "../AppState.js"
 import { League } from "../models/League.js"
@@ -15,16 +16,21 @@ class LeaguesService {
     await tournamentsService.getBashoById()
     leagueData.tournamentId = AppState.activeTournament.bashoId
     const response = await api.post(`api/leagues`, leagueData)
-    // console.log('🦒', response.data);
+    
+    console.log("league posted")
+
     const newLeague = new League(response.data)
     AppState.leagues.push(newLeague)
     AppState.activeLeague = newLeague
-    // console.log('active tourn 1', AppState.activeTournament);
-    // console.log('new league 2', newLeague);
 
+    //console.log("set league in app state")
+    
+    this.joinLeagueById(AppState.activeLeague.id)
+    
     router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
-    console.log('league created', newLeague);
+    //console.log('league created', newLeague);
 
+    //console.log("finished creating league")
   }
 
   async getLeagueById(leagueId) {
@@ -34,11 +40,13 @@ class LeaguesService {
   }
 
   async joinLeagueById(leagueId){
-    console.log('join league form info',leagueId)
+    //console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
     AppState.activeLeague = new League(response.data)
     await api.post(`api/leagues/${leagueId}`, leagueId)
-    router.push(`activeLeague/${leagueId}`)
+
+    console.log("joined league ", leagueId)
+    //router.push(`activeLeague/${leagueId}`)
     return response
   }
 
