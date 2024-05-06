@@ -33,6 +33,12 @@ const routes = [
     beforeEnter: authGuard
   },
   {
+    path: '/conversion',
+    name: 'Conversion Testing',
+    component: loadPage('ConversionTesting'),
+    beforeEnter: authGuard
+  },
+  {
     path: '/componentViewer',
     name: 'ComponentViewer',
     component: loadPage('ComponentViewer'),
