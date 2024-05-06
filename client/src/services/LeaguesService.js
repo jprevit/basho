@@ -16,6 +16,8 @@ class LeaguesService {
     const response = await api.post(`api/leagues`, leagueData)
     console.log('🦒', response.data);
     const newLeague = new League(response.data)
+    AppState.leagues.push(newLeague)
+    AppState.activeLeague = newLeague
 
     console.log('active tourn 1', AppState.activeTournament);
     console.log('new league 2', newLeague);
@@ -34,13 +36,20 @@ class LeaguesService {
     // AppState.activeLeague = response.data
   }
 
-
-
-
-
   async getLeagueById(leagueId) {
     const response = await api.get(`api/leagues/${leagueId}`)
     console.log('found league', leagueId);
+    return response
+  }
+
+  async joinLeagueById(leagueId){
+    console.log('join league form info',leagueId)
+  }
+
+  async getAllLeagues(){
+    const response = await api.get('api/leagues')
+    console.log('all leagues should be here',response.data)
+    return response
   }
 
 }

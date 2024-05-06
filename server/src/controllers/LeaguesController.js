@@ -9,6 +9,7 @@ export class LeaguesController extends BaseController {
     constructor() {
         super('api/leagues')
         this.router
+            .get('', this.getAllLeagues)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
             .post('/:leagueId', this.createPlayer)
@@ -50,6 +51,17 @@ export class LeaguesController extends BaseController {
             response.send(newLeague)
         } catch (error) {
             next(error)
+        }
+    }
+
+    async getAllLeagues(request, response, next) {
+        try {
+            console.log('getting all leagues')
+            const leagues = await leaguesService.getAllLeagues()
+            response.send(leagues)
+        }
+        catch (error) {
+            next(error);
         }
     }
 

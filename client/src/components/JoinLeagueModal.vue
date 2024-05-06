@@ -6,7 +6,7 @@ import { leaguesService } from "../services/LeaguesService.js";
 import { logger } from "../utils/Logger.js";
 import { useRouter } from "vue-router";
 
-const router = useRouter()
+const route = useRouter()
 
 const formData = ref({
     leagueId: ''
@@ -16,6 +16,17 @@ const formData = ref({
 function resetForm() {
     formData.value = {
         leagueId: ''
+    }
+}
+
+async function joinLeagueById() {
+    try {
+        await leaguesService.joinLeagueById(formData.value.leagueId)
+        resetForm()
+    }
+    catch (error) {
+        Pop.toast('could not join league', 'error');
+        console.error(error)
     }
 }
 
@@ -35,12 +46,17 @@ function resetForm() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="container" @submit.prevent="joinLeague()">
+                    <form class="container" @submit.prevent="joinLeagueById()">
                         <div class="row mb-2">
-                            <div class="form-floating">
-                                <input v-model="formData.leagueId" type="text" class="form-control" id="leagueId"
-                                    placeholder="Enter Your League's Id" minlength="3" maxlength="25" required>
-                                <label for="leagueId" class="ms-3">League Id</label>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input v-model="formData.leagueId" type="text" class="form-control" id="leagueId"
+                                        placeholder="Enter Your League's Id" minlength="3" maxlength="25" required>
+                                    <label for="leagueId" class="ms-3">League Id</label>
+                                </div>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-charcoal w-50 mt-2">Join</button>
                             </div>
                         </div>
                     </form>
