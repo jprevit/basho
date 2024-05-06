@@ -12,7 +12,7 @@ class PlayersService {
 
         logger.log('service received', newPlayerData)
         const newPlayer = await dbContext.Players.create(newPlayerData)
-        newPlayer.populate('league profile')
+        newPlayer.populate('league')
         return newPlayer
     }
 }
