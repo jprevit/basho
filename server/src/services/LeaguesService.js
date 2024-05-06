@@ -20,6 +20,11 @@ class LeaguesService {
         return newLeague
     }
 
+    async getAllLeagues() {
+        const leagues = await dbContext.Leagues.find().populate('creator tournament')
+        return leagues
+    }
+
 }
 
 export const leaguesService = new LeaguesService

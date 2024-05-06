@@ -56,11 +56,21 @@ async function populateAllTournaments() {
   }
 }
 
+async function getAllLeagues() {
+  try {
+    await leaguesService.getAllLeagues()
+  } catch (error) {
+    Pop.toast('could not get all leagues', 'error')
+    console.error(error)
+  }
+}
+
 
 
 
 onMounted(() => {
   populateAllTournaments()
+  getAllLeagues()
   // getAllWrestlers()
   // getBashoById()
   // getWrestlerById()
