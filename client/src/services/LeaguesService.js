@@ -26,6 +26,7 @@ class LeaguesService {
 
     //console.log("set league in app state")
     await this.createPlayer(AppState.activeLeague.id)
+    console.log("created league id", AppState.activeLeague.id)
     router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
     //console.log('league created', newLeague);
 
@@ -39,7 +40,7 @@ class LeaguesService {
   }
 
   async joinLeagueById(leagueId){
-    //console.log('join league form info',leagueId)
+    console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
 
     await this.createPlayer(leagueId)
@@ -52,7 +53,6 @@ class LeaguesService {
   }
 
   async createPlayer(leagueToJoin){
-    console.log(leagueToJoin)
     const response =  await api.post(`api/leagues/${leagueToJoin}`, {leagueId : leagueToJoin})
     const player = new Player(response.data)
     AppState.activePlayers.push(player)
