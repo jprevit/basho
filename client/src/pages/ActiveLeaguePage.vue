@@ -7,25 +7,28 @@ import { leaguesService } from "../services/LeaguesService.js";
 import { useRoute } from "vue-router";
 import MyStable from '../components/MyStable.vue';
 
+const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
+
 const route = useRoute()
 
-onMounted(() => {
 
-})
 // const leagueState = {
 //     starting: 'starting',
 //     drafting: 'drafting',
 //     running: 'running',
 //     ended: 'ended'
 // }
+
+
 </script>
 
 
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-    <section id="starting" class="container-fluid bg-charcoal text-light" hidden>
+    {{ JSON.stringify(activeLeague) }}
+    <section v-if="activeLeague" id="starting" class="container-fluid bg-charcoal text-light">
         <section class="col">
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
@@ -38,8 +41,8 @@ onMounted(() => {
                 <div class="col-8">
                     <section class="row mt-2">
                         <div class="col-6">
-                            <h3>Jiggle Brothers</h3>
-                            <div>Created 12 May 2024</div>
+                            <h3>{{ activeLeague.leagueName }}</h3>
+                            <div>Created {{ activeLeague.startDate }}</div>
                         </div>
 
                     </section>
@@ -48,7 +51,7 @@ onMounted(() => {
                             <h1 class="m-0 p-0">Invite</h1>
                         </div>
                         <div class="col-6 text-end">
-                            <p class="m-0 p-0">Remaining Positions: <i>5</i></p>
+                            <p class="m-0 p-0">Remaining Positions: <i>{{ activeLeague.playerCapacity }}</i></p>
                         </div>
                         <hr />
                         <div class="col-12">

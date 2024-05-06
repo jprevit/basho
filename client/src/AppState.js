@@ -41,5 +41,7 @@ activeStableWrestlers:[],
 leagues:[],
 
   /**@type {League} */
-  activeLeague: null
+  activeLeague: null,
+
+  /**@type {Wrestler} */
 })
