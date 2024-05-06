@@ -9,7 +9,7 @@ class WrestlersService {
 
     async getAllWrestlers() {
         const response = await sumoApi.get('/rikishis')
-        //console.log('rakishis from client', response)
+        console.log('rakishis from client', response)
     }
 
 

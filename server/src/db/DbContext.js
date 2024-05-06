@@ -7,6 +7,7 @@ import { TournamentSchema } from '../models/Tournament.js';
 import { LeagueSchema } from '../models/League.js';
 import { PlayerSchema } from '../models/Player.js';
 import { StableMemberSchema } from '../models/StableMember.js';
+import { WrestlerPoolSchema } from "../models/WrestlerPool.js";
 
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
@@ -17,6 +18,7 @@ class DbContext {
   Leagues = mongoose.model('League', LeagueSchema);
   Players = mongoose.model('Player', PlayerSchema);
   StableMembers = mongoose.model('StableMember', StableMemberSchema)
+  WrestlerPool = mongoose.model('WrestlerPool', WrestlerPoolSchema)
 }
 
 export const dbContext = new DbContext()
