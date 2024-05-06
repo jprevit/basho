@@ -1,8 +1,9 @@
 <script setup>
-import { Wrestler } from "../models/Wrestler.js";
+import { TournamentWrestler } from "../models/TournamentWrestler.js";
 
 
-defineProps({ wrestler: { type: Wrestler, required: true } })
+
+defineProps({ wrestler: { type: TournamentWrestler, required: true } })
 
 </script>
 
@@ -18,7 +19,7 @@ defineProps({ wrestler: { type: Wrestler, required: true } })
     <!-- <hr class="opacity-100 border-5 text-primary my-0" /> -->
 
     <div class="row rikishi-card-center text-center border-primary border-bottom border-5 border-top border-5">
-      <h3 class="">{{ wrestler }}</h3>
+      <h3 class="">{{ wrestler.shikonaEn }}</h3>
       <h5>Yokozuna 1</h5>
     </div>
 
