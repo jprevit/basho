@@ -7,6 +7,7 @@ import { leaguesService } from "../services/LeaguesService.js";
 import { useRoute } from "vue-router";
 import MyStable from '../components/MyStable.vue';
 import { logger } from "../utils/Logger.js";
+import { tournamentsService } from "../services/TournamentsService.js";
 
 const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
@@ -14,11 +15,12 @@ const activePlayers = computed(() => AppState.activePlayers)
 
 const route = useRoute()
 
-
-async function getLeagueById() {
+// This function gets all data needed to draw data to the page. Sets active League and Tournament
+async function setupLeaguePage() {
     try {
         await leaguesService.getLeagueById(route.params.leagueId)
         await leaguesService.setActiveLeague(route.params.leagueId)
+        await tournamentsService.getTournamentByTournamentId(activeLeague.value.tournamentId)
     } catch (error) {
         Pop.toast('Could not get Active League by Id', 'error')
         logger.error(error)
@@ -50,8 +52,20 @@ async function changeLeagueState() {
     }
 }
 
+async function getTournamentByTournamentId() {
+    try {
+
+        await tournamentsService.getTournamentByTournamentId(activeLeague.value.tournamentId)
+        logger.log(AppState.activeLeague)
+    } catch (error) {
+        Pop.toast("Couldn't get Tournament By Tournament ID", 'error')
+        logger.error(error)
+    }
+}
+
+
 onMounted(() => {
-    getLeagueById()
+    setupLeaguePage()
 })
 
 </script>
