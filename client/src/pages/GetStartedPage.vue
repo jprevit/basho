@@ -43,7 +43,8 @@ import CreateLeagueModal from '../components/CreateLeagueModal.vue';
                             </g>
                         </svg>
                         <button style="border-radius: 25px;"
-                            class="btn btn-grey border border-5 border-lightblue fs-2  w-75 py-3 mt-3 ">Join
+                            class="btn btn-grey border border-5 border-lightblue fs-2  w-75 py-3 mt-3 "
+                            data-bs-toggle="modal" title="Join a League" data-bs-target="#joinLeagueModal">Join
                             League</button>
                     </div>
                     <div class="col-lg-3 col-12 d-flex flex-column align-items-center">
@@ -64,7 +65,7 @@ import CreateLeagueModal from '../components/CreateLeagueModal.vue';
                         </svg>
                         <button style="border-radius: 25px;"
                             class="btn btn-grey border border-5 border-lightblue  fs-2 w-75 py-3 mt-3"
-                            data-bs-toggle="modal" title="create a league" data-bs-target="#createLeagueModal">Create
+                            data-bs-toggle="modal" title="Create a League" data-bs-target="#joinLeagueModal">Create
                             League</button>
 
 
@@ -108,6 +109,7 @@ import CreateLeagueModal from '../components/CreateLeagueModal.vue';
     </div>
 
     <CreateLeagueModal />
+    <JoinLeagueModal />
 </template>
 
 <style scoped lang="scss">
