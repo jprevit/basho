@@ -1,5 +1,75 @@
+<!-- eslint-disable no-console -->
 <script setup>
+import { computed, onMounted } from "vue";
 import WrestlerConversionForm from "../components/WrestlerConversionForm.vue";
+import Pop from "../utils/Pop.js";
+import { tournamentsService } from "../services/TournamentsService.js";
+import { AppState } from "../AppState.js";
+import { logger } from "../utils/Logger.js";
+import { wrestlerConversionService } from "../services/WrestlerConversionService.js";
+
+const tournaments = computed(() => AppState.allTournaments)
+const allWrestlers = []
+
+
+
+
+// async function populateAllTournaments() {
+//   try {
+//     const allTournaments = await tournamentsService.populateAllTournaments()
+//     pullWrestlers()
+//   }
+//   catch (error) {
+//     Pop.toast(error);
+//     console.error(error);
+//   }
+// }
+
+// function pullWrestlers() {
+//   console.log('From Appstate', AppState.allTournaments);
+
+//   AppState.allTournaments.forEach(tournament => {
+//     tournament.eastWrestlers.forEach(wrestler => {
+//       allWrestlers.push({
+//         id: wrestler.rikishiID,
+//         name: wrestler.shikonaEn
+//       })
+//     }),
+//       tournament.westWrestlers.forEach(wrestler => {
+//         allWrestlers.push({
+//           id: wrestler.rikishiID,
+//           name: wrestler.shikonaEn
+//         })
+//       })
+//   })
+//   filterWrestlers(allWrestlers)
+//   console.log('Filtered Wrestlers', allWrestlers);
+//   console.log('All Wrestlers', allWrestlers);
+// }
+
+
+// function filterWrestlers(allWrestlers) {
+//   const uniqueWrestlers = []
+//   allWrestlers.forEach(wrestler => {
+//     if (!uniqueWrestlers.includes(wrestler)) {
+//       uniqueWrestlers.push(wrestler)
+//     }
+//   })
+//   console.log('Unique Wrestlers', uniqueWrestlers);
+
+// }
+
+async function getAvailableBashos() {
+  const theBasho = await wrestlerConversionService.getAvailableBashosFromAPI('202403')
+  console.log('east meets west');
+}
+
+onMounted(() =>
+  // populateAllTournaments()
+  getAvailableBashos()
+)
+
+
 </script>
 
 
@@ -10,7 +80,22 @@ import WrestlerConversionForm from "../components/WrestlerConversionForm.vue";
         data-bs-toggle="modal" title="Convert Wrestlers" data-bs-target="#convertWrestlersModal">Get Wrestlers to
         Convert</button>
     </div>
+
+    <div class="row">
+
+      <!-- <div v-for="tournament in tournaments" :key="tournament.id"> -->
+
+      <!-- {{ tournament.eastWrestlers }} -->
+      <!-- </div> -->
+
+    </div>
+
+
+
+
   </div>
+
+
   <WrestlerConversionForm />
 </template>
 

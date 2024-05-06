@@ -54,7 +54,7 @@ class LeaguesService {
   }
 
   async createPlayer(leagueToJoin){
-    const response =  await api.post(`api/leagues/${leagueToJoin}`, {leagueId : leagueToJoin})
+    const response =  await api.post(`api/players/${leagueToJoin}`, {leagueId : leagueToJoin})
     const player = new Player(response.data)
     AppState.activePlayers.push(player)
     console.log("created player")
