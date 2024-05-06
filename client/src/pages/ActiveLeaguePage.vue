@@ -147,29 +147,8 @@ onMounted(() => {
             </div>
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2 mx-2">
-                <WrestlerCard />
+            <div v-for="wrestler in activeLeague.tournament.westWrestlers" :key="wrestler.rikishiId" class="col-2 mx-2">
+                <WrestlerCard :wrestler="wrestler" />
             </div>
         </div>
     </section>
