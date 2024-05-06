@@ -5,7 +5,7 @@ import { dbContext } from "../db/DbContext.js"
 class LeaguesService {
     async createPlayer(newPlayerData) {
         const newPlayer = await dbContext.Players.create(newPlayerData)
-        newPlayer.populate('tournament profile')
+        newPlayer.populate('league profile')
         return newPlayer
     }
 
