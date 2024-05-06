@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import App from "../App.vue"
 import { AppState } from "../AppState.js"
 import { League } from "../models/League.js"
 import { router } from "../router.js"
@@ -45,6 +46,12 @@ class LeaguesService {
     const response = await api.get('api/leagues')
     console.log('all leagues should be here',response.data)
     return response
+  }
+
+  async setActiveLeague(leagueId){
+    const league = await this.getLeagueById(leagueId)
+    AppState.activeLeague = league.data
+    console.log('appstate active league',AppState.activeLeague)
   }
 
 }

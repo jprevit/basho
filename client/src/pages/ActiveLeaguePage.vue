@@ -16,6 +16,7 @@ const route = useRoute()
 async function getLeagueById() {
     try {
         await leaguesService.getLeagueById(route.params.leagueId)
+        await leaguesService.setActiveLeague(route.params.leagueId)
     } catch (error) {
         Pop.toast('Could not get Active League by Id', 'error')
     }
@@ -38,7 +39,6 @@ onMounted(() => {
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-    {{ JSON.stringify(activeLeague) }}
     <section v-if="activeLeague" id="starting" class="container-fluid bg-charcoal text-light">
         <section class="col">
             <section class="row">
