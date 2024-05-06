@@ -21,7 +21,7 @@ class LeaguesService {
     console.log('active tourn 1', AppState.activeTournament);
     console.log('new league 2', newLeague);
 
-    // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
+    router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
     console.log('New league probably created', newLeague);
 
   }
