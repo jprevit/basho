@@ -22,12 +22,12 @@ async function getLeagueById() {
     }
 
 }
-// const leagueState = {
-//     starting: 'starting',
-//     drafting: 'drafting',
-//     running: 'running',
-//     ended: 'ended'
-// }
+const leagueState = {
+    starting: 'starting',
+    drafting: 'drafting',
+    running: 'running',
+    ended: 'ended'
+}
 
 onMounted(() => {
     getLeagueById()
