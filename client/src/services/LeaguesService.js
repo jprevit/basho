@@ -45,6 +45,7 @@ class LeaguesService {
   async joinLeagueById(leagueId){
     console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
+    router.push(`activeLeague/${leagueId}`)
     return response
   }
 
