@@ -1,9 +1,19 @@
 import { dbContext } from "../db/DbContext.js"
+import { logger } from "../utils/Logger.js"
 
 
 
 class LeaguesService {
     async createPlayer(newPlayerData) {
+
+        const existingPlayer = await dbContext.Players.findById(newPlayerData.accountId)
+        if (existingPlayer) {
+            existingPlayer.leagues.push(newPlayerData.leagueId)
+        }
+
+
+
+        logger.log('service received', newPlayerData)
         const newPlayer = await dbContext.Players.create(newPlayerData)
         newPlayer.populate('league profile')
         return newPlayer

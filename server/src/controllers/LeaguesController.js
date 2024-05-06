@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { leaguesService } from "../services/LeaguesService.js";
 import { tournamentsService } from "../services/TournamentsService.js";
+import { logger } from "../utils/Logger.js";
 
 
 export class LeaguesController extends BaseController {
@@ -25,6 +26,8 @@ export class LeaguesController extends BaseController {
             newPlayerData.leagueId = league
 
 
+
+            logger.log('controller sending', newPlayerData)
             const player = await leaguesService.createPlayer(newPlayerData)
             response.send(player)
 
