@@ -3,6 +3,12 @@ import { dbContext } from "../db/DbContext.js"
 
 
 class LeaguesService {
+    async createPlayer(newPlayerData) {
+        const newPlayer = await dbContext.Players.create(newPlayerData)
+        newPlayer.populate('tournament profile')
+        return newPlayer
+    }
+
     // async addWrestlertoStable(wrestlerId, userId) {
     //     const addedWrestler = await dbContext.StableMembers.create(wrestlerId, userId)
     //     await addedWrestler.populate('player wrestler league')

@@ -12,11 +12,21 @@ export class LeaguesController extends BaseController {
             .post('', this.createNewLeague)
             .post('/:leagueId', this.createPlayer)
     }
-    createPlayer(request, response, next) {
+    async createPlayer(request, response, next) {
         try {
             const user = request.userInfo.id
             const league = request.params.leagueId
-            response.send(user, league)
+            let newPlayerData = {
+                accountId: '',
+                leagueId: ''
+            }
+
+            newPlayerData.accountId = user
+            newPlayerData.leagueId = league
+
+
+            const player = await leaguesService.createPlayer(newPlayerData)
+            response.send(player)
 
         } catch (error) {
             next(error)
