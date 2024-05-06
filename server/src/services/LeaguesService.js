@@ -6,9 +6,13 @@ import { logger } from "../utils/Logger.js"
 class LeaguesService {
     async createPlayer(newPlayerData) {
 
-        const existingPlayer = await dbContext.Players.findById(newPlayerData.accountId)
+        const existingPlayer = await dbContext.Players.findOne({ accountId: newPlayerData.accountId })
         if (existingPlayer) {
-            existingPlayer.leagues.push(newPlayerData.leagueId)
+            if (existingPlayer.leagueId.includes(newPlayerData.leagueId)) throw new Error('This player is already in this league')
+
+            existingPlayer.leagueId.push(newPlayerData.leagueId)
+            existingPlayer.save()
+            return existingPlayer
         }
 
 
@@ -37,7 +41,7 @@ class LeaguesService {
 
     async getLeagueById(leagueId) {
         const league = await dbContext.Leagues.findById(leagueId)
-        league.populate('creator tournament', '-email')
+        await league.populate('creator tournament', '-email')
         return league
     }
 

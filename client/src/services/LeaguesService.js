@@ -14,36 +14,31 @@ class LeaguesService {
     await tournamentsService.getBashoById()
     leagueData.tournamentId = AppState.activeTournament.bashoId
     const response = await api.post(`api/leagues`, leagueData)
-    console.log('🦒', response.data);
+    // console.log('🦒', response.data);
     const newLeague = new League(response.data)
     AppState.leagues.push(newLeague)
     AppState.activeLeague = newLeague
+    // console.log('active tourn 1', AppState.activeTournament);
+    // console.log('new league 2', newLeague);
 
-    console.log('active tourn 1', AppState.activeTournament);
-    console.log('new league 2', newLeague);
+    router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
+    console.log('league created', newLeague);
 
-    // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
-    console.log('New league probably created', newLeague);
-    // AppState.leagues.push(newLeague)
-
-    // router.push(`activeLeague/${newLeague.id}`)
-
-    // console.log('league actually created', AppState.leagues); xx
-    // AppState.activeLeague=newLeague xx
-    // console.log('active league', AppState.activeLeague); xx
-    // console.log("active league", AppState.activeLeague);
-    // return newLeague xx
-    // AppState.activeLeague = response.data
   }
 
   async getLeagueById(leagueId) {
     const response = await api.get(`api/leagues/${leagueId}`)
-    console.log('found league', leagueId);
+    // console.log('found league', response.data);
     return response
   }
 
   async joinLeagueById(leagueId){
     console.log('join league form info',leagueId)
+    const response = await this.getLeagueById(leagueId)
+    AppState.activeLeague = response.data
+    await api.post(`api/leagues/${leagueId}`, leagueId)
+    router.push(`activeLeague/${leagueId}`)
+    return response
   }
 
   async getAllLeagues(){

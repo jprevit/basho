@@ -23,6 +23,7 @@ async function joinLeagueById() {
     try {
         await leaguesService.joinLeagueById(formData.value.leagueId)
         resetForm()
+        Modal.getOrCreateInstance('#joinLeagueModal').hide()
     }
     catch (error) {
         Pop.toast('could not join league', 'error');
