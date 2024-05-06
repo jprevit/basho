@@ -11,17 +11,8 @@ const activeLeagueState = computed(() => AppState.activeLeague.state)
 const route = useRoute()
 
 onMounted(() => {
-    getLeagueById()
+
 })
-
-async function getLeagueById() {
-    try {
-        await leaguesService.getLeagueById(route.params.leagueId)
-    } catch (error) {
-        Pop.toast('Could not get Active League by Id', 'error')
-    }
-
-}
 // const leagueState = {
 //     starting: 'starting',
 //     drafting: 'drafting',
