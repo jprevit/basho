@@ -2,21 +2,36 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { leaguesService } from "../services/LeaguesService.js";
 import { tournamentsService } from "../services/TournamentsService.js";
+import { logger } from "../utils/Logger.js";
 
 
 export class LeaguesController extends BaseController {
     constructor() {
         super('api/leagues')
         this.router
+            .get('', this.getAllLeagues)
+            .get('/:leagueId', this.getLeagueById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
             .post('/:leagueId', this.createPlayer)
     }
-    createPlayer(request, response, next) {
+    async createPlayer(request, response, next) {
         try {
             const user = request.userInfo.id
             const league = request.params.leagueId
-            response.send(user, league)
+            let newPlayerData = {
+                accountId: '',
+                leagueId: ''
+            }
+
+            newPlayerData.accountId = user
+            newPlayerData.leagueId = league
+
+
+
+            logger.log('controller sending', newPlayerData)
+            const player = await leaguesService.createPlayer(newPlayerData)
+            response.send(player)
 
         } catch (error) {
             next(error)
@@ -35,6 +50,27 @@ export class LeaguesController extends BaseController {
             // console.log('leagues controller active tournament', activeTournament);
             const newLeague = await leaguesService.createNewLeague(leagueData)
             response.send(newLeague)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getAllLeagues(request, response, next) {
+        try {
+            console.log('getting all leagues')
+            const leagues = await leaguesService.getAllLeagues()
+            response.send(leagues)
+        }
+        catch (error) {
+            next(error);
+        }
+    }
+
+    async getLeagueById(request, response, next) {
+        try {
+            const leagueId = request.params.leagueId
+            const league = await leaguesService.getLeagueById(leagueId)
+            response.send(league)
         } catch (error) {
             next(error)
         }
