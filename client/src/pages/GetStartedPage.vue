@@ -65,7 +65,7 @@ import CreateLeagueModal from '../components/CreateLeagueModal.vue';
                         </svg>
                         <button style="border-radius: 25px;"
                             class="btn btn-grey border border-5 border-lightblue  fs-2 w-75 py-3 mt-3"
-                            data-bs-toggle="modal" title="Create a League" data-bs-target="#joinLeagueModal">Create
+                            data-bs-toggle="modal" title="Create a League" data-bs-target="#createLeagueModal">Create
                             League</button>
 
 

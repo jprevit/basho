@@ -34,13 +34,15 @@ class LeaguesService {
     // AppState.activeLeague = response.data
   }
 
-
-
-
-
   async getLeagueById(leagueId) {
     const response = await api.get(`api/leagues/${leagueId}`)
     console.log('found league', leagueId);
+    return response
+  }
+
+  async joinLeagueById(leagueId){
+const response = this.getLeagueById(leagueId) 
+
   }
 
 }
