@@ -5,7 +5,7 @@ export class Player{
     constructor(data){
         this.id = data.id
         this.accountId = data.accountId
-        this.leagueId = new League(data.league)
+        this.leagueId = data.leagueId
         this.points = data.points
         this.league = data.league
         
