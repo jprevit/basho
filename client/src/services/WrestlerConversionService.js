@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { AppState } from "../AppState.js"
 import { League } from "../models/League.js"
+import { Tournament } from "../models/Tournament.js"
 import { WrestlerPool } from "../models/WrestlerPool.js"
 import { router } from "../router.js"
 import { logger } from "../utils/Logger.js"
@@ -31,7 +32,7 @@ class WrestlerConversionService {
   async getBashoById(bashoId) {
     const response = await sumoApi.get(`basho/:bashoId/banzuke/Makuuchi`)
     console.log('found basho', bashoId);
-    const foundBasho = new WrestlerPool(response.data)
+    const foundBasho = new Tournament(response.data)
     console.log(foundBasho);
   }
 
