@@ -12,8 +12,8 @@ class PlayersService {
         if (existingPlayer) throw new Error("You have already joined this league.")
 
         const leagueAttemptingToJoin = await leaguesService.getLeagueById(newPlayerData.leagueId)
-        if (leagueAttemptingToJoin.players.length >= leagueAttemptingToJoin.playerCapacity) throw new Error("This league is full")
         if (leagueAttemptingToJoin.state != "starting") throw new Error("This league has already started")
+        if (leagueAttemptingToJoin.players.length >= leagueAttemptingToJoin.playerCapacity) throw new Error("This league is full")
 
         logger.log('service received', newPlayerData)
         const newPlayer = await dbContext.Players.create(newPlayerData)

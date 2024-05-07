@@ -85,8 +85,8 @@ class LeaguesService {
     } else {
       AppState.activeLeague.state = 'starting'
     }
-
-    const response = await api.put(`api/leagues/${leagueId}`, AppState.activeLeague.state)
+    logger.log("app state", AppState.activeLeague.state)
+    const response = await api.put(`api/leagues/${leagueId}`, {state : AppState.activeLeague.state})
     console.log(response, " put request data")
     logger.log("New State", AppState.activeLeague.state)
   }
