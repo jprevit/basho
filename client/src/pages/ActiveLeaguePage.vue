@@ -190,7 +190,8 @@ onMounted(() => {
 
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
-            <div v-for="wrestler in tournamentWrestlers" :key="wrestler.rikishiID" class="col-lg-2 col-5 mx-2">
+            <div v-for="wrestler in tournamentWrestlers" :key="wrestler.rikishiID"
+                class="col-xxl-2 col-lg-3 col-5 mx-2">
                 <WrestlerCard :wrestler="wrestler" />
             </div>
         </div>
