@@ -16,6 +16,9 @@ export const AppState = reactive({
 
   /** @type {Tournament[]} */
   accountTournaments: [],
+  
+  /** @type {League[]} */
+  accountLeagues: [],
 
   /** @type {Tournament} */
   activeTournament: null,
