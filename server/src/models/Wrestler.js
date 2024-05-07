@@ -11,4 +11,5 @@ export const WrestlerSchema = new Schema({
     lossByDivision: { type: Number, required: true },
     birthdate: { type: Date, required: true },
     debut: { type: Date, required: true },
+    rikishiId: { type: Number, required: true }
 }, { timestamps: true, toJSON: { virtuals: true } })

@@ -49,7 +49,7 @@ async function getPlayersByLeagueId() {
 
 async function changeLeagueState() {
     try {
-        await leaguesService.changeLeagueState(activeLeague.value.state)
+        await leaguesService.changeLeagueState(route.params.leagueId)
     } catch (error) {
         Pop.toast("Couldn't Change League State", 'error')
         logger.error(error)
@@ -135,7 +135,8 @@ onMounted(() => {
                                 <PlayerHead class="col-2" />
                             </div>
                             <div class="row justify-content-end my-3">
-                                <button class="btn btn-mainblue rounded-pill col-3 text-light fw-bold">Start
+                                <button class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
+                                    @click="changeLeagueState()">Start
                                     Drafting!</button>
                             </div>
                         </div>

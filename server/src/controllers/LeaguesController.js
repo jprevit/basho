@@ -13,6 +13,7 @@ export class LeaguesController extends BaseController {
             .get('/:leagueId', this.getLeagueById)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
+            .put('/:leagueId', this.changeLeagueState)
     }
 
 
@@ -54,6 +55,16 @@ export class LeaguesController extends BaseController {
         }
     }
 
-
+    async changeLeagueState(request, response, next) {
+        try {
+            const leagueId = request.params.leagueId
+            const updatedState = request.body.state
+            const updatedLeague = await leaguesService.changeLeagueState(leagueId, updatedState)
+            response.send(updatedLeague)
+        }
+        catch (error) {
+            next(error)
+        }
+    }
 
 }

@@ -73,8 +73,9 @@ class LeaguesService {
   }
 
   // NOTE This is a function for testing purposes. It is attached to a button in the ActiveLeaguePage. All it does is rotate between the available existing states.
-  changeLeagueState(state) {
-    logger.log("Current State", state)
+  async changeLeagueState(leagueId) {
+    logger.log("Current State = ", AppState.activeLeague.state)
+
     if (AppState.activeLeague.state == 'starting') {
       AppState.activeLeague.state = 'drafting'
     } else if (AppState.activeLeague.state == 'drafting') {
@@ -84,6 +85,9 @@ class LeaguesService {
     } else {
       AppState.activeLeague.state = 'starting'
     }
+
+    const response = await api.put(`api/leagues/${leagueId}`, AppState.activeLeague.state)
+    console.log(response, " put request data")
     logger.log("New State", AppState.activeLeague.state)
   }
 

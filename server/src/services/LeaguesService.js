@@ -4,6 +4,13 @@ import { logger } from "../utils/Logger.js"
 
 
 class LeaguesService {
+    async changeLeagueState(leagueId, updatedState) {
+        const leagueToUpdate = await this.getLeagueById(leagueId)
+        leagueToUpdate.state = updatedState
+        await leagueToUpdate.save()
+        return leagueToUpdate
+
+    }
     // async addWrestlertoStable(wrestlerId, userId) {
     //     const addedWrestler = await dbContext.StableMembers.create(wrestlerId, userId)
     //     await addedWrestler.populate('player wrestler league')

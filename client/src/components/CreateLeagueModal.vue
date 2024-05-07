@@ -72,7 +72,7 @@ async function createNewLeague() {
                             <div class="col-6">
                                 <label for="playerCapacity" class="me-2">Max Players</label>
                                 <input v-model="leagueData.playerCapacity" id="playerCapacity" type="number" required
-                                    min="3" max="10" class="form-control">
+                                    min="2" max="10" class="form-control">
                             </div>
                         </div>
 
