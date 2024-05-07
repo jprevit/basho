@@ -15,6 +15,7 @@ const activePlayers = computed(() => AppState.activePlayers)
 const activeTournament = computed(() => AppState.activeTournament)
 const tournamentWrestlers = computed(() => AppState.tournamentWrestlers)
 
+
 const route = useRoute()
 
 // This function gets all data needed to draw data to the page. Sets active League and Tournament
@@ -23,6 +24,7 @@ async function setupLeaguePage() {
         await leaguesService.getLeagueById(route.params.leagueId)
         await leaguesService.setActiveLeague(route.params.leagueId)
         await tournamentsService.getTournamentByTournamentId(activeLeague.value.tournamentId)
+        await tournamentsService.assignWrestlerPictures()
     } catch (error) {
         Pop.toast('Could not get Active League by Id', 'error')
         logger.error(error)
@@ -62,6 +64,25 @@ async function getTournamentByTournamentId() {
     } catch (error) {
         Pop.toast("Couldn't get Tournament By Tournament ID", 'error')
         logger.error(error)
+    }
+}
+
+async function getMyStable() {
+    try {
+        await tournamentsService.getMyStable()
+    } catch (error) {
+        Pop.toast('could not get my wrestlers', 'error')
+        console.error(error)
+    }
+}
+
+async function assignWrestlerPictures() {
+    try {
+        await tournamentsService.assignWrestlerPictures()
+    }
+    catch (error) {
+        Pop.toast('could not assign wrestler pictures', 'error');
+        console.error(error)
     }
 }
 
@@ -146,21 +167,13 @@ onMounted(() => {
         </div>
         <div
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
+
             <!-- <div class="col-2">
                 <WrestlerCard />
-            </div>
-            <div class="col-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2">
-                <WrestlerCard />
-            </div>
-            <div class="col-2">
-                <WrestlerCard />
             </div> -->
+
+            My Stable will go here at some point
+
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
             <div v-for="wrestler in tournamentWrestlers" :key="wrestler.rikishiID" class="col-lg-2 col-5 mx-2">

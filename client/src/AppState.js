@@ -32,6 +32,9 @@ export const AppState = reactive({
   /**@type {TournamentWrestler[]} */
   tournamentWrestlers: [],
 
+  /**@type {TournamentWrestler[]} */
+  myStable: [],
+
   /**@type {StableMember[]} */
   activeStableWrestlers: [],
 
@@ -47,12 +50,15 @@ export const AppState = reactive({
   /**@type {Wrestler[]} */
   allWrestlers: [],
 
+
+  imgBaseUrl: 'https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/',
   wrestlerImageIds: [
     {
       sumoName: 'Takakeisho',
       sumoId: '1',
       hasPicture: true,
-      pictureId: '20140083'
+      pictureId: '20140083',
+      
       },
       {
       sumoName: 'Asanoyama',

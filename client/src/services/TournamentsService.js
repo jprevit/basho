@@ -82,7 +82,27 @@ class TournamentsService {
         // AppState.tournamentWrestlers.push(westWrestlers, eastWrestlers)
         // const tournamentWrestlers = westWrestlers.map(wrestler => new TournamentWrestler(wrestler))
         logger.log("Combining  Wrestlers", AppState.tournamentWrestlers)
+        console.log('wrestler stats',AppState.allWrestlers)
+    }
 
+    async getMyStable(){
+        const playerId = AppState.account.id
+        const leagueId = AppState.activeLeague.id
+        const activeTournament = AppState.activeTournament
+    }
+
+    async assignWrestlerPictures(){
+        const tournamentWrestlers = AppState.tournamentWrestlers
+        const wrestlerImageIds = AppState.wrestlerImageIds
+        console.log('start of assigning pictures', tournamentWrestlers)
+        for(let j = 0; j < tournamentWrestlers.length; j ++){
+            let wrestlerId = tournamentWrestlers[j].rikishiID
+            const foundWrestler = wrestlerImageIds.find(wrestler => wrestler.sumoId == wrestlerId)
+            const urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
+            console.log(`tournament:${tournamentWrestlers[j].shikonaEn} pictureObj:${foundWrestler.sumoName} Img: ${urlString}`)
+
+
+        }
     }
 
 }
