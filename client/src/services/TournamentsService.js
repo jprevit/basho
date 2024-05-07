@@ -91,7 +91,11 @@ class TournamentsService {
         const activeTournament = AppState.activeTournament
     }
 
- 
+ /** This function looks through the active wrestlers in the AppState, finds a matching object in the wrestlerImgIds object in the AppState, and then builds an img URL to sumo.or.jp based on this data and attatches it to the respective player in the AppState. If there is no image, a placeholder is attatched. These images will be used to draw wrestler images to page elements
+  * Urls pulled from: https://www.sumo.or.jp/EnSumoDataRikishi/profile/3622/
+  * 
+  * Authors: Khile, Isaiah
+  */
     async assignWrestlerPictures(){
         let appStateCopy = []
         const tournamentWrestlers = AppState.tournamentWrestlers
@@ -104,7 +108,11 @@ class TournamentsService {
         for(let i = 0; i < tournamentWrestlers.length; i ++){
             let wrestlerName = tournamentWrestlers[i].shikonaEn
             const foundWrestler = wrestlerImageIds.find(wrestler => wrestler.sumoName == wrestlerName)
-            const urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
+            let urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
+            if(foundWrestler.hasPicture == false)
+                {
+                    urlString = `src/assets/img/sumo-not-found.png`
+                }
             // console.log(`${i}tournament:${tournamentWrestlers[i].shikonaEn} pictureObj:${foundWrestler.sumoName} Img: ${urlString}`)
             appStateCopy[i].imgUrl = urlString
         }
