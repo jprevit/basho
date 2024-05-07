@@ -13,6 +13,7 @@ const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
 const activePlayers = computed(() => AppState.activePlayers)
 const activeTournament = computed(() => AppState.activeTournament)
+const tournamentWrestlers = computed(() => AppState.tournamentWrestlers)
 
 const route = useRoute()
 
@@ -145,7 +146,7 @@ onMounted(() => {
         </div>
         <div
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
-            <div class="col-2">
+            <!-- <div class="col-2">
                 <WrestlerCard />
             </div>
             <div class="col-2">
@@ -159,10 +160,10 @@ onMounted(() => {
             </div>
             <div class="col-2">
                 <WrestlerCard />
-            </div>
+            </div> -->
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
-            <div v-for="wrestler in activeTournament.westWrestlers" :key="wrestler.rikishiId" class="col-2 mx-2">
+            <div v-for="wrestler in tournamentWrestlers" :key="wrestler.rikishiID" class="col-lg-2 col-5 mx-2">
                 <WrestlerCard :wrestler="wrestler" />
             </div>
         </div>
