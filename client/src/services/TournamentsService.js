@@ -104,7 +104,11 @@ class TournamentsService {
         for(let i = 0; i < tournamentWrestlers.length; i ++){
             let wrestlerName = tournamentWrestlers[i].shikonaEn
             const foundWrestler = wrestlerImageIds.find(wrestler => wrestler.sumoName == wrestlerName)
-            const urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
+            let urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
+            if(foundWrestler.hasPicture == false)
+                {
+                    urlString = `src/assets/img/sumo-not-found.png`
+                }
             // console.log(`${i}tournament:${tournamentWrestlers[i].shikonaEn} pictureObj:${foundWrestler.sumoName} Img: ${urlString}`)
             appStateCopy[i].imgUrl = urlString
         }
