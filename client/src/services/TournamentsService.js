@@ -75,7 +75,7 @@ class TournamentsService {
         eastWrestlers.forEach(wrestler => {
             combinedWrestlers.push(wrestler)
         });
-
+        logger.log('combined Wrastlers', combinedWrestlers)
         const tournamentWrestlers = combinedWrestlers.map(wrestler => new TournamentWrestler(wrestler))
         AppState.tournamentWrestlers = tournamentWrestlers
 
