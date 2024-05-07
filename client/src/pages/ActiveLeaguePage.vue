@@ -145,12 +145,12 @@ onMounted(() => {
                         </div>
                         <hr />
                         <div class="col-12">
-                            <div class="row mt-2">
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
+                            <div class="row mt-2 ">
+                                <div v-for="player in activePlayers" :key="player.id"
+                                    class="col-2 mx-2 pt-2 bg-mainblue rounded">
+                                    <PlayerHead :player="player" />
+                                </div>
+
                             </div>
                             <div class="row justify-content-end my-3">
                                 <button class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
@@ -173,16 +173,11 @@ onMounted(() => {
     <!-- This section displayed during drafting phase -->
     <section v-if="activeLeague && activeLeague.state == 'drafting'" id="drafting"
         class="grid-wrapper container-fluid sumostandingbg">
-        <div class="player-sidebar-col bg-mainblue">
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
+        <div class="player-sidebar-col p-0 bg-mainblue">
+            <div v-for="player in activePlayers" :key="player.id" class="p-2">
+                <PlayerHead :player="player" />
+            </div>
+
         </div>
         <div
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
