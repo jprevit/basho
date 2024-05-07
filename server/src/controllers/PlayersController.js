@@ -9,10 +9,23 @@ export class PlayersController extends BaseController {
     constructor() {
         super('api/players')
         this.router
+            .get('/:leagueId', this.getPlayersByLeagueId)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('/:leagueId', this.createPlayer)
             .delete('/:playerId', this.kickPlayer)
     }
+
+    async getPlayersByLeagueId(request, response, next) {
+        try {
+            const leagueId = request.params.leagueId
+            const players = await playersService.getPlayersByLeagueId(leagueId)
+            response.send(players)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+
     async kickPlayer(request, response, next) {
         try {
             const playerToKick = request.params.playerId

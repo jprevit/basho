@@ -21,12 +21,13 @@ const route = useRoute()
 // This function gets all data needed to draw data to the page. Sets active League and Tournament
 async function setupLeaguePage() {
     try {
-        await leaguesService.getLeagueById(route.params.leagueId)
-        await leaguesService.setActiveLeague(route.params.leagueId)
-        await tournamentsService.getTournamentByTournamentId(activeLeague.value.tournamentId)
-        await tournamentsService.assignWrestlerPictures()
+        await getLeagueById()
+        await setActiveLeague()
+        await getTournamentByTournamentId()
+        await assignWrestlerPictures()
+        await getPlayersByLeagueId()
     } catch (error) {
-        Pop.toast('Could not get Active League by Id', 'error')
+        Pop.toast('Could not Setup Page', 'error')
         logger.error(error)
     }
 
@@ -36,6 +37,24 @@ const leagueState = {
     drafting: 'drafting',
     running: 'running',
     ended: 'ended'
+}
+
+async function setActiveLeague() {
+    try {
+        await leaguesService.setActiveLeague(route.params.leagueId)
+    } catch (error) {
+        Pop.toast("Couldn't Set Active League", 'error')
+        logger.error(error)
+    }
+}
+
+async function getLeagueById() {
+    try {
+        await leaguesService.getLeagueById(route.params.leagueId)
+    } catch (error) {
+        Pop.toast("Couldn't get League By ID", 'error')
+        logger.error(error)
+    }
 }
 
 async function getPlayersByLeagueId() {
@@ -86,7 +105,6 @@ async function assignWrestlerPictures() {
     }
 }
 
-
 onMounted(() => {
     setupLeaguePage()
 })
@@ -127,12 +145,12 @@ onMounted(() => {
                         </div>
                         <hr />
                         <div class="col-12">
-                            <div class="row mt-2">
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
-                                <PlayerHead class="col-2" />
+                            <div class="row mt-2 ">
+                                <div v-for="player in activePlayers" :key="player.id"
+                                    class="col-2 mx-2 pt-2 bg-mainblue rounded">
+                                    <PlayerHead :player="player" />
+                                </div>
+
                             </div>
                             <div class="row justify-content-end my-3">
                                 <button class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
@@ -155,16 +173,11 @@ onMounted(() => {
     <!-- This section displayed during drafting phase -->
     <section v-if="activeLeague && activeLeague.state == 'drafting'" id="drafting"
         class="grid-wrapper container-fluid sumostandingbg">
-        <div class="player-sidebar-col bg-mainblue">
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
-            <PlayerHead />
+        <div class="player-sidebar-col p-0 bg-mainblue">
+            <div v-for="player in activePlayers" :key="player.id" class="p-2">
+                <PlayerHead :player="player" />
+            </div>
+
         </div>
         <div
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
