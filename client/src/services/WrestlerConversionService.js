@@ -26,7 +26,7 @@ const availableDates = [
   "202201"]
 
   const allWrestlers = []
-  const uniqueWrestlers = []
+  // const uniqueWrestlers = []
 
 class WrestlerConversionService {
   // async createNewPool(poolData) {
@@ -42,20 +42,21 @@ class WrestlerConversionService {
   
   // }
 
-
-  // uniqueWrestlerLoop(){
-  //   for (let id = 0; id < array.length; id++) {
-  //     const element = array[id];
-      
-  //   }
-  // }
+/** the problem with this right now is that it repeats the total sequence for each basho date.
+ * Some function is out of order, and needs to be moved to the right spot in order to complete the single list. Revisit this when time allows, but it's not functionally being used. We've got the information we need from it already.
+ */
+  async uniqueWrestlerLoop(){
+for (let i = 0; i < availableDates.length; i++) {
+      const date = availableDates[i];
+      await this.getAvailableBashosFromAPI(date)
+    }
+  }
 
 async getAvailableBashosFromAPI(bashoId){
   
-      console.log('Basho 1',bashoId);
+      // console.log('Basho 1',bashoId);
       const response = await sumoApi.get(`basho/${bashoId}/banzuke/Makuuchi`)
-      console.log('found basho', response.data);
-      // return response
+      // console.log('found basho', response.data);
 
 response.data.east.forEach(wrestler => {
   allWrestlers.push({
@@ -70,8 +71,7 @@ response.data.west.forEach(wrestler => {
   })
 })
 
-console.log('All Wrestlers', allWrestlers);
-// console.log('West Wrestlers', allWrestlers);
+// console.log('All Wrestlers', allWrestlers);
 this.filterWrestlers(allWrestlers)
 }
 
@@ -82,7 +82,7 @@ filterWrestlers(allWrestlers) {
       uniqueWrestlers.push(wrestler)
     }
   })
-  console.log('Unique Wrestlers', uniqueWrestlers);
+  // console.log('Unique Wrestlers', uniqueWrestlers);
 }
 
 

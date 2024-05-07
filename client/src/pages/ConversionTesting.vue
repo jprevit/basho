@@ -60,7 +60,7 @@ const allWrestlers = []
 // }
 
 async function getAvailableBashos() {
-  const theBasho = await wrestlerConversionService.getAvailableBashosFromAPI('202201')
+  const theBasho = await wrestlerConversionService.uniqueWrestlerLoop()
   console.log('east meets west');
 }
 
