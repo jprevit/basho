@@ -18,6 +18,7 @@ class PlayersService {
         logger.log('service received', newPlayerData)
         const newPlayer = await dbContext.Players.create(newPlayerData)
         leagueAttemptingToJoin.players.push(newPlayerData.accountId)
+        leagueAttemptingToJoin.save()
         // newPlayer.populate('league')
         return newPlayer
     }

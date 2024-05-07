@@ -26,8 +26,8 @@ async function joinLeagueById() {
         Modal.getOrCreateInstance('#joinLeagueModal').hide()
     }
     catch (error) {
-        Pop.toast("You're already in this league", 'error');
-        console.error(error)
+        Pop.toast(error.response.data.error.message, 'error');
+        console.log(error, "joining league error")
     }
 }
 
