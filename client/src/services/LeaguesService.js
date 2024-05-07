@@ -16,18 +16,18 @@ class LeaguesService {
 
   async getMyLeagues(account) {
     
-    const response = await api.get('api/leagues/')
+    const response = await api.get(`api/leagues/${account.id}`)
     console.log('all leagues', response.data);
 
     // NOTE player/user id in argument below is hardcoded for testing since other people can't be added as players yet
-    // const testAccountLeagues = response.data.filter((league) => league.players.includes('6635172534c5862c880c347a') )
+    // const testAccountLeagues = response.data.filter((league) => league.players.includes('663a9e195db9da9fc24f17ce') )
     // console.log('testAccountLeagues', testAccountLeagues);
 
     console.log('my account', account.value.id);
-    const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
-console.log('my account leagues', accountLeagues);
-AppState.accountLeagues = accountLeagues
-console.log("account leages in AppState", AppState.accountLeagues);
+    // const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
+console.log('my account leagues', response.data);
+const players = response.data.map(player => new Player(player))
+console.log("account leages in AppState", AppState.myLeagues);
   }
   
   async createNewLeague(leagueData) {
