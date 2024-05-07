@@ -10,7 +10,7 @@ export const LeagueSchema = new Schema({
     public: { type: Boolean, required: true, default: false },
     players: { type: Array, required: true },
     state: { type: String, required: true, default: 'starting' },
-    // tournamentWrestlers: { type: Array, required: true }
+    tournamentWrestlers: { type: Array, required: true }
 },
     { timestamps: true, toJSON: { virtuals: true } })
 

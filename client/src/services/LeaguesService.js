@@ -17,17 +17,8 @@ class LeaguesService {
   async getMyLeagues(account) {
     
     const response = await api.get('api/leagues/')
-    console.log('all leagues', response.data);
-
-    // NOTE player/user id in argument below is hardcoded for testing since other people can't be added as players yet
-    // const testAccountLeagues = response.data.filter((league) => league.players.includes('6635172534c5862c880c347a') )
-    // console.log('testAccountLeagues', testAccountLeagues);
-
-    console.log('my account', account.value.id);
     const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
-console.log('my account leagues', accountLeagues);
-AppState.accountLeagues = accountLeagues
-console.log("account leages in AppState", AppState.accountLeagues);
+    AppState.accountLeagues = accountLeagues
   }
   
   async createNewLeague(leagueData) {
@@ -35,36 +26,30 @@ console.log("account leages in AppState", AppState.accountLeagues);
     leagueData.tournamentId = AppState.activeTournament.bashoId
     const response = await api.post(`api/leagues`, leagueData)
 
-    console.log("league posted")
-
     const newLeague = new League(response.data)
     AppState.leagues.push(newLeague)
     AppState.activeLeague = newLeague
 
-    //console.log("set league in app state")
     await this.createPlayer(AppState.activeLeague.id)
-    console.log("created league id", AppState.activeLeague.id)
+    
     router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
-    //console.log('league created', newLeague);
-
-    console.log("finished creating league", AppState.activeLeague)
   }
 
   async getLeagueById(leagueId) {
     const response = await api.get(`api/leagues/${leagueId}`)
-    // console.log('found league', response.data);
+    
     return response
   }
 
   async joinLeagueById(leagueId){
-    console.log('join league form info',leagueId)
+    //console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
 
     await this.createPlayer(leagueId)
 
     AppState.activeLeague = new League(response.data)
 
-    console.log("joined league ", leagueId)
+    //console.log("joined league ", leagueId)
     router.push(`activeLeague/${leagueId}`)
     return response
   }
@@ -73,24 +58,24 @@ console.log("account leages in AppState", AppState.accountLeagues);
     const response =  await api.post(`api/players/${leagueToJoin}`, {leagueId : leagueToJoin})
     const player = new Player(response.data)
     AppState.activePlayers.push(player)
-    console.log("created player")
+    //console.log("created player")
   }
 
   async getAllLeagues() {
     const response = await api.get('api/leagues')
-    console.log('all leagues should be here', response.data)
+    //console.log('all leagues should be here', response.data)
     return response
   }
 
   async setActiveLeague(leagueId) {
     const league = await this.getLeagueById(leagueId)
     AppState.activeLeague = league.data
-    console.log('appstate active league', AppState.activeLeague)
+    //console.log('appstate active league', AppState.activeLeague)
   }
 
   // NOTE This is a function for testing purposes. It is attached to a button in the ActiveLeaguePage. All it does is rotate between the available existing states.
   async changeLeagueState(leagueId) {
-    logger.log("Current State = ", AppState.activeLeague.state)
+    //logger.log("Current State = ", AppState.activeLeague.state)
 
     if (AppState.activeLeague.state == 'starting') {
       AppState.activeLeague.state = 'drafting'
@@ -101,13 +86,12 @@ console.log("account leages in AppState", AppState.accountLeagues);
     } else {
       AppState.activeLeague.state = 'starting'
     }
-    logger.log("app state", AppState.activeLeague.state)
+    //logger.log("app state", AppState.activeLeague.state)
     const response = await api.put(`api/leagues/${leagueId}`, {state : AppState.activeLeague.state})
-    console.log(response, " put request data")
-    logger.log("New State", AppState.activeLeague.state)
+    //console.log(response, " put request data")
+    //logger.log("New State", AppState.activeLeague.state)
   }
 
 }
-
 
 export const leaguesService = new LeaguesService

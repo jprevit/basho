@@ -4,6 +4,13 @@ import { logger } from "../utils/Logger.js"
 
 
 class LeaguesService {
+    async updateLeagueWrestlers(leagueId, wrestlersList) {
+        const leagueToUpdate = await this.getLeagueById(leagueId)
+        leagueToUpdate.tournamentWrestlers = wrestlersList
+        await leagueToUpdate.save()
+        return leagueToUpdate
+    }
+
     async changeLeagueState(leagueId, updatedState) {
         const leagueToUpdate = await this.getLeagueById(leagueId)
         leagueToUpdate.state = updatedState

@@ -22,7 +22,7 @@ export class League{
         //this.joinCode = data.joinCode
         this.players = data.players
         this.state = data.state
-        // this.tournamentWrestlers = data.tournamentWrestlers ? data.tournamentWrestlers : createTournamentWrestlers(this.tournament.westWrestlers, this.tournament.eastWrestlers)
+        this.tournamentWrestlers = data.tournamentWrestlers || []
 
         // NOTE - In many of our previous projects we have made the virtuals of models with a ternary, so that if there is no data to create a class from, it sets as null, if you are having issues with models try that
         //example: 
@@ -30,9 +30,9 @@ export class League{
     }
 }
 
-function createTournamentWrestlers(westWrestlers, eastWrestlers){
-    let tournamentWrestlers = []
-    tournamentWrestlers.push(...eastWrestlers, ...westWrestlers)
-    console.log('tournament wrestlers in model', tournamentWrestlers);
-    return tournamentWrestlers
-}
+// function createTournamentWrestlers(westWrestlers, eastWrestlers){
+//     let tournamentWrestlers = []
+//     tournamentWrestlers.push(...eastWrestlers, ...westWrestlers)
+//     console.log('tournament wrestlers in model', tournamentWrestlers);
+//     return tournamentWrestlers
+// }

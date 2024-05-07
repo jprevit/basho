@@ -14,6 +14,7 @@ export class LeaguesController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
             .put('/:leagueId', this.changeLeagueState)
+            .put('/:leagueId/leaguewrestlers', this.updateLeagueWrestlers)
     }
 
 
@@ -63,6 +64,17 @@ export class LeaguesController extends BaseController {
             response.send(updatedLeague)
         }
         catch (error) {
+            next(error)
+        }
+    }
+
+    async updateLeagueWrestlers(request, response, next) {
+        try {
+            const leagueId = request.params.leagueId
+            const wrestlersList = request.body
+            const updatedWrestlers = await leaguesService.updateLeagueWrestlers(leagueId, wrestlersList)
+            response.send(updatedWrestlers)
+        } catch (error) {
             next(error)
         }
     }
