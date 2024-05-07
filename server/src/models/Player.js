@@ -8,11 +8,11 @@ export const PlayerSchema = new Schema({
     timestamps: true, toJSON: { virtuals: true }
 })
 
-// PlayerSchema.virtual('league', {
-//     localField: 'leagueId',
-//     ref: 'League',
-//     foreignField: '_id',
-// })
+PlayerSchema.virtual('league', {
+    localField: 'leagueId',
+    ref: 'League',
+    foreignField: '_id',
+})
 
 PlayerSchema.virtual('profile', {
     localField: 'accountId',
