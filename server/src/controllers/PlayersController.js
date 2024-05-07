@@ -29,7 +29,7 @@ export class PlayersController extends BaseController {
             const userId = request.userInfo.id
             const newPlayerData = request.body
             newPlayerData.accountId = userId
-            console.log("server side controller requesst body", newPlayerData)
+            console.log("server side controller request body", newPlayerData)
             logger.log('controller sending', newPlayerData)
             const player = await playersService.createPlayer(newPlayerData)
             response.send(player)
