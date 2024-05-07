@@ -91,20 +91,31 @@ class TournamentsService {
         const activeTournament = AppState.activeTournament
     }
 
+ 
     async assignWrestlerPictures(){
+        let appStateCopy = []
         const tournamentWrestlers = AppState.tournamentWrestlers
+        tournamentWrestlers.forEach(wrestler => {
+            appStateCopy.push(wrestler)
+        });
+        // console.log(`appstate copy`,appStateCopy)
         const wrestlerImageIds = AppState.wrestlerImageIds
-        console.log('start of assigning pictures', tournamentWrestlers)
-        for(let j = 0; j < tournamentWrestlers.length; j ++){
-            let wrestlerId = tournamentWrestlers[j].rikishiID
-            const foundWrestler = wrestlerImageIds.find(wrestler => wrestler.sumoId == wrestlerId)
-            const urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
-            console.log(`tournament:${tournamentWrestlers[j].shikonaEn} pictureObj:${foundWrestler.sumoName} Img: ${urlString}`)
-
-
+        // console.log('start of assigning pictures', tournamentWrestlers)
+        for(let i = 0; i < tournamentWrestlers.length; i ++){
+            let wrestlerName = tournamentWrestlers[i].shikonaEn
+            const foundWrestler = wrestlerImageIds.find(wrestler => wrestler.sumoName == wrestlerName)
+            let urlString = `${AppState.imgBaseUrl}${foundWrestler.pictureId}.jpg`
+            if(foundWrestler.hasPicture == false)
+                {
+                    urlString = `src/assets/img/sumo-not-found.png`
+                }
+            // console.log(`${i}tournament:${tournamentWrestlers[i].shikonaEn} pictureObj:${foundWrestler.sumoName} Img: ${urlString}`)
+            appStateCopy[i].imgUrl = urlString
         }
+        appStateCopy = appStateCopy.map(wrestler => new TournamentWrestler(wrestler))
+        AppState.tournamentWrestlers = appStateCopy
+        console.log('AppState has imageUrls now', AppState.tournamentWrestlers)
     }
-
 }
 
 export const tournamentsService = new TournamentsService

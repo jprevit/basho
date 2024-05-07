@@ -1,7 +1,7 @@
 import auth0provider, { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { playersService } from "../services/PlayersService.js";
-import { logger } from "../utils/Logger.js";
+import { Logger, logger } from "../utils/Logger.js";
 
 
 
@@ -11,6 +11,17 @@ export class PlayersController extends BaseController {
         this.router
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('/:leagueId', this.createPlayer)
+            .delete('/:playerId', this.kickPlayer)
+    }
+    async kickPlayer(request, response, next) {
+        try {
+            const playerToKick = request.params.playerId
+            const userId = request.userInfo.id
+            const message = await playersService.kickPlayer(playerToKick, userId)
+            response.send(message)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async createPlayer(request, response, next) {

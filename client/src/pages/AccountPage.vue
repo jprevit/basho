@@ -1,8 +1,25 @@
+<!-- eslint-disable no-console -->
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
+import { leaguesService } from "../services/LeaguesService.js";
+import Pop from "../utils/Pop.js";
 
 const account = computed(() => AppState.account)
+
+async function getMyLeagues() {
+  try {
+    await leaguesService.getMyLeagues(account)
+  }
+  catch (error) {
+    Pop.toast('Could not get your leagues', 'error')
+    console.error(error)
+  }
+}
+
+onMounted(() =>
+  getMyLeagues()
+)
 
 </script>
 

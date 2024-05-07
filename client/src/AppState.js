@@ -85,6 +85,12 @@ export const AppState = reactive({
       pictureId: '20150034'
       },
       {
+        sumoName: 'Kiribayama',
+        sumoId: '7',
+        hasPicture: true,
+        pictureId: '20150034'
+      },
+      {
       sumoName: 'Kotoshoho',
       sumoId: '8',
       hasPicture: true,
@@ -113,6 +119,12 @@ export const AppState = reactive({
       sumoId: '12',
       hasPicture: true,
       pictureId: '20170011'
+      },
+      {
+        sumoName: 'Wakamotoharu',
+        sumoId: '13',
+        hasPicture: true,
+        pictureId: '20110065'
       },
       {
       sumoName: 'Tamawashi',
@@ -209,6 +221,12 @@ export const AppState = reactive({
       sumoId: '29',
       hasPicture: true,
       pictureId: '20100039'
+      },
+      {
+        sumoName: 'Kotoeko',
+        sumoId: '30',
+        hasPicture: true,
+        pictureId: '20070057'
       },
       {
       sumoName: 'Tsurugisho',
