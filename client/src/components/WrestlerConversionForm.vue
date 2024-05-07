@@ -19,20 +19,20 @@ function resetForm() {
     }
 }
 
-async function convertWrestlers() {
-    try {
+// async function convertWrestlers() {
+//     try {
 
-        const newLeague = await wrestlerConversionService.getBashoById(bashoData.value)
-        resetForm()
-        Modal.getOrCreateInstance('#convertWrestlersModal').hide()
+//         const newLeague = await wrestlerConversionService.getBashoById(bashoData.value)
+//         resetForm()
+//         Modal.getOrCreateInstance('#convertWrestlersModal').hide()
 
-        // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
+//         // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
 
-    } catch (error) {
-        Pop.toast('Could not convert wrestler', 'error')
-        logger.error(error)
-    }
-}
+//     } catch (error) {
+//         Pop.toast('Could not convert wrestler', 'error')
+//         logger.error(error)
+//     }
+// }
 </script>
 
 
@@ -48,7 +48,7 @@ async function convertWrestlers() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="container" @submit.prevent="convertWrestlers()">
+                    <!-- <form class="container" @submit.prevent="convertWrestlers()">
                         <div class="row mb-2">
                             <div class="form-floating">
                                 <input v-model="bashoData.bashoDate" type="text" class="form-control" id="bashoDate"
@@ -64,7 +64,7 @@ async function convertWrestlers() {
 
 
 
-                    </form>
+                    </form> -->
 
                 </div>
             </div>
