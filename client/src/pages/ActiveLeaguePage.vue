@@ -12,6 +12,7 @@ import { tournamentsService } from "../services/TournamentsService.js";
 const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
 const activePlayers = computed(() => AppState.activePlayers)
+const activeTournament = computed(() => AppState.activeTournament)
 
 const route = useRoute()
 
@@ -161,7 +162,7 @@ onMounted(() => {
             </div>
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
-            <div v-for="wrestler in activeLeague.tournament.westWrestlers" :key="wrestler.rikishiId" class="col-2 mx-2">
+            <div v-for="wrestler in activeTournament.westWrestlers" :key="wrestler.rikishiId" class="col-2 mx-2">
                 <WrestlerCard :wrestler="wrestler" />
             </div>
         </div>

@@ -60,19 +60,19 @@ import PlayerHead from '../components/PlayerHead.vue';
 
         </div>
         <div class="row justify-content-evenly">
-          <div class="col-6 col-md-2">
+          <div class="col-6 col-md-4">
             <WrestlerCard />
           </div>
-          <div class="col-6 col-md-2">
+          <div class="col-6 col-md-4">
             <WrestlerCard />
           </div>
-          <div class="col-6 col-md-2">
+          <div class="col-6 col-md-4">
             <WrestlerCard />
           </div>
-          <div class="col-6 col-md-2">
+          <div class="col-6 col-md-4">
             <WrestlerCard />
           </div>
-          <div class="col-6 col-md-2">
+          <div class="col-6 col-md-4">
             <WrestlerCard />
           </div>
         </div>

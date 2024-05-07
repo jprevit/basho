@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { AppState } from "../AppState.js"
 import { Tournament } from "../models/Tournament.js"
+import { TournamentWrestler } from "../models/TournamentWrestler.js"
 import { logger } from "../utils/Logger.js"
 import { api, sumoApi } from "./AxiosService.js"
 
@@ -61,6 +62,27 @@ class TournamentsService {
         logger.log(tournament)
         AppState.activeTournament = tournament
         logger.log(AppState.activeTournament)
+        this.mapTournamentWrestlers()
+    }
+
+    async mapTournamentWrestlers() {
+        const combinedWrestlers = []
+        const westWrestlers = AppState.activeTournament.westWrestlers
+        const eastWrestlers = AppState.activeTournament.eastWrestlers
+        westWrestlers.forEach(wrestler => {
+            combinedWrestlers.push(wrestler)
+        });
+        eastWrestlers.forEach(wrestler => {
+            combinedWrestlers.push(wrestler)
+        });
+
+        const tournamentWrestlers = combinedWrestlers.map(wrestler => new TournamentWrestler(wrestler))
+        AppState.tournamentWrestlers = tournamentWrestlers
+
+        // AppState.tournamentWrestlers.push(westWrestlers, eastWrestlers)
+        // const tournamentWrestlers = westWrestlers.map(wrestler => new TournamentWrestler(wrestler))
+        logger.log("Combining  Wrestlers", AppState.tournamentWrestlers)
+
     }
 
 }
