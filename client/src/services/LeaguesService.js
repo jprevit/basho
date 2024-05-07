@@ -8,12 +8,28 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { tournamentsService } from "./TournamentsService.js"
 import { Player } from "../models/Player.js"
+import { Account } from "../models/Account.js"
 
 
 
 
 class LeaguesService {
 
+  async getMyLeagues(account) {
+    
+    const response = await api.get('api/leagues/')
+    console.log('players', response.data);
+    
+    const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
+console.log('thisleague', accountLeagues);
+    /**!SECTIONconst inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "cherries", quantity: 5 },
+];
+
+const result = inventory.find(({ name }) => name === "cherries"); */
+  }
   async createNewLeague(leagueData) {
     await tournamentsService.getBashoById()
     leagueData.tournamentId = AppState.activeTournament.bashoId
@@ -85,8 +101,8 @@ class LeaguesService {
     } else {
       AppState.activeLeague.state = 'starting'
     }
-
-    const response = await api.put(`api/leagues/${leagueId}`, AppState.activeLeague.state)
+    logger.log("app state", AppState.activeLeague.state)
+    const response = await api.put(`api/leagues/${leagueId}`, {state : AppState.activeLeague.state})
     console.log(response, " put request data")
     logger.log("New State", AppState.activeLeague.state)
   }
