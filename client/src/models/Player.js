@@ -8,7 +8,7 @@ export class Player{
         this.leagueId = data.leagueId
         this.points = data.points
         this.league = data.league
-        
+        this.profile = data.profile
         // NOTE - In many of our previous projects we have made the virtuals of models with a ternary, so that if there is no data to create a class from, it sets as null, if you are having issues with models try that
         //example: 
         //'this.player = new Account(data.player)' should be turned into 'this.player = data.player ? new Account(data.player) : null'

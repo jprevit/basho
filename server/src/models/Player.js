@@ -14,9 +14,9 @@ export const PlayerSchema = new Schema({
 //     foreignField: '_id',
 // })
 
-// PlayerSchema.virtual('profile', {
-//     localField: 'accountId',
-//     ref: 'Account',
-//     foreignField: '_id',
-//     justOne: true
-// })
+PlayerSchema.virtual('profile', {
+    localField: 'accountId',
+    ref: 'Account',
+    foreignField: '_id',
+    justOne: true
+})
