@@ -8,7 +8,6 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { tournamentsService } from "./TournamentsService.js"
 import { Player } from "../models/Player.js"
-import { Account } from "../models/Account.js"
 
 
 
@@ -18,18 +17,19 @@ class LeaguesService {
   async getMyLeagues(account) {
     
     const response = await api.get('api/leagues/')
-    console.log('players', response.data);
-    
-    const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
-console.log('thisleague', accountLeagues);
-    /**!SECTIONconst inventory = [
-  { name: "apples", quantity: 2 },
-  { name: "bananas", quantity: 0 },
-  { name: "cherries", quantity: 5 },
-];
+    console.log('all leagues', response.data);
 
-const result = inventory.find(({ name }) => name === "cherries"); */
+    // NOTE player/user id in argument below is hardcoded for testing since other people can't be added as players yet
+    // const testAccountLeagues = response.data.filter((league) => league.players.includes('6635172534c5862c880c347a') )
+    // console.log('testAccountLeagues', testAccountLeagues);
+
+    console.log('my account', account.value.id);
+    const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
+console.log('my account leagues', accountLeagues);
+AppState.accountLeagues = accountLeagues
+console.log("account leages in AppState", AppState.accountLeagues);
   }
+  
   async createNewLeague(leagueData) {
     await tournamentsService.getBashoById()
     leagueData.tournamentId = AppState.activeTournament.bashoId

@@ -5,7 +5,9 @@ import { AppState } from '../AppState.js';
 import { leaguesService } from "../services/LeaguesService.js";
 import Pop from "../utils/Pop.js";
 
+
 const account = computed(() => AppState.account)
+
 
 async function getMyLeagues() {
   try {
