@@ -5,6 +5,7 @@ export class TournamentWrestler {
     this.shikonaEn = data.shikonaEn
     this.rank = data.rank
     this.record = data.record
+    this.imgUrl = data.imgUrl
   }
 
 
