@@ -6,6 +6,10 @@ import { leaguesService } from "./LeaguesService.js"
 
 
 class PlayersService {
+    async getPlayersByLeagueId(leagueId) {
+        const players = await dbContext.Players.find({ leagueId: leagueId })
+        return players
+    }
     async kickPlayer(playerToKick, userId) {
         const playerToDelete = await dbContext.Players.findById(playerToKick)
         const league = await leaguesService.getLeagueById(playerToDelete.leagueId)

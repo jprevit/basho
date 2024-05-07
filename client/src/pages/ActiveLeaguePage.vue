@@ -21,12 +21,13 @@ const route = useRoute()
 // This function gets all data needed to draw data to the page. Sets active League and Tournament
 async function setupLeaguePage() {
     try {
-        await leaguesService.getLeagueById(route.params.leagueId)
-        await leaguesService.setActiveLeague(route.params.leagueId)
-        await tournamentsService.getTournamentByTournamentId(activeLeague.value.tournamentId)
-        await tournamentsService.assignWrestlerPictures()
+        await getLeagueById()
+        await setActiveLeague()
+        await getTournamentByTournamentId()
+        await assignWrestlerPictures()
+        await getPlayersByLeagueId()
     } catch (error) {
-        Pop.toast('Could not get Active League by Id', 'error')
+        Pop.toast('Could not Setup Page', 'error')
         logger.error(error)
     }
 
@@ -36,6 +37,24 @@ const leagueState = {
     drafting: 'drafting',
     running: 'running',
     ended: 'ended'
+}
+
+async function setActiveLeague() {
+    try {
+        await leaguesService.setActiveLeague(route.params.leagueId)
+    } catch (error) {
+        Pop.toast("Couldn't Set Active League", 'error')
+        logger.error(error)
+    }
+}
+
+async function getLeagueById() {
+    try {
+        await leaguesService.getLeagueById(route.params.leagueId)
+    } catch (error) {
+        Pop.toast("Couldn't get League By ID", 'error')
+        logger.error(error)
+    }
 }
 
 async function getPlayersByLeagueId() {
@@ -85,7 +104,6 @@ async function assignWrestlerPictures() {
         console.error(error)
     }
 }
-
 
 onMounted(() => {
     setupLeaguePage()

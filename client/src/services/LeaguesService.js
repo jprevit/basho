@@ -107,6 +107,14 @@ console.log("account leages in AppState", AppState.accountLeagues);
     logger.log("New State", AppState.activeLeague.state)
   }
 
+async getPlayersByLeagueId(leagueId){
+  const response = await api.get(`api/players/${leagueId}`)
+  logger.log("Getting this leagues players", response.data)
+  const activePlayers = response.data.map(player => new Player(player))
+  AppState.activePlayers = activePlayers
+  logger.log(AppState.activePlayers)
+}
+
 }
 
 

@@ -1,8 +1,8 @@
 <script setup>
-import { Wrestler } from '../models/Wrestler.js';
+import { TournamentWrestler } from '../models/TournamentWrestler.js';
 
 
-const props = defineProps({ wrestler: { type: Wrestler, required: true } })
+const props = defineProps({ wrestler: { type: TournamentWrestler, required: true } })
 
 function test() {
     console.log('testing')
@@ -18,10 +18,10 @@ function test() {
             <div class="col p-0 text-center">
                 <div class="row justify-content-center">
                     <div class="col">
-                        <img class="pfp" src="https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg">
+                        <img class="pfp" :src="wrestler.imgUrl">
                     </div>
                 </div>
-                <p>{{ wrestler.name }}</p>
+                <p>{{ wrestler.shikonaEn }}</p>
             </div>
         </section>
     </section>
