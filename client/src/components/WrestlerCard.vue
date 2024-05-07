@@ -1,9 +1,12 @@
 <script setup>
+import { computed } from "vue";
 import { TournamentWrestler } from "../models/TournamentWrestler.js";
 
 
 
-defineProps({ wrestler: { type: TournamentWrestler, required: true } })
+const props = defineProps({ wrestler: { type: TournamentWrestler, required: true } })
+
+const coverImg = computed(() => `url(${props.wrestler.imgUrl})`)
 
 </script>
 
@@ -52,7 +55,8 @@ defineProps({ wrestler: { type: TournamentWrestler, required: true } })
   .rikishi-card-top {
     height: 20dvh;
     // background-image: url("src/assets/img/gold-coin-background.png"); //if we get wrestler photos with transparent backgrounds
-    background-image: url("https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg");
+    // background-image: url("https://www.sumo.or.jp/img/sumo_data/rikishi/270x474/20110008.jpg");
+    background-image: v-bind(coverImg);
     background-size: cover;
     background-position: top;
   }
