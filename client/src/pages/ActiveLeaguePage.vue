@@ -16,6 +16,10 @@ const activePlayers = computed(() => AppState.activePlayers)
 const activeTournament = computed(() => AppState.activeTournament)
 const tournamentWrestlers = computed(() => AppState.activeLeague.tournamentWrestlers)
 
+const account = computed(() => AppState.user)
+
+const currentPlayerTurn = computed(() => AppState.activeLeague.turn)
+
 
 const route = useRoute()
 
@@ -110,6 +114,7 @@ async function assignWrestlerPictures() {
 //will draft 5 wrestlers, TODO change to individual wrestlers
 async function draftWrestlers() {
     try {
+        console.log("current turn: ", AppState.activeLeague.turn)
         await wrestlersService.getRandomWrestler()
     }
     catch (error) {
@@ -227,15 +232,18 @@ onMounted(() => {
         <div v-if="activePlayers"
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
 
-            <div v-for="player in activeLeague.players" :key="player.id" class="col-10">
-                <MyStable :player="activePlayers[0]" />
-            </div>
+            <!-- NOTE active player index needs to match the league turn order -->
 
-            <div class="text-end text-light">
+            <!-- <div v-for="player in activeLeague.players" :key="player.id" class="col-10"> -->
+            <MyStable :player="activePlayers[currentPlayerTurn]" />
+            <!-- //</div> -->
+
+            <div v-if="account.id == activeLeague.players[currentPlayerTurn]" class="text-end text-light">
                 <button :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue"
                     @click="draftWrestlers()">Draft 5
                     Big Boys</button>
             </div>
+
         </div>
         <div v-if="tournamentWrestlers"
             class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
@@ -252,7 +260,8 @@ onMounted(() => {
             <div class="col">
                 <div class="row justify-content-around">
                     <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
-                    <h3 class="col-5 text-end">Basho Date: June 2021</h3>
+                    <h3 class="col-5 text-end">Basho Date: {{ activeLeague.tournamentId.substr(4) + "/" +
+                        activeLeague.tournamentId.substr(0, 4) }}</h3>
                 </div>
                 <div class="row justify-content-between px-5">
                     <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>

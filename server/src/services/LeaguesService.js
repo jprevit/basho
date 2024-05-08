@@ -9,6 +9,12 @@ class LeaguesService {
         const leagues = await dbContext.Leagues.find({ accountId: accountId }).populate('profile player')
         return leagues
     }
+    async updateTurn(leagueId, turn) {
+        const leaguetoUpdate = await this.getLeagueById(leagueId)
+        leaguetoUpdate.turn = turn
+        await leaguetoUpdate.save()
+        return leaguetoUpdate.turn
+    }
     async updateLeagueWrestlers(leagueId, wrestlersList) {
         const leagueToUpdate = await this.getLeagueById(leagueId)
         leagueToUpdate.tournamentWrestlers = wrestlersList

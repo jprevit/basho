@@ -16,6 +16,17 @@ export class LeaguesController extends BaseController {
             .put('/:leagueId', this.changeLeagueState)
             .put('/:leagueId/leaguewrestlers', this.updateLeagueWrestlers)
             .delete('/:leagueId', this.closeLeague)
+            .put('/:leagueId/turn', this.updateTurn)
+    }
+    async updateTurn(request, response, next) {
+        try {
+            const leagueId = request.params.leagueId
+            const turn = request.body.turn
+            const updatedLeagueTurn = await leaguesService.updateTurn(leagueId, turn)
+            response.send(updatedLeagueTurn)
+        } catch (error) {
+            next(error)
+        }
     }
 
 

@@ -41,17 +41,17 @@ class LeaguesService {
     AppState.activeLeague = newLeague
 
     await this.createPlayer(AppState.activeLeague.id)
-    
+
     router.push({ name: 'ActiveLeague', params: { leagueId: AppState.activeLeague.id } })
   }
 
   async getLeagueById(leagueId) {
     const response = await api.get(`api/leagues/${leagueId}`)
-    
+
     return response
   }
 
-  async joinLeagueById(leagueId){
+  async joinLeagueById(leagueId) {
     //console.log('join league form info',leagueId)
     const response = await this.getLeagueById(leagueId)
 
@@ -64,8 +64,8 @@ class LeaguesService {
     return response
   }
 
-  async createPlayer(leagueToJoin){
-    const response =  await api.post(`api/players/${leagueToJoin}`, {leagueId : leagueToJoin})
+  async createPlayer(leagueToJoin) {
+    const response = await api.post(`api/players/${leagueToJoin}`, { leagueId: leagueToJoin })
     const player = new Player(response.data)
     AppState.activePlayers.push(player)
     logger.log("Create a new player", AppState.activePlayers)
@@ -84,7 +84,7 @@ class LeaguesService {
     AppState.activeLeague = new League(league.data)
     const tournamentwrestlers = AppState.activeLeague.tournamentWrestlers.map(wrestler => new TournamentWrestler(wrestler))
     AppState.activeLeague.tournamentWrestlers = tournamentwrestlers
-    //console.log('appstate active league', AppState.activeLeague)
+    console.log('active account: ', AppState.user, ' appstate active league', AppState.activeLeague)
   }
 
   // NOTE This is a function for testing purposes. It is attached to a button in the ActiveLeaguePage. All it does is rotate between the available existing states.
@@ -101,33 +101,33 @@ class LeaguesService {
       AppState.activeLeague.state = 'starting'
     }
     //logger.log("app state", AppState.activeLeague.state)
-    const response = await api.put(`api/leagues/${leagueId}`, {state : AppState.activeLeague.state})
+    const response = await api.put(`api/leagues/${leagueId}`, { state: AppState.activeLeague.state })
     console.log(response, " put request data")
     logger.log("New State", AppState.activeLeague.state)
   }
 
-async getPlayersByLeagueId(leagueId){
-  const response = await api.get(`api/players/${leagueId}`)
-  logger.log("Getting this leagues players", response.data)
-  const activePlayers = response.data.map(player => new Player(player))
-  console.log('active players',activePlayers)
-  AppState.activePlayers = activePlayers
-  logger.log(AppState.activePlayers)
-}
+  async getPlayersByLeagueId(leagueId) {
+    const response = await api.get(`api/players/${leagueId}`)
+    logger.log("Getting this leagues players", response.data)
+    const activePlayers = response.data.map(player => new Player(player))
+    console.log('active players', activePlayers)
+    AppState.activePlayers = activePlayers
+    logger.log(AppState.activePlayers)
+  }
 
-async findLeaguePlayers(leagueId){
-  const response = await api.get(`api/players/${leagueId}`)
-  logger.log("Found other players in this league", response.data)
-  const activePlayers = response.data.map(player => new Player(player))
-  console.log('active players',activePlayers)
-}
+  async findLeaguePlayers(leagueId) {
+    const response = await api.get(`api/players/${leagueId}`)
+    logger.log("Found other players in this league", response.data)
+    const activePlayers = response.data.map(player => new Player(player))
+    console.log('active players', activePlayers)
+  }
 
-async closeLeague(leagueId){
-  const response = await api.delete(`api/leagues/${leagueId}`)
-  console.log('closing league',response.data)
-  AppState.activeLeague.isClosed = true
-  // FIXME write the rest of this function
-}
+  async closeLeague(leagueId) {
+    const response = await api.delete(`api/leagues/${leagueId}`)
+    console.log('closing league', response.data)
+    AppState.activeLeague.isClosed = true
+    // FIXME write the rest of this function
+  }
 
 }
 

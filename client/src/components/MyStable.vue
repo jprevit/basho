@@ -8,29 +8,15 @@ import { League } from '../models/League.js';
 import { StableMember } from '../models/StableMember.js';
 import { logger } from '../utils/Logger.js';
 
-
-let placeholderWrestlers = [1, 2, 3, 4, 5]
-
-
 const props = defineProps({
     player: { type: Player, required: true }
 })
 
 const myStable = getStableById()
 
-// async function setStableWrestlers() {
-//     try {
-//         console.log('playerId', props.player.id);
-//         await tournamentsService.setStableWrestlers(props.player.id)
-//     } catch (error) {
-//         Pop.toast('could not set stable wrestlers', 'error')
-//         console.error(error)
-//     }
-// }
-
 async function getStableById() {
     try {
-        logger.log('mystable sending request for stable')
+        logger.log('mystable sending request for stable', props.player.profile.id)
         const stable = await tournamentsService.getStableById(props.player.profile.id)
         return stable
     } catch (error) {
@@ -40,7 +26,6 @@ async function getStableById() {
 }
 
 onMounted(() => {
-    // setStableWrestlers()
     getStableById()
 })
 
