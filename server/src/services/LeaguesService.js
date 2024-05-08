@@ -1,3 +1,4 @@
+import { Forbidden } from "@bcwdev/auth0provider/lib/Errors.js"
 import { dbContext } from "../db/DbContext.js"
 import { logger } from "../utils/Logger.js"
 
@@ -40,6 +41,13 @@ class LeaguesService {
         return league
     }
 
+    async closeLeague(leagueId, userId) {
+        const leagueToClose = await this.getLeagueById(leagueId)
+        if (leagueToClose.creatorId != userId) throw new Forbidden('cant delete a league you did not start')
+        leagueToClose.isClosed = !leagueToClose.isClosed
+        await leagueToClose.save()
+        return `${leagueToClose.leagueName} has been closed`
+    }
 }
 
 export const leaguesService = new LeaguesService

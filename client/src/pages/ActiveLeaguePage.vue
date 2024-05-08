@@ -117,6 +117,16 @@ async function draftWrestlers() {
     }
 }
 
+async function closeRoom() {
+    try {
+        await leaguesService.closeRoom(route.params.leagueId, AppState.account.id)
+    }
+    catch (error) {
+        Pop.toast('could not close room', 'error')
+        console.error(error)
+    }
+}
+
 onMounted(() => {
     setupLeaguePage()
 })
@@ -175,7 +185,7 @@ onMounted(() => {
                 <div class="col-2">
                     <div class="text-end mt-2">
                         <p>Invite Code: {{ activeLeague.id }}</p>
-                        <p role="button" class="text-red">X Close Room</p>
+                        <p @click="closeRoom()" role="button" class="text-red">X Close Room</p>
                     </div>
                 </div>
             </section>

@@ -14,6 +14,7 @@ export class LeaguesController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
             .put('/:leagueId', this.changeLeagueState)
+            .delete('/:leagueId', this.closeLeague)
             .put('/:leagueId/leaguewrestlers', this.updateLeagueWrestlers)
     }
 
@@ -66,6 +67,17 @@ export class LeaguesController extends BaseController {
             response.send(updatedLeague)
         }
         catch (error) {
+            next(error)
+        }
+    }
+
+    async closeLeague(request, response, next) {
+        try {
+            const leagueId = request.params.leagueId
+            const userId = request.userInfo.id
+            const closedLeague = await leaguesService.closeLeague(leagueId, userId)
+            response.send(closedLeague)
+        } catch (error) {
             next(error)
         }
     }

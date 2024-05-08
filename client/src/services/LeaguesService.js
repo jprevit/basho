@@ -104,6 +104,10 @@ async getPlayersByLeagueId(leagueId){
   logger.log(AppState.activePlayers)
 }
 
+async closeLeague(leagueId, accountId){
+  const response = await api.delete(`api/leagues/${leagueId}`)
+  // FIXME write the rest of this function
+}
 }
 
 export const leaguesService = new LeaguesService
