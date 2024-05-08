@@ -1,25 +1,24 @@
+<!-- eslint-disable no-console -->
 <script setup>
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
-import { tournamentsService } from '../services/TournamentsService.js';
 import { leaguesService } from "../services/LeaguesService.js";
 import { League } from "../models/League.js";
 
 
-let placeholderWrestlers = [1, 2, 3, 4, 5]
-
-const myStable = computed(() => AppState.myStable)
+// let placeholderWrestlers = [1, 2, 3, 4, 5]
 
 const props = defineProps({ player: { type: Player, required: true } })
 // const leagueProps = defineProps({ league: { type: League, required: true } }) // NOTE seems like I need this for 
-const myPlayers = computed(() => AppState.myPlayers)
+
+const league = props.player.league
 
 
 async function findLeaguePlayers() {
     try {
-        const leagueId = props.player.league.id
+        const leagueId = league.id
         console.log('player leagues', leagueId);
         await leaguesService.findLeaguePlayers(leagueId)
     } catch (error) {
@@ -27,6 +26,16 @@ async function findLeaguePlayers() {
         console.error(error)
     }
 }
+
+
+
+async function setLeaguePlayers() {
+    const playerPoints = props.player.league.players
+    console.log('player points', playerPoints);
+    // props.player.league.players.sort((a, b) => a.playerPoints - b.points);
+
+}
+
 
 // async function setStableWrestlers() {
 //     try {
@@ -41,6 +50,7 @@ async function findLeaguePlayers() {
 onMounted(() => {
     // setStableWrestlers()
     findLeaguePlayers()
+    setLeaguePlayers()
 })
 
 </script>
@@ -76,7 +86,7 @@ onMounted(() => {
                         <p class="mb-0"> wins | 12 - 8</p>
                     </div>
                     <div>
-                        <h4>{{ player.league.name }}</h4>
+                        <h4>{{ player.league.leagueName }}</h4>
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">

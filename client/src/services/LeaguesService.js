@@ -114,8 +114,10 @@ async findLeaguePlayers(leagueId){
   console.log('active players',activePlayers)
 }
 
-async closeLeague(leagueId, accountId){
+async closeLeague(leagueId){
   const response = await api.delete(`api/leagues/${leagueId}`)
+  console.log('closing league',response.data)
+  AppState.activeLeague.isClosed = true
   // FIXME write the rest of this function
 }
 

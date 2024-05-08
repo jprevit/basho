@@ -10,7 +10,7 @@ import MyLeaguesCard from "../components/MyLeaguesCard.vue";
 
 const account = computed(() => AppState.account)
 const myPlayers = computed(() => AppState.myPlayers)
-
+const myLeagues = computed(() => AppState.myLeagues)
 
 
 </script>
