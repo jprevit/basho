@@ -5,6 +5,7 @@ import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
 import { tournamentsService } from '../services/TournamentsService.js';
 import { leaguesService } from "../services/LeaguesService.js";
+import { League } from "../models/League.js";
 
 
 let placeholderWrestlers = [1, 2, 3, 4, 5]
@@ -12,6 +13,7 @@ let placeholderWrestlers = [1, 2, 3, 4, 5]
 const myStable = computed(() => AppState.myStable)
 
 const props = defineProps({ player: { type: Player, required: true } })
+// const leagueProps = defineProps({ league: { type: League, required: true } }) // NOTE seems like I need this for 
 const myPlayers = computed(() => AppState.myPlayers)
 
 
@@ -26,18 +28,18 @@ async function findLeaguePlayers() {
     }
 }
 
-async function setStableWrestlers() {
-    try {
-        console.log('playerId', props.player.id);
-        await tournamentsService.setStableWrestlers(props.player.id)
-    } catch (error) {
-        Pop.toast('could not set stable wrestlers', 'error')
-        console.error(error)
-    }
-}
+// async function setStableWrestlers() {
+//     try {
+//         console.log('playerId', props.player.id);
+//         await tournamentsService.setStableWrestlers(props.player.id)
+//     } catch (error) {
+//         Pop.toast('could not set stable wrestlers', 'error')
+//         console.error(error)
+//     }
+// }
 
 onMounted(() => {
-    setStableWrestlers()
+    // setStableWrestlers()
     findLeaguePlayers()
 })
 
@@ -78,8 +80,7 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
-                    <!--NOTE this is erroring because it is mad about no v-bind, but since this is just simple placeholder data it should be ok -->
-                    <div v-for="player in myPlayers" :key="player.id" class=" col pt-4">
+                    <div v-for="player in props" :key="player.id" class=" col pt-4">
                         <PlayerHead :player="player" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
