@@ -41,7 +41,7 @@ class WrestlersService {
             const randomWrestler = AppState.activeLeague.tournamentWrestlers[wrestlerToIndex]
             AppState.activeLeague.tournamentWrestlers.splice(wrestlerToIndex, 1)
 
-            logger.log('Tournament Wrestlers', AppState.tournamentWrestlers.length)
+            logger.log('Tournament Wrestlers', AppState.activeLeague.tournamentWrestlers.length)
             logger.log('Random  Wrestler', randomWrestler)
 
             await this.addWrestlerToStable(randomWrestler)
