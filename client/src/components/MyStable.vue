@@ -19,7 +19,7 @@ const props = defineProps({ player: { type: Player, required: true } })
                         <PlayerHead :player="player" />
                         <div class="text row justify-content-around">
                             <div class="col-3">
-                                <span class="text-gold fw-bold fs-5">
+                                <span v-if="player" class="text-gold fw-bold fs-5">
                                     {{ player.points }}
                                 </span>
                             </div>
