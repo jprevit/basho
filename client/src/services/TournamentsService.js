@@ -133,7 +133,7 @@ class TournamentsService {
 
     async setStableWrestlers(playerId){
         // console.log('player id', playerId)
-        const response = await api.get('api/stablemembers', AppState.activeLeague.id)
+        const response = await api.get(`api/stablemembers/${AppState.activeLeague.id}`)
         console.log('stableMembers here:',response.data)
     }
 }
