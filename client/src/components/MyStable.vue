@@ -1,9 +1,29 @@
 <script setup>
+import { computed, onMounted } from 'vue';
+import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
+import Pop from '../utils/Pop.js';
+import { tournamentsService } from '../services/TournamentsService.js';
 
 
 let placeholderWrestlers = [1, 2, 3, 4, 5]
+
+const myStable = computed(() => AppState.myStable)
+
 const props = defineProps({ player: { type: Player, required: true } })
+
+async function setStableWrestlers() {
+    try {
+        await tournamentsService.setStableWrestlers(props.player.id)
+    } catch (error) {
+        Pop.toast('could not set stable wrestlers', 'error')
+        console.error(error)
+    }
+}
+
+onMounted(() => {
+    setStableWrestlers()
+})
 
 </script>
 
