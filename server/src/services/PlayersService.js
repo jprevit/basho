@@ -6,6 +6,10 @@ import { leaguesService } from "./LeaguesService.js"
 
 
 class PlayersService {
+    async getMyPlayers(accountId) {
+        const players = await dbContext.Players.find({ accountId: accountId }).populate('league')
+        return players
+    }
     async getPlayersByLeagueId(leagueId) {
         const players = await dbContext.Players.find({ leagueId: leagueId }).populate('profile', '-email')
         return players

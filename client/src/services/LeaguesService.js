@@ -14,16 +14,16 @@ import { Player } from "../models/Player.js"
 
 class LeaguesService {
 
-  async getMyLeagues(account) {
+  async getMyLeagues(accountId) {
+    console.log('account in leagues', accountId);
+    const response = await api.get(`api/leagues/${accountId}`)
     
-    const response = await api.get(`api/leagues/${account.id}`)
-    console.log('all leagues', response.data);
 
-    // NOTE player/user id in argument below is hardcoded for testing since other people can't be added as players yet
+    // NOTE player/user id in argument below is hardcoded for testing
     // const testAccountLeagues = response.data.filter((league) => league.players.includes('663a9e195db9da9fc24f17ce') )
     // console.log('testAccountLeagues', testAccountLeagues);
 
-    console.log('my account', account.value.id);
+    console.log('my account', accountId);
     // const accountLeagues = response.data.filter((league) => league.players.includes(account.id) )
 console.log('my account leagues', response.data);
 const players = response.data.map(player => new Player(player))

@@ -15,20 +15,10 @@ export class LeaguesController extends BaseController {
             .post('', this.createNewLeague)
             .put('/:leagueId', this.changeLeagueState)
             .put('/:leagueId/leaguewrestlers', this.updateLeagueWrestlers)
-            .get('/:accountId', this.getMyLeagues)
     }
 
 
-    async getMyLeagues(request, response, next) {
-        try {
-            const accountId = request.params.accountId
-            // const user = request.userInfo
-            const myLeagues = await leaguesService.getMyLeagues(accountId)
-            response.send(myLeagues)
-        } catch (error) {
-            next(error)
-        }
-    }
+
 
     async createNewLeague(request, response, next) {
         try {

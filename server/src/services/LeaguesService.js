@@ -11,10 +11,6 @@ class LeaguesService {
         return leagueToUpdate
     }
 
-    async getMyLeagues(accountId) {
-        const players = await dbContext.Players.find({ accountId: accountId }).populate('league')
-        return players
-    }
     async changeLeagueState(leagueId, updatedState) {
         const leagueToUpdate = await this.getLeagueById(leagueId)
         leagueToUpdate.state = updatedState
