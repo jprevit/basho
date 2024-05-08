@@ -87,9 +87,9 @@ async function getTournamentByTournamentId() {
     }
 }
 
-async function getMyStable() {
+async function getStableById(profileId) {
     try {
-        await tournamentsService.getMyStable()
+        await tournamentsService.getStableById(profileId, activeLeague.value.id)
     } catch (error) {
         Pop.toast('could not get my wrestlers', 'error')
         console.error(error)
@@ -116,6 +116,8 @@ async function draftWrestlers() {
         console.error(error);
     }
 }
+
+
 
 onMounted(() => {
     setupLeaguePage()
