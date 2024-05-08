@@ -83,6 +83,7 @@ class TournamentsService {
         AppState.tournamentWrestlers = tournamentWrestlers
 
         await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
+        console.log("Added base set of wrestlers to league", tournamentWrestlers)
     }
 
     async getLeagueRemainingWrestlers(){
