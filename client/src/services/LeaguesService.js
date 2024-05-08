@@ -31,7 +31,6 @@ class LeaguesService {
     const newLeague = new League(response.data)
     AppState.leagues.push(newLeague)
     AppState.activeLeague = newLeague
-    // AppState.activeLeague.playerCapacity - 1
 
     await this.createPlayer(AppState.activeLeague.id)
     
