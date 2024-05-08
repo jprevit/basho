@@ -81,12 +81,18 @@ class TournamentsService {
         // if(AppState.tournamentWrestlers.length > 0) return console.log("Had wrestlers, didn't grab again")
 
         AppState.tournamentWrestlers = tournamentWrestlers
+        console.log('tournament wrestlers',AppState.tournamentWrestlers)
 
         await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
+        console.log("Added base set of wrestlers to league", tournamentWrestlers)
     }
 
     async getLeagueRemainingWrestlers(){
-        console.log("had wrestlers in server, doing logic to get a better list")
+        const currentLeagueResult = await leaguesService.getLeagueById(AppState.activeLeague.id)
+        console.log("wrestler from server data", currentLeagueResult)
+        const remainingTournamentWrestlers = currentLeagueResult.data.tournamentWrestlers.map(wrestler => new TournamentWrestler(wrestler))
+        AppState.tournamentWrestlers = remainingTournamentWrestlers
+        console.log("got wrestlers from the server", AppState.tournamentWrestlers)
     }
 
     async getMyStable(){
@@ -123,6 +129,12 @@ class TournamentsService {
         appStateCopy = appStateCopy.map(wrestler => new TournamentWrestler(wrestler))
         AppState.tournamentWrestlers = appStateCopy
         // console.log('AppState has imageUrls now', AppState.tournamentWrestlers)
+    }
+
+    async setStableWrestlers(playerId){
+        // console.log('player id', playerId)
+        const response = await api.get('api/stablemembers', AppState.activeLeague.id)
+        console.log('stableMembers here:',response.data)
     }
 }
 
