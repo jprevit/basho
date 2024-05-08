@@ -188,7 +188,8 @@ onMounted(() => {
 
                             </div>
                             <div class="row justify-content-end my-3">
-                                <button class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
+                                <button :disabled="activeLeague.isClosed === true"
+                                    class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
                                     @click="changeLeagueState()">Start
                                     Drafting!</button>
                             </div>
