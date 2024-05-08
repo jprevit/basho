@@ -67,7 +67,7 @@ class LeaguesService {
 
   async getAllLeagues() {
     const response = await api.get('api/leagues')
-    console.log('all leagues should be here', response.data)
+    // console.log('all leagues should be here', response.data)
     return response
   }
 

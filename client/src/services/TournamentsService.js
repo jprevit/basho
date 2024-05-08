@@ -91,10 +91,10 @@ class TournamentsService {
 
     async getLeagueRemainingWrestlers() {
         const currentLeagueResult = await leaguesService.getLeagueById(AppState.activeLeague.id)
-        console.log("wrestler from server data", currentLeagueResult)
+        // console.log("wrestler from server data", currentLeagueResult)
         const remainingTournamentWrestlers = currentLeagueResult.data.tournamentWrestlers.map(wrestler => new TournamentWrestler(wrestler))
         AppState.tournamentWrestlers = remainingTournamentWrestlers
-        console.log("got wrestlers from the server", AppState.tournamentWrestlers)
+        // console.log("got wrestlers from the server", AppState.tournamentWrestlers)
     }
 
     async getStableById(profileId) {
