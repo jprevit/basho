@@ -117,9 +117,11 @@ async function draftWrestlers() {
     }
 }
 
-async function closeRoom() {
+async function closeLeague() {
     try {
-        await leaguesService.closeRoom(route.params.leagueId, AppState.account.id)
+        const confirmation = await Pop.confirm('Do you want to cancel this league?')
+        if (confirmation != true) return
+        await leaguesService.closeLeague(route.params.leagueId)
     }
     catch (error) {
         Pop.toast('could not close room', 'error')
@@ -146,8 +148,16 @@ onMounted(() => {
                     class="banner_img p-0">
             </section>
             <section class="row justify-content-around mt-2">
-                <div class="col-2">
-
+                <div class="col-2 text-center">
+                    <div class="btn-group mt-3">
+                        <button type="button" class="btn btn-mainblue text-white dropdown-toggle"
+                            data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+                            Invite Code
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-start">
+                            <li class="dropdown-item">{{ activeLeague.id }}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-8">
                     <section class="row mt-2">
@@ -155,11 +165,14 @@ onMounted(() => {
                             <h3>{{ activeLeague.leagueName }}</h3>
                             <div>Created {{ new Date(activeLeague.startDate).toLocaleDateString() }}</div>
                         </div>
+                        <div class="col-6">
+                            <h4 v-if="activeLeague.isClosed" class="text-red">THIS LEAGUE HAS BEEN CLOSED</h4>
+                        </div>
 
                     </section>
                     <div class="row mt-5 justify-content-between align-items-center">
                         <div class="col-4">
-                            <h1 class="m-0 p-0">Invite</h1>
+                            <h1 class="m-0 p-0">Players</h1>
                         </div>
                         <div class="col-6 text-end">
                             <!-- FIXME This needs to be changed once we get players for the league -->
@@ -183,9 +196,17 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="col-2">
-                    <div class="text-end mt-2">
-                        <p>Invite Code: {{ activeLeague.id }}</p>
-                        <p @click="closeRoom()" role="button" class="text-red">X Close Room</p>
+                    <div class="text-center mt-2">
+                        <!-- <div class="btn-group">
+                            <button type="button" class="btn btn-mainblue text-white dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Invite Code
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li class="dropdown-item">{{ activeLeague.id }}</li>
+                            </ul>
+                        </div> -->
+                        <button @click="closeLeague()" class="btn btn-red text-white mt-3">X Close Room</button>
                     </div>
                 </div>
             </section>
