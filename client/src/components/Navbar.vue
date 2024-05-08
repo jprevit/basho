@@ -69,9 +69,9 @@ async function getAllLeagues() {
       <ul class="navbar-nav me-auto gap-4">
         <li>
           <!-- This button will not always go to the active league page, the ID is hard coded because you need it to use this router link, page will break if you remove the id and dont change the router link to go to a different endpoint -->
-          <router-link :to="{ name: 'League' }" class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
+          <!-- <router-link :to="{ name: 'League' }" class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase">
             Leagues
-          </router-link>
+          </router-link> -->
         </li>
         <li>
           <a class="btn text-cyan fw-bolder lighten-30 selectable text-uppercase"

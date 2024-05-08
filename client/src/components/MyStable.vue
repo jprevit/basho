@@ -4,26 +4,44 @@ import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
 import { tournamentsService } from '../services/TournamentsService.js';
+import { League } from '../models/League.js';
+import { StableMember } from '../models/StableMember.js';
+import { logger } from '../utils/Logger.js';
 
 
 let placeholderWrestlers = [1, 2, 3, 4, 5]
 
-const myStable = computed(() => AppState.myStable)
 
-const props = defineProps({ player: { type: Player, required: true } })
+const props = defineProps({
+    player: { type: Player, required: true }
+})
 
-async function setStableWrestlers() {
+const myStable = getStableById()
+
+// async function setStableWrestlers() {
+//     try {
+//         console.log('playerId', props.player.id);
+//         await tournamentsService.setStableWrestlers(props.player.id)
+//     } catch (error) {
+//         Pop.toast('could not set stable wrestlers', 'error')
+//         console.error(error)
+//     }
+// }
+
+async function getStableById() {
     try {
-        console.log('playerId', props.player.id);
-        await tournamentsService.setStableWrestlers(props.player.id)
+        logger.log('mystable sending request for stable')
+        const stable = await tournamentsService.getStableById(props.player.profile.id)
+        return stable
     } catch (error) {
-        Pop.toast('could not set stable wrestlers', 'error')
+        Pop.toast('could not get my wrestlers', 'error')
         console.error(error)
     }
 }
 
 onMounted(() => {
-    setStableWrestlers()
+    // setStableWrestlers()
+    getStableById()
 })
 
 </script>
@@ -61,7 +79,7 @@ onMounted(() => {
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <!--NOTE this is erroring because it is mad about no v-bind, but since this is just simple placeholder data it should be ok -->
-                    <div v-for=" in placeholderWrestlers" class=" col pt-4">
+                    <div v-for="stablemember in myStable" :key="stablemember" class=" col pt-4">
                         <WrestlerHead />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">

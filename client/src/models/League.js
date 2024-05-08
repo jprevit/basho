@@ -24,6 +24,7 @@ export class League{
         this.state = data.state
         this.tournamentWrestlers = data.tournamentWrestlers || []
         this.isClosed = data.isClosed
+        this.turn = data.turn
         
 
         // NOTE - In many of our previous projects we have made the virtuals of models with a ternary, so that if there is no data to create a class from, it sets as null, if you are having issues with models try that
