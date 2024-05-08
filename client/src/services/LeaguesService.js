@@ -58,7 +58,6 @@ class LeaguesService {
 
   async createPlayer(leagueToJoin){
     const response =  await api.post(`api/players/${leagueToJoin}`, {leagueId : leagueToJoin})
-   
     const player = new Player(response.data)
     AppState.activePlayers.push(player)
     logger.log("Create a new player", AppState.activePlayers)
@@ -103,6 +102,14 @@ async getPlayersByLeagueId(leagueId){
   console.log('active players',activePlayers)
   AppState.activePlayers = activePlayers
   logger.log(AppState.activePlayers)
+}
+
+async findLeaguePlayers(leagueId){
+  const response = await api.get(`api/players/${leagueId}`)
+  logger.log("Found other players in this league", response.data)
+  const activePlayers = response.data.map(player => new Player(player))
+  console.log('active players',activePlayers)
+
 }
 
 }

@@ -10,7 +10,7 @@ const props = defineProps({ player: { type: Player, required: true } })
 
 <template>
 
-    <section v-if="player" class="container-fluid">
+    <section v-if="player && player.profile" class="container-fluid">
         <section class="row p-0">
             <div class="col p-0 text-center">
                 <img class="pfp rounded-pill" :src="player.profile.picture" alt="player pfp">

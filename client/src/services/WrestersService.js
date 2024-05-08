@@ -47,11 +47,13 @@ class WrestlersService {
             await this.addWrestlerToStable(randomWrestler)
 
         }
+        const tournamentWrestlers = AppState.activeLeague.tournamentWrestlers
+        await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
         logger.log('Stable', AppState.activeStableWrestlers)
     }
 
     async addWrestlerToStable(wrestlerData) {
-        //console.log("league id: ", AppState.activeLeague.id, " wrestler Id: ", wrestlerData.rikishiID)
+        // console.log("league id: ", AppState.activeLeague.id, " wrestler Id: ", wrestlerData.rikishiID)
         const response = await api.post('api/stablemembers', { leagueId: AppState.activeLeague.id, wrestlerId: wrestlerData.rikishiID })
         //logger.log(`Adding ${wrestlerData.name} to Stable`)
         const wrestler = new StableMember(response.data)
