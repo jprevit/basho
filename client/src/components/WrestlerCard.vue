@@ -13,7 +13,7 @@ const coverImg = computed(() => `url(${props.wrestler.imgUrl})`)
 
 <template>
 
-  <section class="container text-center rikishi-card my-3">
+  <section v-if="wrestler" class="container text-center rikishi-card my-3">
 
     <div class="row rikishi-card-top rounded-top-2 mx-1 text-primary">
 

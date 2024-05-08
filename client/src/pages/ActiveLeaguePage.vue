@@ -98,6 +98,7 @@ async function getStableById(profileId) {
 
 async function assignWrestlerPictures() {
     try {
+        console.log('tournament wrestlers', tournamentWrestlers)
         await tournamentsService.assignWrestlerPictures()
     }
     catch (error) {
