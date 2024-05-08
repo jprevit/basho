@@ -17,7 +17,6 @@ export class AccountController extends BaseController {
 
   async getMyPlayers(request, response, next) {
     try {
-      // const accountId = request.params.accountId
       const accountId = request.userInfo.id
       const myPlayers = await playersService.getMyPlayers(accountId)
       response.send(myPlayers)
