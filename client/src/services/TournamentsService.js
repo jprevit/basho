@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { AppState } from "../AppState.js"
 import { League } from "../models/League.js"
+import { StableMember } from "../models/StableMember.js"
 import { Tournament } from "../models/Tournament.js"
 import { TournamentWrestler } from "../models/TournamentWrestler.js"
 import { logger } from "../utils/Logger.js"
@@ -96,10 +97,10 @@ class TournamentsService {
         console.log("got wrestlers from the server", AppState.tournamentWrestlers)
     }
 
-    async getMyStable() {
-        const playerId = AppState.account.id
-        const leagueId = AppState.activeLeague.id
-        const activeTournament = AppState.activeTournament
+    async getStableById(profileId, leagueId) {
+        const response = await api.get(`api/stablemembers/${profileId}`, leagueId)
+        const stable = response.data.map(stablemember => new StableMember(stablemember))
+        return stable
     }
 
     /** This function looks through the active wrestlers in the AppState, finds a matching object in the wrestlerImgIds object in the AppState, and then builds an img URL to sumo.or.jp based on this data and attatches it to the respective player in the AppState. If there is no image, a placeholder is attatched. These images will be used to draw wrestler images to page elements

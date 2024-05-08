@@ -87,9 +87,9 @@ async function getTournamentByTournamentId() {
     }
 }
 
-async function getMyStable() {
+async function getStableById(profileId) {
     try {
-        await tournamentsService.getMyStable()
+        await tournamentsService.getStableById(profileId, activeLeague.value.id)
     } catch (error) {
         Pop.toast('could not get my wrestlers', 'error')
         console.error(error)
@@ -114,6 +114,16 @@ async function draftWrestlers() {
     catch (error) {
         Pop.error(error);
         console.error(error);
+    }
+}
+
+async function closeRoom() {
+    try {
+        await leaguesService.closeRoom(route.params.leagueId, AppState.account.id)
+    }
+    catch (error) {
+        Pop.toast('could not close room', 'error')
+        console.error(error)
     }
 }
 
@@ -175,7 +185,7 @@ onMounted(() => {
                 <div class="col-2">
                     <div class="text-end mt-2">
                         <p>Invite Code: {{ activeLeague.id }}</p>
-                        <p role="button" class="text-red">X Close Room</p>
+                        <p @click="closeRoom()" role="button" class="text-red">X Close Room</p>
                     </div>
                 </div>
             </section>
@@ -194,9 +204,9 @@ onMounted(() => {
         <div
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
 
-            <!-- <div class="col-2">
+            <div class="col-2">
                 <WrestlerCard />
-            </div> -->
+            </div>
 
             My Stable will go here at some point
             <div class="text-end text-light">
