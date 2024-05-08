@@ -16,7 +16,7 @@ const myStable = getStableById()
 
 async function getStableById() {
     try {
-        logger.log('mystable sending request for stable')
+        logger.log('mystable sending request for stable', props.player.profile.id)
         const stable = await tournamentsService.getStableById(props.player.profile.id)
         return stable
     } catch (error) {

@@ -67,8 +67,9 @@ class LeaguesService {
 
   async getAllLeagues() {
     const response = await api.get('api/leagues')
-    // console.log('all leagues should be here', response.data)
-    return response
+    console.log('all leagues should be here', response.data)
+    AppState.leagues = response.data.map(league => new League(league))
+    return response.data
   }
 
   async setActiveLeague(leagueId) {
