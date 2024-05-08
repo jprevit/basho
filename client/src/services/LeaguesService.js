@@ -105,6 +105,7 @@ async getPlayersByLeagueId(leagueId){
   const response = await api.get(`api/players/${leagueId}`)
   logger.log("Getting this leagues players", response.data)
   const activePlayers = response.data.map(player => new Player(player))
+  console.log('active players',activePlayers)
   AppState.activePlayers = activePlayers
   logger.log(AppState.activePlayers)
 }

@@ -12,6 +12,7 @@ PlayerSchema.virtual('league', {
     localField: 'leagueId',
     ref: 'League',
     foreignField: '_id',
+    justOne: true
 })
 
 PlayerSchema.virtual('profile', {
