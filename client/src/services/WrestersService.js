@@ -73,7 +73,7 @@ class WrestlersService {
 
         console.log(activeLeague.turn)
 
-        await api.put(`api/leages/${AppState.activeLeague.id}/turn`, activeLeague.turn)
+        await api.put(`api/leagues/${AppState.activeLeague.id}/turn`, { turn: activeLeague.turn })
     }
 
 
