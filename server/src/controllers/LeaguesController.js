@@ -14,8 +14,8 @@ export class LeaguesController extends BaseController {
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createNewLeague)
             .put('/:leagueId', this.changeLeagueState)
-            .delete('/:leagueId', this.closeLeague)
             .put('/:leagueId/leaguewrestlers', this.updateLeagueWrestlers)
+            .delete('/:leagueId', this.closeLeague)
     }
 
 
