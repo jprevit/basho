@@ -8,6 +8,7 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { tournamentsService } from "./TournamentsService.js"
 import { Player } from "../models/Player.js"
+import { TournamentWrestler } from "../models/TournamentWrestler.js"
 
 
 
@@ -72,7 +73,9 @@ class LeaguesService {
 
   async setActiveLeague(leagueId) {
     const league = await this.getLeagueById(leagueId)
-    AppState.activeLeague = league.data
+    AppState.activeLeague = new League(league.data)
+    const tournamentwrestlers = AppState.activeLeague.tournamentWrestlers.map(wrestler => new TournamentWrestler(wrestler))
+    AppState.activeLeague.tournamentWrestlers = tournamentwrestlers
     //console.log('appstate active league', AppState.activeLeague)
   }
 

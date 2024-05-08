@@ -98,6 +98,7 @@ async function getStableById(profileId) {
 
 async function assignWrestlerPictures() {
     try {
+        console.log('tournament wrestlers', tournamentWrestlers)
         await tournamentsService.assignWrestlerPictures()
     }
     catch (error) {
@@ -188,7 +189,8 @@ onMounted(() => {
 
                             </div>
                             <div class="row justify-content-end my-3">
-                                <button class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
+                                <button :disabled="activeLeague.isClosed === true"
+                                    class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
                                     @click="changeLeagueState()">Start
                                     Drafting!</button>
                             </div>
@@ -222,21 +224,21 @@ onMounted(() => {
             </div>
 
         </div>
-        <div
+        <div v-if="activePlayers"
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
 
-            <div class="col-2">
-                <WrestlerCard />
+            <div v-for="player in activeLeague.players" :key="player.id" class="col-10">
+                <MyStable :player="activePlayers[0]" />
             </div>
 
-            My Stable will go here at some point
             <div class="text-end text-light">
                 <button :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue"
                     @click="draftWrestlers()">Draft 5
                     Big Boys</button>
             </div>
         </div>
-        <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
+        <div v-if="tournamentWrestlers"
+            class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
             <div v-for="wrestler in tournamentWrestlers" :key="wrestler.rikishiID"
                 class="col-xxl-2 col-lg-3 col-5 mx-2">
                 <WrestlerCard :wrestler="wrestler" />

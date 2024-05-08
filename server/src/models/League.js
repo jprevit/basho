@@ -11,7 +11,8 @@ export const LeagueSchema = new Schema({
     players: { type: Array, required: true },
     state: { type: String, required: true, default: 'starting' },
     tournamentWrestlers: { type: Array, required: true },
-    isClosed: { type: Boolean, required: true, default: false }
+    isClosed: { type: Boolean, required: true, default: false },
+    turn: { type: Number, required: true, default: 0 }
 },
     { timestamps: true, toJSON: { virtuals: true } })
 
