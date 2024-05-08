@@ -5,6 +5,7 @@ import { AppState } from '../AppState.js';
 import { leaguesService } from "../services/LeaguesService.js";
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
+import MyLeaguesCard from "../components/MyLeaguesCard.vue";
 
 
 const account = computed(() => AppState.account)
@@ -34,7 +35,7 @@ const myPlayers = computed(() => AppState.myPlayers)
       </div>
       <div class="col d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
         <section v-for="player in myPlayers" :key="player.id" class="row mx-5 ">
-          <MyStable />
+          <MyLeaguesCard :player="player" />
         </section>
       </div>
     </section>
