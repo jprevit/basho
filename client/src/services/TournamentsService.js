@@ -82,7 +82,7 @@ class TournamentsService {
 
         AppState.tournamentWrestlers = tournamentWrestlers
 
-        await api.put(`api/league${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
+        await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
     }
 
     async getLeagueRemainingWrestlers(){

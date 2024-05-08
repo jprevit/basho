@@ -1,6 +1,9 @@
 <script setup>
+import { Player } from '../models/Player.js';
+
 
 let placeholderWrestlers = [1, 2, 3, 4, 5]
+const props = defineProps({ player: { type: Player, required: true } })
 
 </script>
 
@@ -13,11 +16,11 @@ let placeholderWrestlers = [1, 2, 3, 4, 5]
                     <div class="col">
                         <h2 class="mt-1"><i class="text-gold mdi mdi-medal"></i>1</h2>
                         <hr />
-                        <PlayerHead />
+                        <PlayerHead :player="player" />
                         <div class="text row justify-content-around">
                             <div class="col-3">
                                 <span class="text-gold fw-bold fs-5">
-                                    23
+                                    {{ player.points }}
                                 </span>
                             </div>
                             <div class="col-4 text-green fs-5">
