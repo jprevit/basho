@@ -50,6 +50,9 @@ class WrestlersService {
         const tournamentWrestlers = AppState.activeLeague.tournamentWrestlers
         await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
         logger.log('Stable', AppState.activeStableWrestlers)
+
+        await this.updateLeagueDraftTurn()
+
     }
 
     async addWrestlerToStable(wrestlerData) {
@@ -60,6 +63,17 @@ class WrestlersService {
 
         AppState.activeStableWrestlers.push(wrestler)
 
+    }
+
+
+    async updateLeagueDraftTurn() {
+        const activeLeague = AppState.activeLeague
+
+        if (activeLeague.turn < activeLeague.players.length) activeLeague.turn++
+
+        console.log(activeLeague.turn)
+
+        await api.put(`api/leages/${AppState.activeLeague.id}/turn`, activeLeague.turn)
     }
 
 
