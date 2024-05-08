@@ -14,7 +14,7 @@ const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
 const activePlayers = computed(() => AppState.activePlayers)
 const activeTournament = computed(() => AppState.activeTournament)
-const tournamentWrestlers = computed(() => AppState.tournamentWrestlers)
+const tournamentWrestlers = computed(() => AppState.activeLeague.tournamentWrestlers)
 
 
 const route = useRoute()
@@ -200,7 +200,9 @@ onMounted(() => {
 
             My Stable will go here at some point
             <div class="text-end text-light">
-                <button class="btn btn-mainblue" @click="draftWrestlers()">Draft 5 Big Boys</button>
+                <button :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue"
+                    @click="draftWrestlers()">Draft 5
+                    Big Boys</button>
             </div>
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
