@@ -6,11 +6,11 @@ export class StableMember{
     constructor(data){
         this.id = data.id
         this.wrestlerId = data.rikishiID
-        this.wrestler = new Wrestler(data.wrestler)
+        this.wrestler = data.wrestler
         this.leagueId = data.leagueId
-        this.league = new League(data.league)
+        this.league = data.league
         this.playerId = data.playerId
-        this.player = new Account(data.player)
+        this.player = data.player
        
        
         // this.id = data.id

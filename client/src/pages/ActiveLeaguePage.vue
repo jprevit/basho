@@ -8,6 +8,7 @@ import { useRoute } from "vue-router";
 import MyStable from '../components/MyStable.vue';
 import { logger } from "../utils/Logger.js";
 import { tournamentsService } from "../services/TournamentsService.js";
+import { wrestlersService } from '../services/WrestersService.js';
 
 const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
@@ -105,6 +106,17 @@ async function assignWrestlerPictures() {
     }
 }
 
+//will draft 5 wrestlers, TODO change to individual wrestlers
+async function draftWrestlers() {
+    try {
+        await wrestlersService.getRandomWrestler()
+    }
+    catch (error) {
+        Pop.error(error);
+        console.error(error);
+    }
+}
+
 onMounted(() => {
     setupLeaguePage()
 })
@@ -187,7 +199,9 @@ onMounted(() => {
             </div> -->
 
             My Stable will go here at some point
-
+            <div class="text-end text-light">
+                <button class="btn btn-mainblue" @click="draftWrestlers()">Draft 5 Big Boys</button>
+            </div>
         </div>
         <div class="wrestlers-to-draft d-flex row justify-content-around bgopacitydark py-4 text-light">
             <div v-for="wrestler in tournamentWrestlers" :key="wrestler.rikishiID"
