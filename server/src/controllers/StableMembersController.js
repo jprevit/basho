@@ -6,13 +6,13 @@ export class StableMembersController extends BaseController {
     constructor() {
         super('api/stablemembers')
         this.router
-            .get('', this.getStablemembersByLeague)
+            .get('/:leagueId', this.getStablemembersByLeague)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.addWrestlertoStable)
     }
     async getStablemembersByLeague(request, response, next) {
         try {
-            const leagueId = request.body.leagueId
+            const leagueId = request.params.leagueId
             const stablemembersbyleague = await stableMembersService.getStablemembersByLeague(leagueId)
             response.send(stablemembersbyleague)
         } catch (error) {
