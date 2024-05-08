@@ -194,9 +194,9 @@ onMounted(() => {
         <div
             class="player-draft-picks d-flex row justify-content-around border-bottom border-gold border-5 py-4 text-light bg-charcoal">
 
-            <!-- <div class="col-2">
+            <div class="col-2">
                 <WrestlerCard />
-            </div> -->
+            </div>
 
             My Stable will go here at some point
             <div class="text-end text-light">
