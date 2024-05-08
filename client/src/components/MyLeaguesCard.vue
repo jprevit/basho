@@ -4,6 +4,7 @@ import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
 import { tournamentsService } from '../services/TournamentsService.js';
+import { leaguesService } from "../services/LeaguesService.js";
 
 
 let placeholderWrestlers = [1, 2, 3, 4, 5]
@@ -12,6 +13,18 @@ const myStable = computed(() => AppState.myStable)
 
 const props = defineProps({ player: { type: Player, required: true } })
 const myPlayers = computed(() => AppState.myPlayers)
+
+
+async function findLeaguePlayers() {
+    try {
+        const leagueId = props.player.league.id
+        console.log('player leagues', leagueId);
+        await leaguesService.findLeaguePlayers(leagueId)
+    } catch (error) {
+        Pop.toast('Could not find players by league ID for leagues card', 'error')
+        console.error(error)
+    }
+}
 
 async function setStableWrestlers() {
     try {
@@ -25,6 +38,7 @@ async function setStableWrestlers() {
 
 onMounted(() => {
     setStableWrestlers()
+    findLeaguePlayers()
 })
 
 </script>
@@ -41,7 +55,7 @@ onMounted(() => {
                         <PlayerHead :player="player" />
                         <div class="text row justify-content-around">
                             <div class="col-3">
-                                <span v-if="player" class="text-gold fw-bold fs-5">
+                                <span class="text-gold fw-bold fs-5">
                                     {{ player.points }}
                                 </span>
                             </div>
@@ -58,6 +72,9 @@ onMounted(() => {
                     <div class="col d-flex align-items-center">
                         <p class="me-1 mb-0 fw-bold">00%</p>
                         <p class="mb-0"> wins | 12 - 8</p>
+                    </div>
+                    <div>
+                        <h4>{{ player.league.name }}</h4>
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
