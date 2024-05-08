@@ -14,6 +14,7 @@ const props = defineProps({ player: { type: Player, required: true } })
 
 async function setStableWrestlers() {
     try {
+        console.log('playerId', props.player.id);
         await tournamentsService.setStableWrestlers(props.player.id)
     } catch (error) {
         Pop.toast('could not set stable wrestlers', 'error')
