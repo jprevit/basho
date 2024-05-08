@@ -109,7 +109,11 @@ async findLeaguePlayers(leagueId){
   logger.log("Found other players in this league", response.data)
   const activePlayers = response.data.map(player => new Player(player))
   console.log('active players',activePlayers)
+}
 
+async closeLeague(leagueId, accountId){
+  const response = await api.delete(`api/leagues/${leagueId}`)
+  // FIXME write the rest of this function
 }
 
 }
