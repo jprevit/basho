@@ -131,7 +131,7 @@ onMounted(() => {
                     <section class="row mt-2">
                         <div class="col-6">
                             <h3>{{ activeLeague.leagueName }}</h3>
-                            <div>Created {{ activeLeague.startDate }}</div>
+                            <div>Created {{ new Date(activeLeague.startDate).toLocaleDateString() }}</div>
                         </div>
 
                     </section>
@@ -212,10 +212,11 @@ onMounted(() => {
             </div>
         </section>
         <section class="row p-5 bgopacitydark gap-5">
-            <MyStable />
-            <MyStable />
-            <MyStable />
-            <MyStable />
+            <div v-for="player in activePlayers" :key="player.id" class="col">
+                <MyStable :player="player" />
+
+            </div>
+
         </section>
     </section>
 
