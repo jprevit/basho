@@ -20,7 +20,7 @@ async function findLeaguePlayers() {
     try {
         const leagueId = league.id
         console.log('player leagues', leagueId);
-        await leaguesService.findLeaguePlayers(leagueId)
+        await leaguesService.getPlayersByLeagueId(leagueId)
     } catch (error) {
         Pop.toast('Could not find players by league ID for leagues card', 'error')
         console.error(error)
@@ -30,7 +30,7 @@ async function findLeaguePlayers() {
 
 
 async function setLeaguePlayers() {
-    const playerPoints = props.player.league.players
+    const playerPoints = league.players.points
     console.log('player points', playerPoints);
     // props.player.league.players.sort((a, b) => a.playerPoints - b.points);
 
@@ -49,8 +49,8 @@ async function setLeaguePlayers() {
 
 onMounted(() => {
     // setStableWrestlers()
-    findLeaguePlayers()
     setLeaguePlayers()
+    findLeaguePlayers()
 })
 
 </script>
