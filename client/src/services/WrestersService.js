@@ -33,32 +33,35 @@ class WrestlersService {
     }
 
 
-   async getRandomWrestler(){
-    console.log('active wrestlers', AppState.activeLeague);
+    async getRandomWrestler() {
+        console.log('active wrestlers', AppState.activeLeague);
         for (let i = 0; i < 5; i++) {
-        const wrestlerToIndex = Math.floor(Math.random() * AppState.activeLeague.tournamentWrestlers.length)
-        const randomWrestler = AppState.activeLeague.tournamentWrestlers[wrestlerToIndex]
-        AppState.activeLeague.tournamentWrestlers.splice(wrestlerToIndex, 1)
-        logger.log('Random  Wrestler', randomWrestler)
+            const wrestlerToIndex = Math.floor(Math.random() * AppState.activeLeague.tournamentWrestlers.length)
+            console.log(wrestlerToIndex, "random wrestler number")
+            const randomWrestler = AppState.activeLeague.tournamentWrestlers[wrestlerToIndex]
+            AppState.activeLeague.tournamentWrestlers.splice(wrestlerToIndex, 1)
 
-        await this.addWrestlerToStable(randomWrestler)
+            logger.log('Tournament Wrestlers', AppState.activeLeague.tournamentWrestlers.length)
+            logger.log('Random  Wrestler', randomWrestler)
+
+            await this.addWrestlerToStable(randomWrestler)
+
+        }
+        const tournamentWrestlers = AppState.activeLeague.tournamentWrestlers
+        await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
+        logger.log('Stable', AppState.activeStableWrestlers)
+    }
+
+    async addWrestlerToStable(wrestlerData) {
+        // console.log("league id: ", AppState.activeLeague.id, " wrestler Id: ", wrestlerData.rikishiID)
+        const response = await api.post('api/stablemembers', { leagueId: AppState.activeLeague.id, wrestlerId: wrestlerData.rikishiID })
+        //logger.log(`Adding ${wrestlerData.name} to Stable`)
+        const wrestler = new StableMember(response.data)
+
+        AppState.activeStableWrestlers.push(wrestler)
 
     }
-    logger.log('Stable', AppState.activeStableWrestlers)
-    logger.log('Tournament Wrestlers', AppState.tournamentWrestlers)
-}
-
-async addWrestlerToStable(wrestlerData){
-    const response = await api.post('api/stablemembers', wrestlerData)
-    logger.log(`Adding ${wrestlerData.name} to Stable`)
-    const wrestler = new StableMember(response.data)
-    
-    AppState.activeStableWrestlers.push(wrestler.leagueId, wrestler.wrestlerId)
-
-}
-
 
 
 }
-
 export const wrestlersService = new WrestlersService

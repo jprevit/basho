@@ -61,6 +61,7 @@ class LeaguesService {
    
     const player = new Player(response.data)
     AppState.activePlayers.push(player)
+    logger.log("Create a new player", AppState.activePlayers)
     //console.log("created player")
   }
 
