@@ -14,6 +14,7 @@ const props = defineProps({ player: { type: Player, required: true } })
 
 async function setStableWrestlers() {
     try {
+        console.log('playerId', props.player.id);
         await tournamentsService.setStableWrestlers(props.player.id)
     } catch (error) {
         Pop.toast('could not set stable wrestlers', 'error')
@@ -39,7 +40,7 @@ onMounted(() => {
                         <PlayerHead :player="player" />
                         <div class="text row justify-content-around">
                             <div class="col-3">
-                                <span class="text-gold fw-bold fs-5">
+                                <span v-if="player" class="text-gold fw-bold fs-5">
                                     {{ player.points }}
                                 </span>
                             </div>

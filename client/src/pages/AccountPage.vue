@@ -8,22 +8,9 @@ import { accountService } from "../services/AccountService.js";
 
 
 const account = computed(() => AppState.account)
+const myPlayers = computed(() => AppState.myPlayers)
 
 
-// async function getMyLeagues() {
-//   try {
-//     console.log('myAccount', account);
-//     await leaguesService.getMyLeagues(account)
-//   }
-//   catch (error) {
-//     Pop.toast('Could not get your leagues', 'error')
-//     console.error(error)
-//   }
-// }
-
-// onMounted(() =>
-//   getMyLeagues()
-// )
 
 </script>
 
@@ -46,10 +33,7 @@ const account = computed(() => AppState.account)
         </div>
       </div>
       <div class="col d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
-        <section class="row  mx-5 ">
-          <MyStable />
-        </section>
-        <section class="row mx-5 ">
+        <section v-for="player in myPlayers" :key="player.id" class="row mx-5 ">
           <MyStable />
         </section>
       </div>
