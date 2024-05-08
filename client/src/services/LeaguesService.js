@@ -16,7 +16,7 @@ class LeaguesService {
 
   async getMyLeagues(accountId) {
     console.log('account in leagues', accountId);
-    const response = await api.get(`api/leagues/${accountId}`)
+    const response = await api.get(`api/account/players`)
     
 
     // NOTE player/user id in argument below is hardcoded for testing
