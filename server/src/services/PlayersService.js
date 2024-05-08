@@ -11,7 +11,7 @@ class PlayersService {
         return players
     }
     async getPlayersByLeagueId(leagueId) {
-        const players = await dbContext.Players.find({ leagueId: leagueId }).populate('profile', '-email')
+        const players = await dbContext.Players.find({ leagueId: leagueId }).populate('profile league', '-email')
         return players
     }
     async kickPlayer(playerToKick, userId) {
