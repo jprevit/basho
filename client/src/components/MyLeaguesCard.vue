@@ -12,7 +12,7 @@ import { League } from "../models/League.js";
 
 const props = defineProps({ player: { type: Player, required: true } })
 // const leagueProps = defineProps({ league: { type: League, required: true } }) // NOTE seems like I need this for 
-
+const activePlayers = computed(() => AppState.activePlayers)
 const league = props.player.league
 
 
@@ -90,7 +90,7 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
-                    <div v-for="player in props" :key="player.id" class=" col pt-4">
+                    <div v-for="player in activePlayers" :key="player.id" class=" col pt-4">
                         <PlayerHead :player="player" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">

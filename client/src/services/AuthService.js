@@ -7,6 +7,7 @@ import { api } from './AxiosService'
 import { socketService } from './SocketService'
 import { leaguesService } from "./LeaguesService.js"
 
+
 export const AuthService = initialize({
   domain,
   clientId,

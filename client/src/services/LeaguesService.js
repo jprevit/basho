@@ -17,11 +17,18 @@ class LeaguesService {
 
   async getMyPlayers() {
     const response = await api.get(`account/players`)
-    
     console.log('my account players', response.data);
     const players = response.data.map(player => new Player(player))
     console.log("account leages in AppState", players);
     AppState.myPlayers = players
+  }
+  
+  async getMyLeagues() {
+    const response = await api.get(`players/leagues`)
+    console.log('my account leagues', response.data);
+    const league = response.data.map(league => new League(league))
+    console.log("account leages in AppState", league);
+    AppState.myLeagues = league
   }
   
   async createNewLeague(leagueData) {

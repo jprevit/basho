@@ -2,6 +2,7 @@ import auth0provider, { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { playersService } from "../services/PlayersService.js";
 import { Logger, logger } from "../utils/Logger.js";
+import { leaguesService } from "../services/LeaguesService.js";
 
 
 
@@ -11,6 +12,7 @@ export class PlayersController extends BaseController {
         this.router
             .get('/:leagueId', this.getPlayersByLeagueId)
             .use(Auth0Provider.getAuthorizedUserInfo)
+            .get('/leagues', this.getMyLeagues)
             .post('/:leagueId', this.createPlayer)
             .delete('/:playerId', this.kickPlayer)
     }
@@ -25,6 +27,16 @@ export class PlayersController extends BaseController {
         }
     }
 
+    async getMyLeagues(request, response, next) {
+        try {
+            const accountId = request.userInfo.id
+            const myLeagues = await leaguesService.getMyLeagues(accountId)
+            response.send(myLeagues)
+        } catch (error) {
+            next(error)
+            console.log('Could not get your leages', 'error');
+        }
+    }
 
     async kickPlayer(request, response, next) {
         try {

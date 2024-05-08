@@ -2,6 +2,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
 import { playersService } from "../services/PlayersService.js"
+import { leaguesService } from "../services/LeaguesService.js"
 
 export class AccountController extends BaseController {
   constructor() {

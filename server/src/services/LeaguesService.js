@@ -5,6 +5,10 @@ import { logger } from "../utils/Logger.js"
 
 
 class LeaguesService {
+    async getMyLeagues(accountId) {
+        const leagues = await dbContext.Leagues.find({ accountId: accountId }).populate('profile player')
+        return leagues
+    }
     async updateLeagueWrestlers(leagueId, wrestlersList) {
         const leagueToUpdate = await this.getLeagueById(leagueId)
         leagueToUpdate.tournamentWrestlers = wrestlersList
