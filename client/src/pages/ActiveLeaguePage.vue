@@ -158,7 +158,6 @@ onMounted(() => {
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-    <button @click="changeLeagueState()" class="btn btn-primary">CHANGE STATE</button>
     <section v-if="activeLeague && activeLeague.state == 'starting'" id="starting"
         class="container-fluid bg-charcoal text-light">
         <section class="col">

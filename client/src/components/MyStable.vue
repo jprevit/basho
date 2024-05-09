@@ -28,13 +28,6 @@ async function getStableById() {
     }
 }
 
-const myStableofTournamentWrestlers = []
-
-async function associateStablememberAndTournamentWrestler() {
-
-}
-
-
 onMounted(() => {
     getStableById()
 })
