@@ -20,7 +20,7 @@ async function getStableById() {
     try {
         logger.log('mystable sending request for stable', props.player.profile)
         const stable = await tournamentsService.getStableById(props.player.profile.id)
-        logger.log('mystable', myStable)
+        logger.log('mystable', myStable.value)
         return stable
     } catch (error) {
         Pop.toast('could not get my wrestlers', 'error')
