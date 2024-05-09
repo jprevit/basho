@@ -113,12 +113,13 @@ class LeaguesService {
     // FIXME write the rest of this function
   }
   
-  // async findLeaguePlayers(leagueId) {
-  //   const response = await api.get(`api/players/${leagueId}`)
-  //   logger.log("Found other players in this league", response.data)
-  //   const activePlayers = response.data.map(player => new Player(player))
-  //   console.log('active players', activePlayers)
-  // }
+  async findLeaguePlayers(leagueId) {
+    const response = await api.get(`api/players/${leagueId}`)
+    logger.log("Found other players in this league", response.data)
+    const activePlayers = response.data.map(player => new Player(player))
+    console.log('active players being returned', activePlayers)
+    return activePlayers
+  }
 
    // async getMyLeagues() {
   //   const response = await api.get(`api/players/leagues`)
