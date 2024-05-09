@@ -52,7 +52,7 @@ class WrestlersService {
         await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
         logger.log('Stable', AppState.activeStableWrestlers)
 
-        await this.updateLeagueDraftTurn()
+        // await this.updateLeagueDraftTurn()
 
     }
 
