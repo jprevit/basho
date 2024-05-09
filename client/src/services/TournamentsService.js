@@ -85,6 +85,7 @@ class TournamentsService {
         console.log('tournament wrestlers', AppState.tournamentWrestlers)
 
         await api.put(`api/leagues/${AppState.activeLeague.id}/leaguewrestlers`, tournamentWrestlers)
+        AppState.activeLeague.tournamentWrestlers = tournamentWrestlers
 
         console.log("Added base set of wrestlers to league", tournamentWrestlers)
     }
@@ -102,7 +103,7 @@ class TournamentsService {
         const response = await api.get(`api/stablemembers/${profileId}`)
         const stable = response.data.map(stablemember => new StableMember(stablemember))
         logger.log('service getstablebyId', stable)
-        return stable
+        AppState.myStable = stable
     }
 
     /** This function looks through the active wrestlers in the AppState, finds a matching object in the wrestlerImgIds object in the AppState, and then builds an img URL to sumo.or.jp based on this data and attatches it to the respective player in the AppState. If there is no image, a placeholder is attatched. These images will be used to draw wrestler images to page elements

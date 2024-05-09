@@ -3,6 +3,7 @@ import { api, sumoApi } from "./AxiosService.js"
 import { AppState } from "../AppState.js"
 import { Wrestler } from "../models/Wrestler.js"
 import { StableMember } from "../models/StableMember.js"
+import { TournamentWrestler } from "../models/TournamentWrestler.js"
 
 
 class WrestlersService {

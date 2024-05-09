@@ -77,6 +77,7 @@ class LeaguesService {
 
     if (AppState.activeLeague.state == 'starting') {
       AppState.activeLeague.state = 'drafting'
+      this.setcurrentPlayer()
     } else if (AppState.activeLeague.state == 'drafting') {
       AppState.activeLeague.state = 'running'
     } else if (AppState.activeLeague.state == 'running') {
@@ -88,6 +89,11 @@ class LeaguesService {
     const response = await api.put(`api/leagues/${leagueId}`, { state: AppState.activeLeague.state })
     console.log(response, " put request data")
     logger.log("New State", AppState.activeLeague.state)
+  }
+
+  setcurrentPlayer(){
+    AppState.currentPlayer = AppState.activePlayers[AppState.activeLeague.turn]
+    logger.log('currentplayer =', AppState.currentPlayer)
   }
 
   async getPlayersByLeagueId(leagueId) {

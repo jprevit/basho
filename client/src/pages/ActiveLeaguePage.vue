@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import PlayerHead from '../components/PlayerHead.vue';
 import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
@@ -14,12 +14,14 @@ const activeLeague = computed(() => AppState.activeLeague)
 const activeLeagueState = computed(() => AppState.activeLeague.state)
 const activePlayers = computed(() => AppState.activePlayers)
 const activeTournament = computed(() => AppState.activeTournament)
-const tournamentWrestlers = computed(() => AppState.activeLeague.tournamentWrestlers)
+const tournamentWrestlers = computed(() => AppState.tournamentWrestlers)
 
 const account = computed(() => AppState.user)
-
+const currentPlayer = computed(() => AppState.currentPlayer)
 const currentPlayerTurn = computed(() => AppState.activeLeague.turn)
-
+watch(activePlayers, () => {
+    setCurrentPlayer()
+})
 
 const route = useRoute()
 
@@ -80,6 +82,7 @@ async function changeLeagueState() {
     }
 }
 
+
 async function getTournamentByTournamentId() {
     try {
 
@@ -131,6 +134,16 @@ async function closeLeague() {
     }
     catch (error) {
         Pop.toast('could not close room', 'error')
+        console.error(error)
+    }
+}
+
+async function setCurrentPlayer() {
+    try {
+        logger.log('attempting to set currentplayer')
+        leaguesService.setcurrentPlayer()
+    } catch (error) {
+        Pop.toast('Could not set Current Player', 'error')
         console.error(error)
     }
 }
@@ -234,13 +247,13 @@ onMounted(() => {
 
             <!-- NOTE active player index needs to match the league turn order -->
 
-            <!-- <div v-for="player in activeLeague.players" :key="player.id" class="col-10"> -->
-            <MyStable :player="activePlayers[currentPlayerTurn]" />
-            <!-- //</div> -->
+            <div v-if="currentPlayer">
+                <MyStable :player="currentPlayer" />
+            </div>
 
             <div v-if="account.id == activeLeague.players[currentPlayerTurn]" class="text-end text-light">
-                <button :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue"
-                    @click="draftWrestlers()">Draft 5
+                <button v-if="activeLeague.tournamentWrestlers" :disabled="tournamentWrestlers.length < 5"
+                    class="btn btn-mainblue" @click="draftWrestlers()">Draft 5
                     Big Boys</button>
             </div>
 

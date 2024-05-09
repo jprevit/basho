@@ -12,12 +12,13 @@ const props = defineProps({
     player: { type: Player, required: true }
 })
 
-const myStable = getStableById()
+const myStable = computed(() => AppState.myStable)
 
 async function getStableById() {
     try {
-        logger.log('mystable sending request for stable', props.player.profile.id)
+        logger.log('mystable sending request for stable', props.player.profile)
         const stable = await tournamentsService.getStableById(props.player.profile.id)
+        logger.log('mystable', myStable)
         return stable
     } catch (error) {
         Pop.toast('could not get my wrestlers', 'error')
@@ -64,7 +65,7 @@ onMounted(() => {
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <!--NOTE this is erroring because it is mad about no v-bind, but since this is just simple placeholder data it should be ok -->
-                    <div v-for="stablemember in myStable" :key="stablemember" class=" col pt-4">
+                    <div v-for="stablemember in myStable" :key="stablemember.rikishiID" class=" col pt-4">
                         <WrestlerHead />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
