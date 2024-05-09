@@ -283,7 +283,7 @@ onMounted(() => {
             </div>
         </section>
         <section class="row p-5 bgopacitydark gap-5">
-            <div v-for="player in activePlayers" :key="player.id" class="col">
+            <div v-for="player in activePlayers" :key="player.id" class="col-12">
                 <MyStable :player="player" />
 
             </div>
