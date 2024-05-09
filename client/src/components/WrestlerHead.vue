@@ -4,9 +4,7 @@ import { TournamentWrestler } from '../models/TournamentWrestler.js';
 
 const props = defineProps({ wrestler: { type: TournamentWrestler, required: true } })
 
-function test() {
-    console.log('testing')
-}
+
 
 </script>
 

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
@@ -7,12 +7,14 @@ import { tournamentsService } from '../services/TournamentsService.js';
 import { League } from '../models/League.js';
 import { StableMember } from '../models/StableMember.js';
 import { logger } from '../utils/Logger.js';
+import { TournamentWrestler } from '../models/TournamentWrestler.js';
 
 const props = defineProps({
     player: { type: Player, required: true }
 })
 
-const myStable = computed(() => AppState.myStable)
+const myStable = computed(() => AppState.activeStableWrestlers)
+watch(myStable.value, () => { associateStablememberAndTournamentWrestler() })
 
 async function getStableById() {
     try {
@@ -25,6 +27,13 @@ async function getStableById() {
         console.error(error)
     }
 }
+
+const myStableofTournamentWrestlers = []
+
+async function associateStablememberAndTournamentWrestler() {
+
+}
+
 
 onMounted(() => {
     getStableById()
@@ -65,8 +74,8 @@ onMounted(() => {
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <!--NOTE this is erroring because it is mad about no v-bind, but since this is just simple placeholder data it should be ok -->
-                    <div v-for="stablemember in myStable" :key="stablemember.rikishiID" class=" col pt-4">
-                        <WrestlerHead />
+                    <div v-for="stablemember in myStable" :key="stablemember.wrestlerId" class=" col pt-4">
+                        <WrestlerHead :wrestler="stablemember" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
                                 <h6
