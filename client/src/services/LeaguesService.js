@@ -115,9 +115,7 @@ class LeaguesService {
   
   async findLeaguePlayers(leagueId) {
     const response = await api.get(`api/players/${leagueId}`)
-    logger.log("Found other players in this league", response.data)
     const activePlayers = response.data.map(player => new Player(player))
-    console.log('active players being returned', activePlayers)
     return activePlayers
   }
 

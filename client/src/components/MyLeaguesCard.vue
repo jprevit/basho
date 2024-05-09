@@ -18,26 +18,22 @@ const league = props.player.league
 // const players = league.players
 let cardPlayers = ref([])
 
-
-async function findLeaguePlayers() {
-    try {
-        const leagueId = league.id
-        console.log('player leagues', leagueId);
-        await leaguesService.getPlayersByLeagueId(leagueId)
-        AppState.myLeagues.push(league)
-        console.log('account leagues in appstate', AppState.myLeagues);
-    } catch (error) {
-        Pop.toast('Could not find players by league ID for leagues card', 'error')
-        console.error(error)
-    }
-
+async function findMeInPlayers(players) {
+    const myId = props.player.id
+    const myIndex = players.findIndex(player => player.id == myId)
+    players.splice(myIndex, 1)
+    console.log('players with me removed', players);
+    return players
 }
+
+//This sets the reference object cardPlayers, so that each card that is drawn contains the player that have the league Id associated with the MyLeaguesCard
 async function getThisLeaguesPlayers() {
     try {
         const leagueId = league.id
         const players = await leaguesService.findLeaguePlayers(leagueId)
+        console.log('🎮', players);
+        findMeInPlayers(players)
         cardPlayers.value = players
-        console.log('players in card players👋', cardPlayers)
         return players
     } catch (error) {
         Pop.toast('could not set players to this new array thing', 'error')
@@ -45,17 +41,8 @@ async function getThisLeaguesPlayers() {
     }
 }
 
-async function setLeaguePlayers() {
-    const playerPoints = league.players.points
-    console.log('player points', playerPoints);
-    /** TODO sort players by their score */
-    // props.player.league.players.sort((a, b) => a.playerPoints - b.points);
-}
 
 onMounted(() => {
-
-    setLeaguePlayers()
-    findLeaguePlayers()
     getThisLeaguesPlayers()
 })
 
@@ -65,7 +52,7 @@ onMounted(() => {
 <template>
     <div v-if="player" class="container-fluid">
         <div class="row">
-            <div class="col-2 rounded-start bg-darkblue text-light text-center">
+            <div class="col-lg-2 col-md-12 col-sm-12  rounded-start bg-darkblue text-light text-center">
                 <div class="row">
                     <div class="col">
                         <h2 class="mt-1"><i class="text-gold mdi mdi-medal"></i>1</h2>
@@ -85,7 +72,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-            <div class="col-10 d-flex flex-column">
+            <div class="col-lg-10 col-md-12 col-sm-12 d-flex flex-column">
                 <div class="row bg-lightblue rounded rounded-bottom-0 rounded-start-0 top-bar-height">
                     <div class="col d-flex align-items-center">
                         <p class="me-1 mb-0 fw-bold">00%</p>
@@ -105,7 +92,7 @@ onMounted(() => {
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <h6>Other Players</h6>
                     <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col-3 pt-4">
-                        <PlayerHead v-if="onePlayer.profileId != AppState.account.id" :player="onePlayer" />
+                        <PlayerHead :player="onePlayer" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
                                 <h6
@@ -118,12 +105,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-                <div class="text-end">
+            </div>
+            <div class="text-end">
 
-                </div>
             </div>
         </div>
     </div>
+
     <!-- </div> -->
 </template>
 
@@ -140,7 +128,7 @@ onMounted(() => {
 }
 
 .top-bar-height {
-    height: 5dvh;
+    height: 8dvh;
 }
 
 .filled {
