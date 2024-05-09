@@ -98,7 +98,7 @@ class TournamentsService {
 
     async getStableById(profileId) {
         logger.log('service attempting to get stable')
-        const response = await api.get(`api/stablemembers/${profileId}`)
+        const response = await api.get(`api/stablemembers/${profileId}/profile`)
         logger.log('service getstablebyId', response.data)
         const stable = response.data.map(stablemember => new StableMember(stablemember))
         AppState.myStable = stable
