@@ -7,44 +7,9 @@ import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
 import { leaguesService } from "../services/LeaguesService.js";
 
-// async function getAllWrestlers() {
-//   try {
-//     await wrestlersService.getAllWrestlers()
-//   }
-//   catch (error) {
-//     Pop.error(error);
-//   }
-// }
 
-// async function getBashoById() {
-//   try {
-//     await tournamentsService.getBashoById()
-//   } catch (error) {
-//     Pop.error(error)
-//   }
 
-// }
 
-// async function getWrestlerById() {
-//   try {
-//     await wrestlersService.getWrestlerById()
-//   } catch (error) {
-//     Pop.toast("Couldn't get Wrestler By Id", 'error')
-//     logger.error(error)
-//   }
-// }
-
-async function draftStable() {
-  try {
-    if (!AppState.activeTournament)
-      throw new Error('There is no Active Tournament')
-    await wrestlersService.getRandomWrestler()
-    // await wrestlersService.draftStable()
-  } catch (error) {
-    Pop.toast("Couldn't Draft Stable Members")
-    logger.error(error)
-  }
-}
 
 async function populateAllTournaments() {
   try {
@@ -61,9 +26,6 @@ async function populateAllTournaments() {
 
 onMounted(() => {
   populateAllTournaments()
-  // getAllWrestlers()
-  // getBashoById()
-  // getWrestlerById()
 
 })
 </script>

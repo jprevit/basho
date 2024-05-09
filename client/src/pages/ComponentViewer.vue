@@ -55,14 +55,47 @@ const props = defineProps({ wrestler: { type: Wrestler, required: true } })
           </div>
 
         </div>
-
-
-
-
-
-
-
       </section>
+
+
+
+      <section class="container text-center rikishi-card border-white border-bottom border-3">
+        <div class="row p-3 bg-charcoal align-content-center text-white">
+          <div class="col-2 my-3 rikishi-photo-round border border-3 border-gold text-primary">
+          </div>
+
+          <div class="col-4 vertical-center-column text-start">
+            <div class="">
+              <h3 class="">Terunofuji</h3>
+              <h5>Yokozuna 1</h5>
+            </div>
+          </div>
+
+
+          <div class="col-2 vertical-center-column">
+            <h6 class="mb-0 fw-bold">64%</h6>
+            <p class="mb-0">Career</p>
+          </div>
+          <div class="col-2 vertical-center-column">
+            <h6 class="mb-0 fw-bold">5-1</h6>
+            <p class="mb-0">Basho</p>
+          </div>
+          <div class="col-2 vertical-center-column">
+            <div class="basho-rank  border border-3 border-primary bg-white text-charcoal">
+
+              <h3 class="m-auto p-0">1</h3>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+
+
       <div class="col-6 col-md-4  ol-lg-3">
         <WrestlerCard />
       </div>
