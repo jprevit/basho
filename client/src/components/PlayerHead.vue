@@ -12,7 +12,7 @@ const props = defineProps({ player: { type: Player, required: true } })
 
     <section v-if="player && player.profile" class="container-fluid">
         <section class="row p-0">
-            <div class="col p-0 text-center">
+            <div class="col-11 p-0 text-center">
                 <img class="pfp rounded-pill" :src="player.profile.picture"
                     alt="	https://s.gravatar.com/avatar/c9174347320c2d85224c…&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fis.png">
                 <p>{{ $props.player.profile.name }}</p>
