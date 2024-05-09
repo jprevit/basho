@@ -19,25 +19,12 @@ const league = props.player.league
 let cardPlayers = ref([])
 
 
-async function findLeaguePlayers() {
-    try {
-        const leagueId = league.id
-        console.log('player leagues', leagueId);
-        await leaguesService.getPlayersByLeagueId(leagueId)
-        AppState.myLeagues.push(league)
-        console.log('account leagues in appstate', AppState.myLeagues);
-    } catch (error) {
-        Pop.toast('Could not find players by league ID for leagues card', 'error')
-        console.error(error)
-    }
 
-}
 async function getThisLeaguesPlayers() {
     try {
         const leagueId = league.id
         const players = await leaguesService.findLeaguePlayers(leagueId)
         cardPlayers.value = players
-        console.log('players in card players👋', cardPlayers)
         return players
     } catch (error) {
         Pop.toast('could not set players to this new array thing', 'error')
@@ -45,17 +32,8 @@ async function getThisLeaguesPlayers() {
     }
 }
 
-async function setLeaguePlayers() {
-    const playerPoints = league.players.points
-    console.log('player points', playerPoints);
-    /** TODO sort players by their score */
-    // props.player.league.players.sort((a, b) => a.playerPoints - b.points);
-}
 
 onMounted(() => {
-
-    setLeaguePlayers()
-    findLeaguePlayers()
     getThisLeaguesPlayers()
 })
 
@@ -105,7 +83,7 @@ onMounted(() => {
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <h6>Other Players</h6>
                     <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col-3 pt-4">
-                        <PlayerHead v-if="onePlayer.profileId != AppState.account.id" :player="onePlayer" />
+                        <PlayerHead :player="onePlayer" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
                                 <h6
@@ -118,12 +96,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-                <div class="text-end">
+            </div>
+            <div class="text-end">
 
-                </div>
             </div>
         </div>
     </div>
+
     <!-- </div> -->
 </template>
 
