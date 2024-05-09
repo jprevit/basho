@@ -33,9 +33,14 @@ const myPlayers = computed(() => AppState.myPlayers)
           </div>
         </div>
       </div>
-      <div class=" col-lg-10 col-md-8  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
-        <section v-for="player in myPlayers" :key="player.id" class="row mx-5 img">
-          <MyLeaguesCard :player="player" />
+      <div class="col-12 col-md-8  col-lg-10  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
+        <section v-for="player in myPlayers" :key="player.id" class="row mx-auto mx-lg-5">
+          <span class="d-none d-md-block">
+            <MyLeaguesCard :player="player" class="mb-4" />
+          </span>
+          <span class="d-block d-md-none">
+            <MyLeaguesCardMobile :player="player" />
+          </span>
         </section>
       </div>
     </section>
@@ -45,11 +50,6 @@ const myPlayers = computed(() => AppState.myPlayers)
 </template>
 
 <style scoped lang="scss">
-img {
-  max-width: 100%;
-
-}
-
 .img {
   max-height: 100%;
   max-width: 100%;
