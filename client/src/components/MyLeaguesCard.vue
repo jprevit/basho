@@ -77,10 +77,12 @@ onMounted(() => {
                     </div>
                     <div class="col text-end">
                         <h4>{{ player.league.leagueName }}
-                            <!-- <RouterLink :to="{ name: 'ActiveLeague' }"> -->
-                            <button class="btn btn-outline-gold rounded w-auto"><i
-                                    class="mdi mdi-arrow-right-thick"></i></button>
-                            <!-- </RouterLink> -->
+                            <RouterLink :to="{ name: 'ActiveLeague', params: { leagueId: player.league.id } }">
+                                <span role="button" class="w-auto to-league-button">
+                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-2 outline"></i>
+                                    <i class="mdi mdi-arrow-right-bold-circle text-gold fs-2 filled"></i>
+                                </span>
+                            </RouterLink>
                         </h4>
                     </div>
                 </div>
@@ -121,5 +123,22 @@ onMounted(() => {
 
 .top-bar-height {
     height: 5dvh;
+}
+
+.filled {
+    display: none;
+}
+
+.to-league-button:hover {
+
+    // NOTE this is used for the button in the card so that the icon can be nice and big instead of being tiny inside the square of a button
+    .outline {
+        display: none;
+    }
+
+    .filled {
+        display: inline-block;
+    }
+
 }
 </style>
