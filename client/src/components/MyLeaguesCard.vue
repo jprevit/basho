@@ -26,6 +26,7 @@ async function findMeInPlayers(players) {
     return players
 }
 
+//This sets the reference object cardPlayers, so that each card that is drawn contains the player that have the league Id associated with the MyLeaguesCard
 async function getThisLeaguesPlayers() {
     try {
         const leagueId = league.id
