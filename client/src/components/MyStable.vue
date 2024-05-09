@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
@@ -28,15 +28,19 @@ async function getStableById() {
     }
 }
 
-const myStableofTournamentWrestlers = []
+let myStableofTournamentWrestlers = ref([])
 
 async function associateStablememberAndTournamentWrestler() {
-
+    let tournStable = []
+    myStable.value.forEach(stablemember => tournStable.push(AppState.tournamentWrestlers.find(tourn => stablemember.wrestlerId == tourn.rikishiID)))
+    console.log('tournstable', tournStable)
+    myStableofTournamentWrestlers.value = tournStable
 }
 
 
 onMounted(() => {
     getStableById()
+    associateStablememberAndTournamentWrestler()
 })
 
 </script>

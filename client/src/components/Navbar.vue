@@ -17,7 +17,7 @@ onMounted(() => {
 })
 
 onBeforeMount(() => {
-  getAllLeagues()
+  // getAllLeagues()
 })
 
 function toggleTheme() {
