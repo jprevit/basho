@@ -18,12 +18,12 @@ const myPlayers = computed(() => AppState.myPlayers)
 <template>
   <div class="container-fluid sumostandingbg">
     <section class="row">
-      <div class="col-2 full-height py-2 bg-mainblue ">
+      <div class="col-lg-2 col-md-4 d-none d-md-block full-height py-2 bg-mainblue ">
 
         <div class="">
           <div class="" v-if="account">
             <div class="text-center mt-5">
-              <img class="rounded-4 mb-5 " :src="account.picture" alt="account-picture" />
+              <img class="rounded-4 mb-5" :src="account.picture" alt="account-picture" />
             </div>
             <h3 class="mb-3 mt-3 p-3"> {{ account.name }}</h3>
             <p class="mb-3 p-3 ">{{ account.email }}</p>
@@ -33,8 +33,8 @@ const myPlayers = computed(() => AppState.myPlayers)
           </div>
         </div>
       </div>
-      <div class="col d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
-        <section v-for="player in myPlayers" :key="player.id" class="row mx-5 ">
+      <div class="col-lg-10 col-md-8  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
+        <section v-for="player in myPlayers" :key="player.id" class="row mx-5 img">
           <MyLeaguesCard :player="player" />
         </section>
       </div>
@@ -46,7 +46,16 @@ const myPlayers = computed(() => AppState.myPlayers)
 
 <style scoped lang="scss">
 img {
-  max-width: 100px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .full-height {
