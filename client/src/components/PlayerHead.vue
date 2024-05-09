@@ -14,7 +14,7 @@ const props = defineProps({ player: { type: Player, required: true } })
         <section class="row p-0">
             <div class="col p-0 text-center">
                 <img class="pfp rounded-pill" :src="player.profile.picture" alt="player pfp">
-                <p>{{ player.profile.name }}</p>
+                <p>{{ $props.player.profile.name }}</p>
             </div>
         </section>
     </section>

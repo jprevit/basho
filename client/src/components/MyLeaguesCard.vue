@@ -6,14 +6,16 @@ import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
 import { leaguesService } from "../services/LeaguesService.js";
 import { League } from "../models/League.js";
+import App from "../App.vue";
 
 
 // let placeholderWrestlers = [1, 2, 3, 4, 5]
 
 const props = defineProps({ player: { type: Player, required: true } })
-// const leagueProps = defineProps({ league: { type: League, required: true } }) // NOTE seems like I need this for 
 const activePlayers = computed(() => AppState.activePlayers)
+const myLeagues = computed(() => AppState.myLeagues)
 const league = props.player.league
+const players = league.players
 
 
 async function findLeaguePlayers() {
@@ -21,34 +23,22 @@ async function findLeaguePlayers() {
         const leagueId = league.id
         console.log('player leagues', leagueId);
         await leaguesService.getPlayersByLeagueId(leagueId)
+        AppState.myLeagues.push(league)
+        console.log('account leagues in appstate', AppState.myLeagues);
     } catch (error) {
         Pop.toast('Could not find players by league ID for leagues card', 'error')
         console.error(error)
     }
 }
 
-
-
 async function setLeaguePlayers() {
     const playerPoints = league.players.points
     console.log('player points', playerPoints);
+    /** TODO sort players by their score */
     // props.player.league.players.sort((a, b) => a.playerPoints - b.points);
-
 }
 
-
-// async function setStableWrestlers() {
-//     try {
-//         console.log('playerId', props.player.id);
-//         await tournamentsService.setStableWrestlers(props.player.id)
-//     } catch (error) {
-//         Pop.toast('could not set stable wrestlers', 'error')
-//         console.error(error)
-//     }
-// }
-
 onMounted(() => {
-    // setStableWrestlers()
     setLeaguePlayers()
     findLeaguePlayers()
 })
@@ -90,7 +80,7 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
-                    <div v-for="player in activePlayers" :key="player.id" class=" col pt-4">
+                    <div v-for="player in players" :key="player.id" class=" col pt-4">
                         <PlayerHead :player="player" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">

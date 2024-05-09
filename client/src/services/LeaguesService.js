@@ -14,22 +14,6 @@ import { TournamentWrestler } from "../models/TournamentWrestler.js"
 
 
 class LeaguesService {
-
-  async getMyPlayers() {
-    const response = await api.get(`account/players`)
-    console.log('my account players', response.data);
-    const players = response.data.map(player => new Player(player))
-    console.log("account leages in AppState", players);
-    AppState.myPlayers = players
-  }
-  
-  async getMyLeagues() {
-    const response = await api.get(`players/leagues`)
-    console.log('my account leagues', response.data);
-    const league = response.data.map(league => new League(league))
-    console.log("account leages in AppState", league);
-    AppState.myLeagues = league
-  }
   
   async createNewLeague(leagueData) {
     await tournamentsService.getBashoById()
@@ -115,20 +99,29 @@ class LeaguesService {
     logger.log(AppState.activePlayers)
   }
 
-  async findLeaguePlayers(leagueId) {
-    const response = await api.get(`api/players/${leagueId}`)
-    logger.log("Found other players in this league", response.data)
-    const activePlayers = response.data.map(player => new Player(player))
-    console.log('active players', activePlayers)
-  }
-
+  
   async closeLeague(leagueId) {
     const response = await api.delete(`api/leagues/${leagueId}`)
     console.log('closing league', response.data)
     AppState.activeLeague.isClosed = true
     // FIXME write the rest of this function
   }
+  
+  // async findLeaguePlayers(leagueId) {
+  //   const response = await api.get(`api/players/${leagueId}`)
+  //   logger.log("Found other players in this league", response.data)
+  //   const activePlayers = response.data.map(player => new Player(player))
+  //   console.log('active players', activePlayers)
+  // }
 
+   // async getMyLeagues() {
+  //   const response = await api.get(`api/players/leagues`)
+  //   console.log('my account leagues', response.data);
+  //   const league = response.data.map(league => new League(league))
+  //   console.log("account leages in AppState", league);
+  //   AppState.myLeagues = league
+  // }
+  
 }
 
 export const leaguesService = new LeaguesService

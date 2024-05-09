@@ -6,11 +6,11 @@ import { leaguesService } from "../services/LeaguesService.js";
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
 import MyLeaguesCard from "../components/MyLeaguesCard.vue";
+import { logger } from "../utils/Logger.js";
 
 
 const account = computed(() => AppState.account)
 const myPlayers = computed(() => AppState.myPlayers)
-const myLeagues = computed(() => AppState.myLeagues)
 
 
 </script>
