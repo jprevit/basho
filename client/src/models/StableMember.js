@@ -5,11 +5,11 @@ import { Wrestler } from "./Wrestler.js"
 export class StableMember{
     constructor(data){
         this.id = data.id
-        this.wrestlerId = data.rikishiID
-        this.wrestler = data.wrestler
+        this.wrestlerId = data.wrestlerId
         this.leagueId = data.leagueId
-        this.league = data.league
         this.playerId = data.playerId
+        this.league = data.league
+        this.wrestler = data.wrestler
         this.player = data.player
        
        
