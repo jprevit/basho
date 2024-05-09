@@ -22,8 +22,8 @@ export class LeaguesController extends BaseController {
         try {
             const leagueId = request.params.leagueId
             const turn = request.body.turn
-            const updatedLeagueTurn = await leaguesService.updateTurn(leagueId, turn)
-            response.send(updatedLeagueTurn)
+            const updatedLeague = await leaguesService.updateTurn(leagueId, turn)
+            response.send(updatedLeague)
         } catch (error) {
             next(error)
         }

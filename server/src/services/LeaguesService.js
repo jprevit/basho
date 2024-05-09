@@ -13,7 +13,7 @@ class LeaguesService {
         const leaguetoUpdate = await this.getLeagueById(leagueId)
         leaguetoUpdate.turn = turn
         await leaguetoUpdate.save()
-        return leaguetoUpdate.turn
+        return leaguetoUpdate
     }
     async updateLeagueWrestlers(leagueId, wrestlersList) {
         const leagueToUpdate = await this.getLeagueById(leagueId)
