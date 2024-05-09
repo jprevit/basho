@@ -129,6 +129,10 @@ onMounted(() => {
     display: none;
 }
 
+.outline {
+    text-decoration: none;
+}
+
 .to-league-button:hover {
 
     // NOTE this is used for the button in the card so that the icon can be nice and big instead of being tiny inside the square of a button
