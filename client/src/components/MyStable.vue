@@ -7,6 +7,7 @@ import { tournamentsService } from '../services/TournamentsService.js';
 import { League } from '../models/League.js';
 import { StableMember } from '../models/StableMember.js';
 import { logger } from '../utils/Logger.js';
+import { TournamentWrestler } from '../models/TournamentWrestler.js';
 
 const props = defineProps({
     player: { type: Player, required: true }
@@ -30,9 +31,7 @@ async function getStableById() {
 const myStableofTournamentWrestlers = []
 
 async function associateStablememberAndTournamentWrestler() {
-    logger.log('beginning to maybe begin to associate')
-    myStable.value.forEach(wrestler => myStableofTournamentWrestlers.push(AppState.tournamentWrestlers.find(tournament => tournament.rikishiID == wrestler.wrestlerId)))
-    logger.log("stabtourn", myStableofTournamentWrestlers)
+
 }
 
 
