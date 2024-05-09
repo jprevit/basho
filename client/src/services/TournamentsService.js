@@ -79,8 +79,6 @@ class TournamentsService {
 
         const tournamentWrestlers = combinedWrestlers.map(wrestler => new TournamentWrestler(wrestler))
 
-        // if(AppState.tournamentWrestlers.length > 0) return console.log("Had wrestlers, didn't grab again")
-
         AppState.tournamentWrestlers = tournamentWrestlers
         console.log('tournament wrestlers', AppState.tournamentWrestlers)
 
@@ -100,10 +98,11 @@ class TournamentsService {
 
     async getStableById(profileId) {
         logger.log('service attempting to get stable')
-        const response = await api.get(`api/stablemembers/${profileId}`)
+        const response = await api.get(`api/stablemembers/${profileId}/profile`)
+        logger.log('service getstablebyId', response.data)
         const stable = response.data.map(stablemember => new StableMember(stablemember))
-        logger.log('service getstablebyId', stable)
         AppState.myStable = stable
+        return stable
     }
 
     /** This function looks through the active wrestlers in the AppState, finds a matching object in the wrestlerImgIds object in the AppState, and then builds an img URL to sumo.or.jp based on this data and attatches it to the respective player in the AppState. If there is no image, a placeholder is attatched. These images will be used to draw wrestler images to page elements

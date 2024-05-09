@@ -8,30 +8,15 @@ import { TournamentWrestler } from "../models/TournamentWrestler.js"
 
 class WrestlersService {
 
-    async getAllWrestlers() {
-        const response = await sumoApi.get('/rikishis')
-        console.log('rakishis from client', response)
-    }
+    // async getAllWrestlers() {
+    //     const response = await sumoApi.get('/rikishis')
+    //     console.log('rakishis from client', response)
+    // }
 
-
-    async getWrestlerById() {
-        const wrestlerResponse = await sumoApi.get(`/rikishis`)
-        logger.log("Getting Wrestler By Id", wrestlerResponse.data)
-        const wrestlerToIndex = Math.floor(Math.random() * wrestlerResponse.data.records.length)
-        logger.log(wrestlerResponse.data.records[wrestlerToIndex])
-        // const randomWrestler = await sumoApi.get(`rikishi/${wrestlerResponse.data[wrestlerToIndex]}`)
-        // logger.log("Getting Random Wrestler", randomWrestler)
-    }
-
-    draftStable() {
-        // const eastWrestlers = AppState.activeTournament.eastWrestlers
-        // const westWrestlers = AppState.activeTournament.westWrestlers
-        // const tournamentWrestlers = []
-        // tournamentWrestlers.push(...eastWrestlers, ...westWrestlers)
-        // AppState.tournamentWrestlers = tournamentWrestlers
-        logger.log("Getting Active Stable Members", AppState.tournamentWrestlers)
-        this.getRandomWrestler()
-    }
+    // draftStable() {
+    //     logger.log("Getting Active Stable Members", AppState.tournamentWrestlers)
+    //     this.getRandomWrestler()
+    // }
 
 
     async getRandomWrestler() {
@@ -57,9 +42,8 @@ class WrestlersService {
     }
 
     async addWrestlerToStable(wrestlerData) {
-        // console.log("league id: ", AppState.activeLeague.id, " wrestler Id: ", wrestlerData.rikishiID)
         const response = await api.post('api/stablemembers', { leagueId: AppState.activeLeague.id, wrestlerId: wrestlerData.rikishiID })
-        //logger.log(`Adding ${wrestlerData.name} to Stable`)
+
         const wrestler = new StableMember(response.data)
 
         AppState.activeStableWrestlers.push(wrestler)
