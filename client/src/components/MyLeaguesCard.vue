@@ -75,8 +75,13 @@ onMounted(() => {
                         <p class="me-1 mb-0 fw-bold">00%</p>
                         <p class="mb-0"> wins | 12 - 8</p>
                     </div>
-                    <div>
-                        <h4>{{ player.league.leagueName }}</h4>
+                    <div class="col text-end">
+                        <h4>{{ player.league.leagueName }}
+                            <!-- <RouterLink :to="{ name: 'ActiveLeague' }"> -->
+                            <button class="btn btn-outline-gold rounded w-auto"><i
+                                    class="mdi mdi-arrow-right-thick"></i></button>
+                            <!-- </RouterLink> -->
+                        </h4>
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
@@ -92,6 +97,9 @@ onMounted(() => {
                                 <p class="m-0 fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="text-end">
+
                     </div>
                 </div>
             </div>
