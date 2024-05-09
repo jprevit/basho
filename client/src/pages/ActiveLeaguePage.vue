@@ -11,11 +11,9 @@ import { tournamentsService } from "../services/TournamentsService.js";
 import { wrestlersService } from '../services/WrestersService.js';
 
 const activeLeague = computed(() => AppState.activeLeague)
-const activeLeagueState = computed(() => AppState.activeLeague.state)
 const activePlayers = computed(() => AppState.activePlayers)
-const activeTournament = computed(() => AppState.activeTournament)
 const tournamentWrestlers = computed(() => AppState.tournamentWrestlers)
-
+const activeStable = computed(() => AppState.activeStableWrestlers)
 const account = computed(() => AppState.user)
 const currentPlayer = computed(() => AppState.currentPlayer)
 const currentPlayerTurn = computed(() => AppState.activeLeague.turn)
@@ -148,6 +146,15 @@ async function setCurrentPlayer() {
     }
 }
 
+async function switchDraftingPlayer() {
+    try {
+        await wrestlersService.updateLeagueDraftTurn()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
+
 onMounted(() => {
     setupLeaguePage()
 })
@@ -158,7 +165,6 @@ onMounted(() => {
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-    <button @click="changeLeagueState()" class="btn btn-primary">CHANGE STATE</button>
     <section v-if="activeLeague && activeLeague.state == 'starting'" id="starting"
         class="container-fluid bg-charcoal text-light">
         <section class="col">
@@ -200,14 +206,18 @@ onMounted(() => {
                         <hr />
                         <div class="col-12">
                             <div class="row mt-2 ">
-                                <div v-for="player in activePlayers" :key="player.id"
-                                    class="col-2 mx-2 pt-2 bg-mainblue rounded">
-                                    <PlayerHead :player="player" />
+                                <div v-if="activeLeague.turn < activeLeague.players.length">
+
+                                    <div v-for="player in activePlayers" :key="player.id"
+                                        class="col-2 mx-2 pt-2 bg-mainblue rounded">
+                                        <PlayerHead :player="player" />
+                                    </div>
                                 </div>
 
                             </div>
                             <div class="row justify-content-end my-3">
-                                <button :disabled="activeLeague.isClosed === true"
+                                <button v-if="account.id == activeLeague.creatorId"
+                                    :disabled="activeLeague.isClosed === true"
                                     class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
                                     @click="changeLeagueState()">Start
                                     Drafting!</button>
@@ -217,15 +227,7 @@ onMounted(() => {
                 </div>
                 <div class="col-lg-2 col-md-2">
                     <div class="text-center mt-2">
-                        <!-- <div class="btn-group">
-                            <button type="button" class="btn btn-mainblue text-white dropdown-toggle"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Invite Code
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li class="dropdown-item">{{ activeLeague.id }}</li>
-                            </ul>
-                        </div> -->
+
                         <button @click="closeLeague()" class="btn btn-red text-white mt-3">X Close Room</button>
                     </div>
                 </div>
@@ -252,9 +254,16 @@ onMounted(() => {
             </div>
 
             <div v-if="account.id == activeLeague.players[currentPlayerTurn]" class="text-end text-light">
-                <button v-if="activeLeague.tournamentWrestlers" :disabled="tournamentWrestlers.length < 5"
-                    class="btn btn-mainblue" @click="draftWrestlers()">Draft 5
+                <button v-if="activeLeague.tournamentWrestlers && activeStable.length == 0"
+                    :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue" @click="draftWrestlers()">Draft
+                    5
                     Big Boys</button>
+                <button v-if="activeStable.length > 0" @click="switchDraftingPlayer()" class="btn btn-mainblue">Next
+                    Player</button>
+            </div>
+
+            <div v-if="activeLeague.turn >= activeLeague.players.length" class="text-end">
+                <button class="btn btn-mainblue" @click="changeLeagueState()">Move To Days</button>
             </div>
 
         </div>

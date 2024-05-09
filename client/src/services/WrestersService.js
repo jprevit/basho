@@ -52,6 +52,7 @@ class WrestlersService {
 
 
     async updateLeagueDraftTurn() {
+        AppState.activeStableWrestlers = []
         const activeLeague = AppState.activeLeague
 
         if (activeLeague.turn < activeLeague.players.length) activeLeague.turn++
