@@ -269,12 +269,10 @@ onMounted(() => {
 
     <!-- This section displayed during running phase -->
     <section v-if="activeLeague && activeLeague.state == 'running'" id="running" class="container-fluid sumostandingbg">
-        <section class="row  bgopacitylight py-3 pb-4 sticky-top">
+        <section class="row  bgopacitylight py-3 pb-4">
             <div class="col">
                 <div class="row justify-content-around">
                     <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
-                    <h3 class="col-5 text-end">Basho Date: {{ activeLeague.tournamentId.substr(4) + "/" +
-                        activeLeague.tournamentId.substr(0, 4) }}</h3>
                 </div>
                 <div class="row justify-content-between px-5">
                     <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>
