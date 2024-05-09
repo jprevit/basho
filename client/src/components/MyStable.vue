@@ -14,14 +14,14 @@ const props = defineProps({
 })
 
 const myStable = computed(() => AppState.activeStableWrestlers)
-watch(myStable.value, () => { associateStablememberAndTournamentWrestler() })
+watch(myStable.value, () => { getStableById() })
 
 async function getStableById() {
     try {
-        logger.log('mystable sending request for stable', props.player.profile)
+        logger.log('mystable sending request for stable', props.player.profile.id)
         const stable = await tournamentsService.getStableById(props.player.profile.id)
-        logger.log('mystable', myStable.value)
-        return stable
+        logger.log('mystable', stable)
+        AppState.activeStableWrestlers = stable
     } catch (error) {
         Pop.toast('could not get my wrestlers', 'error')
         console.error(error)

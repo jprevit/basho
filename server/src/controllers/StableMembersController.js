@@ -9,7 +9,7 @@ export class StableMembersController extends BaseController {
             .get('/:leagueId', this.getStablemembersByLeague)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.addWrestlertoStable)
-            .get('/:profileId', this.getStablebyProfileId)
+            .get('/:profileId/profile', this.getStablebyProfileId)
     }
 
     async getStablebyProfileId(request, response, next) {

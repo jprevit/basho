@@ -43,7 +43,7 @@ onMounted(() => {
 <template>
     <div v-if="player" class="container-fluid">
         <div class="row">
-            <div class="col-2 rounded-start bg-darkblue text-light text-center">
+            <div class="col-lg-2 col-md-12 col-sm-12  rounded-start bg-darkblue text-light text-center">
                 <div class="row">
                     <div class="col">
                         <h2 class="mt-1"><i class="text-gold mdi mdi-medal"></i>1</h2>
@@ -63,7 +63,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-            <div class="col-10 d-flex flex-column">
+            <div class="col-lg-10 col-md-12 col-sm-12 d-flex flex-column">
                 <div class="row bg-lightblue rounded rounded-bottom-0 rounded-start-0 top-bar-height">
                     <div class="col d-flex align-items-center">
                         <p class="me-1 mb-0 fw-bold">00%</p>
@@ -119,7 +119,7 @@ onMounted(() => {
 }
 
 .top-bar-height {
-    height: 5dvh;
+    height: 8dvh;
 }
 
 .filled {

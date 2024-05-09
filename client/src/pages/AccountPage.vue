@@ -33,7 +33,7 @@ const myPlayers = computed(() => AppState.myPlayers)
           </div>
         </div>
       </div>
-      <div class="col-lg-10 col-md-8  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
+      <div class=" col-lg-10 col-md-8  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
         <section v-for="player in myPlayers" :key="player.id" class="row mx-5 img">
           <MyLeaguesCard :player="player" />
         </section>
@@ -47,8 +47,7 @@ const myPlayers = computed(() => AppState.myPlayers)
 <style scoped lang="scss">
 img {
   max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+
 }
 
 .img {
