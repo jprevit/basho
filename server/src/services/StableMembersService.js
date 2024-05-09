@@ -2,7 +2,7 @@ import { dbContext } from "../db/DbContext.js"
 
 class StableMembersService {
     async getStablebyProfileId(profileId) {
-        const stable = await dbContext.StableMembers.find({ accountId: profileId })
+        const stable = await dbContext.StableMembers.find({ playerId: profileId })
         return stable
     }
     async getStablemembersByLeague(leagueIdtofind) {
