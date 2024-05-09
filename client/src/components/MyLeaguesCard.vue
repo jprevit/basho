@@ -18,12 +18,20 @@ const league = props.player.league
 // const players = league.players
 let cardPlayers = ref([])
 
-
+async function findMeInPlayers(players) {
+    const myId = props.player.id
+    const myIndex = players.findIndex(player => player.id == myId)
+    players.splice(myIndex, 1)
+    console.log('players with me removed', players);
+    return players
+}
 
 async function getThisLeaguesPlayers() {
     try {
         const leagueId = league.id
         const players = await leaguesService.findLeaguePlayers(leagueId)
+        console.log('🎮', players);
+        findMeInPlayers(players)
         cardPlayers.value = players
         return players
     } catch (error) {
