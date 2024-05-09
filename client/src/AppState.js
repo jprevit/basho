@@ -41,6 +41,9 @@ export const AppState = reactive({
   /**@type {StableMember[]} */
   activeStableWrestlers: [],
 
+  /**@type {Player} */
+  currentPlayer: null,
+
   /**@type {Player[]} */
   activePlayers: [],
 
