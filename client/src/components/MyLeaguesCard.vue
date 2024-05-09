@@ -50,7 +50,7 @@ onMounted(() => {
 
 
 <template>
-    <div v-if="player" class="container-fluid">
+    <div v-if="player && cardPlayers" class="container-fluid">
         <div class="row">
             <div class="col-lg-2 col-md-12 col-sm-12  rounded-start bg-darkblue text-light text-center">
                 <div class="row">
