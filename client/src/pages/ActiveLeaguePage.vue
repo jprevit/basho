@@ -158,16 +158,16 @@ onMounted(() => {
 <template>
     <!-- This section is only displayed during the starting portion of the league before the drafting has begun -->
     <!-- TODO be sure to include v-if="activeLeagueState == 'starting'" in section -->
-    <button @click="changeLeagueState()" class="btn btn-primary">CHANGE STATE</button>
     <section v-if="activeLeague && activeLeague.state == 'starting'" id="starting"
         class="container-fluid bg-charcoal text-light">
+        <button @click="changeLeagueState()" class="btn btn-primary">CHANGE STATE</button>
         <section class="col">
             <section class="row">
                 <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
                     class="banner_img p-0">
             </section>
             <section class="row justify-content-around mt-2">
-                <div class="col-2 text-center">
+                <div class="col-lg-2 col-md-2 text-center">
                     <div class="btn-group mt-3">
                         <button type="button" class="btn btn-mainblue text-white dropdown-toggle"
                             data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
@@ -178,7 +178,7 @@ onMounted(() => {
                         </ul>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-lg-8 col-md-8">
                     <section class="row mt-2">
                         <div class="col-6">
                             <h3>{{ activeLeague.leagueName }}</h3>
@@ -215,7 +215,7 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2">
                     <div class="text-center mt-2">
                         <!-- <div class="btn-group">
                             <button type="button" class="btn btn-mainblue text-white dropdown-toggle"
