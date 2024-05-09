@@ -103,28 +103,28 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
-                    <div v-if="cardPlayers">
-                        <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col pt-4">
-                            <PlayerHead :player="onePlayer" />
-                            <div class="row">
-                                <div class="col-6 d-flex justify-content-end align-items-center">
-                                    <h6
-                                        class="bg-white text-dark rank-circle d-flex border border-gold border-2 align-items-center justify-content-center m-1 fw-bold">
-                                        1</h6>
-                                </div>
-                                <div class="col-6 d-flex justify-content-start align-items-center">
-                                    <p class="m-0 fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
-                                </div>
+                    <h6>Other Players</h6>
+                    <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col-3 pt-4">
+                        <PlayerHead v-if="onePlayer.profileId != AppState.account.id" :player="onePlayer" />
+                        <div class="row">
+                            <div class="col-6 d-flex justify-content-end align-items-center">
+                                <h6
+                                    class="bg-white text-dark rank-circle d-flex border border-gold border-2 align-items-center justify-content-center m-1 fw-bold">
+                                    1</h6>
+                            </div>
+                            <div class="col-6 d-flex justify-content-start align-items-center">
+                                <p class="m-0 fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
                             </div>
                         </div>
                     </div>
-                    <div class="text-end">
+                </div>
+                <div class="text-end">
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- </div> -->
 </template>
 
 
