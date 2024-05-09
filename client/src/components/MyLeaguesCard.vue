@@ -26,6 +26,7 @@ async function findMeInPlayers(players) {
     return players
 }
 
+//This sets the reference object cardPlayers, so that each card that is drawn contains the player that have the league Id associated with the MyLeaguesCard
 async function getThisLeaguesPlayers() {
     try {
         const leagueId = league.id
@@ -49,7 +50,7 @@ onMounted(() => {
 
 
 <template>
-    <div v-if="player" class="container-fluid">
+    <div v-if="player && cardPlayers" class="container-fluid">
         <div class="row">
             <div class="col-lg-2 col-md-12 col-sm-12  rounded-start bg-darkblue text-light text-center">
                 <div class="row">
