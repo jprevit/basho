@@ -96,7 +96,7 @@ async function getTournamentByTournamentId() {
 
 async function getStableById(profileId) {
     try {
-        await tournamentsService.getStableById(profileId, activeLeague.value.id)
+        await tournamentsService.getStableById(profileId)
     } catch (error) {
         Pop.toast('could not get my wrestlers', 'error')
         console.error(error)
