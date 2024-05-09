@@ -1,6 +1,6 @@
 <!-- eslint-disable no-console -->
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { AppState } from '../AppState.js';
 import { Player } from '../models/Player.js';
 import Pop from '../utils/Pop.js';
@@ -12,10 +12,11 @@ import App from "../App.vue";
 // let placeholderWrestlers = [1, 2, 3, 4, 5]
 
 const props = defineProps({ player: { type: Player, required: true } })
-const activePlayers = computed(() => AppState.activePlayers)
-const myLeagues = computed(() => AppState.myLeagues)
+// const activePlayers = computed(() => AppState.activePlayers)
+// const myLeagues = computed(() => AppState.myLeagues)
 const league = props.player.league
-const players = league.players
+// const players = league.players
+let cardPlayers = ref([])
 
 
 async function findLeaguePlayers() {
@@ -29,6 +30,19 @@ async function findLeaguePlayers() {
         Pop.toast('Could not find players by league ID for leagues card', 'error')
         console.error(error)
     }
+
+}
+async function getThisLeaguesPlayers() {
+    try {
+        const leagueId = league.id
+        const players = await leaguesService.findLeaguePlayers(leagueId)
+        cardPlayers.value = players
+        console.log('players in card players👋', cardPlayers)
+        return players
+    } catch (error) {
+        Pop.toast('could not set players to this new array thing', 'error')
+        console.error(error)
+    }
 }
 
 async function setLeaguePlayers() {
@@ -39,8 +53,10 @@ async function setLeaguePlayers() {
 }
 
 onMounted(() => {
+
     setLeaguePlayers()
     findLeaguePlayers()
+    getThisLeaguesPlayers()
 })
 
 </script>
@@ -87,8 +103,9 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
-                    <div v-for="player in players" :key="player.id" class=" col pt-4">
-                        <PlayerHead :player="player" />
+                    <h6>Other Players</h6>
+                    <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col-3 pt-4">
+                        <PlayerHead v-if="onePlayer.profileId != AppState.account.id" :player="onePlayer" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
                                 <h6
@@ -100,13 +117,14 @@ onMounted(() => {
                             </div>
                         </div>
                     </div>
-                    <div class="text-end">
+                </div>
+                <div class="text-end">
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- </div> -->
 </template>
 
 

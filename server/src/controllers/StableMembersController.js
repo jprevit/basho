@@ -9,13 +9,13 @@ export class StableMembersController extends BaseController {
             .get('/:leagueId', this.getStablemembersByLeague)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.addWrestlertoStable)
-            .get('/:accountId', this.getStablebyAccountId)
+            .get('/:profileId', this.getStablebyProfileId)
     }
 
-    async getStablebyAccountId(request, response, next) {
+    async getStablebyProfileId(request, response, next) {
         try {
-            const accountId = request.params.accountId
-            const stable = await stableMembersService.getStablebyAccountId(accountId)
+            const profileId = request.params.profileId
+            const stable = await stableMembersService.getStablebyProfileId(profileId)
             response.send(stable)
         } catch (error) {
             next(error)
