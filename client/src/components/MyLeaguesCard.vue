@@ -36,7 +36,6 @@ async function getThisLeaguesPlayers() {
     try {
         const leagueId = league.id
         const players = await leaguesService.findLeaguePlayers(leagueId)
-        players.splice(0, 1)
         cardPlayers.value = players
         console.log('players in card players👋', cardPlayers)
         return players
@@ -105,8 +104,8 @@ onMounted(() => {
                 </div>
                 <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <h6>Other Players</h6>
-                    <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col pt-4">
-                        <PlayerHead :player="onePlayer" />
+                    <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col-3 pt-4">
+                        <PlayerHead v-if="onePlayer.profileId != AppState.account.id" :player="onePlayer" />
                         <div class="row">
                             <div class="col-6 d-flex justify-content-end align-items-center">
                                 <h6
