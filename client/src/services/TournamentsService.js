@@ -49,10 +49,11 @@ class TournamentsService {
     }
 
     async getTournamentByTournamentId(tournamentId) {
-        const currentLeagueResult = await leaguesService.getLeagueById(AppState.activeLeague.id)
-        const currentLeague = new League(currentLeagueResult.data)
+        // const currentLeagueResult = await leaguesService.getLeagueById(AppState.activeLeague.id)
+        const currentLeagueResult = AppState.activeLeague
+        // const currentLeague = new League(currentLeagueResult.data)
         // console.log(currentLeague, "current league info")
-        if (currentLeague.tournamentWrestlers.length > 0) {
+        if (currentLeagueResult.tournamentWrestlers.length > 0) {
             this.getLeagueRemainingWrestlers()
             return
         }
@@ -89,17 +90,26 @@ class TournamentsService {
     }
 
     async getLeagueRemainingWrestlers() {
-        const currentLeagueResult = await leaguesService.getLeagueById(AppState.activeLeague.id)
-        // console.log("wrestler from server data", currentLeagueResult)
-        const remainingTournamentWrestlers = currentLeagueResult.data.tournamentWrestlers.map(wrestler => new TournamentWrestler(wrestler))
-        AppState.tournamentWrestlers = remainingTournamentWrestlers
-        // console.log("got wrestlers from the server", AppState.tournamentWrestlers)
+        
+        if(!AppState.activeLeague){
+            const  currentLeagueResult = await leaguesService.getLeagueById(AppState.activeLeague.id)
+            const remainingTournamentWrestlers = currentLeagueResult.data.tournamentWrestlers.map(wrestler => new TournamentWrestler(wrestler))
+            AppState.tournamentWrestlers = remainingTournamentWrestlers
+        }else{
+            const  currentLeagueResult = AppState.activeLeague
+            const remainingTournamentWrestlers = currentLeagueResult.tournamentWrestlers
+            AppState.tournamentWrestlers = remainingTournamentWrestlers
+        }
+        
+        
+        
     }
 
     async getStableById(profileId) {
-        AppState.activeStableWrestlers = []
+        AppState.myStable = []
+        const leagueId = AppState.activeLeague.id
         logger.log('service attempting to get stable')
-        const response = await api.get(`api/stablemembers/${profileId}/profile`)
+        const response = await api.get(`api/stablemembers/${profileId}/profile` ,leagueId)
         logger.log('service getstablebyId', response.data)
         const stable = response.data.map(stablemember => new StableMember(stablemember))
         AppState.myStable = stable

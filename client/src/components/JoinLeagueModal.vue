@@ -21,9 +21,9 @@ function resetForm() {
 
 async function joinLeagueById() {
     try {
+        Modal.getOrCreateInstance('#joinLeagueModal').hide()
         await leaguesService.joinLeagueById(formData.value.leagueId)
         resetForm()
-        Modal.getOrCreateInstance('#joinLeagueModal').hide()
     }
     catch (error) {
         Pop.toast(error.response.data.error.message, 'error');

@@ -27,9 +27,9 @@ function resetForm() {
 
 async function createNewLeague() {
     try {
+        Modal.getOrCreateInstance('#createLeagueModal').hide()
         const newLeague = await leaguesService.createNewLeague(leagueData.value)
         resetForm()
-        Modal.getOrCreateInstance('#createLeagueModal').hide()
 
         // router.push({ name: 'ActiveLeague', params: { leagueId: newLeague.id } })
 
