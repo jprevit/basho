@@ -87,8 +87,8 @@ async function getAllLeagues() {
           <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
         </button>
       </div> -->
-      <button v-if="!user" class="btn btn-sm btn-rounded rounded-pill fw-bold px-4 mx-2 bg-sand">Sign Up</button>
-      <Login />
+      <button v-if="!user" class="btn btn-sm btn-rounded rounded-pill fw-bold px-4 mx-4 bg-sand">Sign Up</button>
+      <Login class="me-3" />
     </div>
   </nav>
 </template>

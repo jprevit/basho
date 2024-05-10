@@ -20,7 +20,9 @@ onMounted(() => {
             <div class="info-height d-flex justify-content-center flex-column">
                 <section class="row justify-content-center mb-5 m-0">
                     <div class="col-10 col-md-6 text-center text-light text-shadow fs-4">
-                        <h1 class="header-font">Get in the Dohyo</h1>
+                        <h1 class="header-font mx-auto">
+                            <nobr>Get in the Dohyo</nobr>
+                        </h1>
                         <p>Create a new league to compete with your friends or find a public league to join</p>
                     </div>
                 </section>
@@ -52,7 +54,7 @@ onMounted(() => {
                             </g>
                         </svg>
                         <button
-                            class="btn btn-grey rounded rounded-4 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-3 w-75 p-3 "
+                            class="btn btn-grey rounded rounded-3 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-4 w-75 p-2 "
                             data-bs-toggle="modal" title="Join a League" data-bs-target="#joinLeagueModal">Join
                             League</button>
                     </div>
@@ -73,7 +75,7 @@ onMounted(() => {
                             </g>
                         </svg>
                         <button
-                            class="btn btn-grey rounded rounded-4 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-3 w-75 p-3 "
+                            class="btn btn-grey rounded rounded-3 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-4 w-75 p-2 "
                             data-bs-toggle="modal" title="Create a League" data-bs-target="#createLeagueModal">Create
                             League</button>
 
@@ -122,6 +124,11 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+button {
+    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.25);
+}
+
+
 .grayflipper {
     filter: grayscale(1);
     transform: rotatey(180deg) translate(50px, 0px);
@@ -148,6 +155,7 @@ a {
     text-decoration: none;
     color: #f8f9fd;
 }
+
 
 .info-height {
     height: 80dvh;
