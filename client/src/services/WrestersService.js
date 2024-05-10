@@ -20,6 +20,7 @@ class WrestlersService {
 
 
     async getRandomWrestler() {
+        AppState.activeStableWrestlers = []
         console.log('active wrestlers', AppState.activeLeague);
         for (let i = 0; i < 5; i++) {
             const wrestlerToIndex = Math.floor(Math.random() * AppState.activeLeague.tournamentWrestlers.length)

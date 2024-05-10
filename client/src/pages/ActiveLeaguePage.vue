@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, watch } from 'vue';
+import { computed, onMounted, onUnmounted, watch } from 'vue';
 import PlayerHead from '../components/PlayerHead.vue';
 import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
@@ -26,11 +26,11 @@ const route = useRoute()
 // This function gets all data needed to draw data to the page. Sets active League and Tournament
 async function setupLeaguePage() {
     try {
-        await getLeagueById()
+        // await getLeagueById()
         await setActiveLeague()
+        getPlayersByLeagueId()
         await getTournamentByTournamentId()
         await assignWrestlerPictures()
-        await getPlayersByLeagueId()
     } catch (error) {
         Pop.toast('Could not Setup Page', 'error')
         logger.error(error)
@@ -155,8 +155,21 @@ async function switchDraftingPlayer() {
     }
 }
 
+//clears active players before leaving, so they dont persist when you go to your next league
+async function clearActivePlayers() {
+    try {
+        await leaguesService.clearActivePlayers()
+    } catch (error) {
+        Pop.error(error)
+    }
+}
+
 onMounted(() => {
     setupLeaguePage()
+})
+
+onUnmounted(() => {
+    clearActivePlayers()
 })
 
 </script>
@@ -205,15 +218,11 @@ onMounted(() => {
                         </div>
                         <hr />
                         <div class="col-12">
-                            <div class="row mt-2 ">
-                                <div v-if="activeLeague.turn < activeLeague.players.length">
-
-                                    <div v-for="player in activePlayers" :key="player.id"
-                                        class="col-2 mx-2 pt-2 bg-mainblue rounded">
-                                        <PlayerHead :player="player" />
-                                    </div>
+                            <div v-if="activeLeague.turn < activeLeague.players.length" class="row mt-2 ">
+                                <div v-for="player in activePlayers" :key="player.id"
+                                    class="col-2 mx-2 pt-2 bg-mainblue rounded">
+                                    <PlayerHead :player="player" />
                                 </div>
-
                             </div>
                             <div class="row justify-content-end my-3">
                                 <button v-if="account.id == activeLeague.creatorId"

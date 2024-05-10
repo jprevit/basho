@@ -119,6 +119,11 @@ class LeaguesService {
     return activePlayers
   }
 
+  //This reset active players to empty when leaving the league details page, this fixes the issue where when switching between leagues you are in, you will see the players from the last league you looked at before the new players load
+  async clearActivePlayers(){
+    AppState.activePlayers = []
+  }
+
    // async getMyLeagues() {
   //   const response = await api.get(`api/players/leagues`)
   //   console.log('my account leagues', response.data);

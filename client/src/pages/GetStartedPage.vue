@@ -19,13 +19,13 @@ onMounted(() => {
 
             <div class="info-height d-flex justify-content-center flex-column">
                 <section class="row justify-content-center mb-5 m-0">
-                    <div class="col-lg-4 col-12  text-center text-light text-shadow fs-4">
+                    <div class="col-10 col-md-6 text-center text-light text-shadow fs-4">
                         <h1 class="header-font">Get in the Dohyo</h1>
                         <p>Create a new league to compete with your friends or find a public league to join</p>
                     </div>
                 </section>
                 <section class="row justify-content-center m-0">
-                    <div class="col-lg-3 col-12 d-flex flex-column align-items-center">
+                    <div class="col-lg-4 col-10 d-flex flex-column align-items-center">
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="150" viewBox="0 0 512 512"
                             width="150" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" class="d-none d-lg-block">
                             <g>
@@ -51,12 +51,12 @@ onMounted(() => {
                                     d="m10 265.972c5.523 0 10-4.492 10-10.015s-4.477-10-10-10-10 4.478-10 10v.028c0 5.523 4.477 9.987 10 9.987z" />
                             </g>
                         </svg>
-                        <button style="border-radius: 25px;"
-                            class="btn btn-grey border border-5 border-lightblue fs-2  w-75 py-3 mt-3 "
+                        <button
+                            class="btn btn-grey rounded rounded-4 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-3 w-75 p-3 "
                             data-bs-toggle="modal" title="Join a League" data-bs-target="#joinLeagueModal">Join
                             League</button>
                     </div>
-                    <div class="col-lg-3 col-12 d-flex flex-column align-items-center">
+                    <div class="col-lg-4 col-10 d-flex flex-column align-items-center">
                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="150" viewBox="0 0 512 512"
                             width="150" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" class="d-none d-lg-block">
                             <g>
@@ -72,8 +72,8 @@ onMounted(() => {
                                 </g>
                             </g>
                         </svg>
-                        <button style="border-radius: 25px;"
-                            class="btn btn-grey border border-5 border-lightblue  fs-2 w-75 py-3 mt-3"
+                        <button
+                            class="btn btn-grey rounded rounded-4 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-3 w-75 p-3 "
                             data-bs-toggle="modal" title="Create a League" data-bs-target="#createLeagueModal">Create
                             League</button>
 

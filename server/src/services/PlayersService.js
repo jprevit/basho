@@ -7,11 +7,11 @@ import { leaguesService } from "./LeaguesService.js"
 
 class PlayersService {
     async getMyPlayers(accountId) {
-        const players = await dbContext.Players.find({ accountId: accountId }).populate('profile league')
+        const players = await dbContext.Players.find({ accountId: accountId }).populate('profile league', '-email -tournamentWrestlers')
         return players
     }
     async getPlayersByLeagueId(leagueId) {
-        const players = await dbContext.Players.find({ leagueId: leagueId }).populate('profile league', '-email')
+        const players = await dbContext.Players.find({ leagueId: leagueId }).populate('profile league', '-email -tournamentWrestlers')
         return players
     }
     async kickPlayer(playerToKick, userId) {
