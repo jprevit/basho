@@ -95,7 +95,11 @@ onMounted(() => {
 
                 <!-- SECTION other players section -->
                 <div class="row p-2  pb-3 text-light bg-mainblue flex-grow-1 rounded-bottom-3">
-                    <h4 class="text-center mt-3 fw-bold">Other Players</h4>
+                    <h4 v-if="player.league.players.length > 1" class="text-center mt-3 fw-bold">Other Players</h4>
+                    <RouterLink v-else :to="{ name: 'ActiveLeague', params: { leagueId: player.league.id } }">
+                        <button class="btn w-100 fs-5 text-white mt-3 fw-bold invite-others-button">Invite
+                            Other Players</button>
+                    </RouterLink>
                     <div v-for="onePlayer in cardPlayers" :key="onePlayer.id"
                         class="col-12 px-1 px-3 bg-darkblue rounded rounded-2 mb-3 league-card">
 
@@ -151,6 +155,19 @@ onMounted(() => {
 <style lang="scss" scoped>
 .league-card {
     box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.25);
+}
+
+.invite-others-button {
+    font-family: "K2D", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: none;
+    border: 2px solid white;
+
+    &:hover {
+        border: 2px solid #3283A0;
+        background-color: #3283A0;
+    }
 }
 
 .pfp {

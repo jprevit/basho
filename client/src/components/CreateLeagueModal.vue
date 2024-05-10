@@ -47,12 +47,13 @@ async function createNewLeague() {
     <div class="modal fade" id="createLeagueModal" tabindex="-1" aria-labelledby="createLeagueModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-darkblue">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="createLeagueModalLabel">Create League</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="modal-content bg-mainblue">
+
+
                 <div class="modal-body">
+                    <h1 class="modal-title text-center mb-4 p-3 border-bottom text-light fs-3"
+                        id="createLeagueModalLabel">
+                        Create League</h1>
                     <form class="container" @submit.prevent="createNewLeague()">
                         <div class="row mb-2">
                             <div class="form-floating">
@@ -61,10 +62,10 @@ async function createNewLeague() {
                                 <label for="leagueName" class="ms-3">League Name</label>
                             </div>
                         </div>
-                        <div class="row align-items-center">
+                        <div class="row mb-2 align-items-center">
                             <div class="col-6">
                                 <div class="form-check">
-                                    <label for="publicCheck" class="form-check-label me-2">Public</label>
+                                    <label for="publicCheck" class="form-check-label text-light d-block">Public</label>
                                     <input v-model="leagueData.public" id="publicCheck" type="checkbox"
                                         class="form-check-control ed-mcmahon">
                                 </div>
@@ -73,30 +74,40 @@ async function createNewLeague() {
                                 <div class="form-floating">
                                     <input v-model="leagueData.playerCapacity" placeholder="Max Players"
                                         id="playerCapacity" type="number" required min="2" max="8" class="form-control">
-                                    <label for="playerCapacity" class="me-2">Max Players</label>
+                                    <label for="playerCapacity" class="">Max Players</label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row justify-content-center justify-content-md-end text-end mt-2 pe-3">
-                            <button type="submit" class="btn btn-mainblue col-10 col-md-4">Save changes</button>
+                        <div class="row justify-content-between border-top p-3 mt-4">
+                            <button type="button" class="btn btn-outline-light col-5" data-bs-dismiss="modal"
+                                aria-label="Close">Cancel</button>
+                            <button type="submit" class="btn btn-light col-5">Create</button>
                         </div>
 
 
 
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 
 
 <style lang="scss" scoped>
-input [type=checkbox] {
-    transform: scale(2);
+input [type='checkbox'] {
+    width: 1.5em;
+    height: 1.5em;
+    // transform: scale(2);
 }
 
-.ed-mcmahon {}
+.form-image {
+    width: 100%;
+    height: auto;
+    object-fit: none;
+    // object-position: center;
+    // overflow: hidden;
+}
 </style>
