@@ -67,40 +67,45 @@ onMounted(() => {
                         </h2>
 
 
-
+                        <!-- SECTION my stats section -->
                         <h4>{{ AppState.account.name }}</h4>
                         <div class="row justify-content-around align-content-center pb-2">
+
+
                             <div class="col text-gold border-end border-2">
                                 <span class="fw-bold fs-3">
                                     {{ player.points }} <span class="text-white fs-4">pts</span>
                                 </span>
                             </div>
+
+
                             <div class="col fs-3 border-end border-2">
                                 <p class="m-0 text-light fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
                             </div>
+
+
                             <span class="fs-3 col"><i class="text-gold mdi mdi-medal"></i>1</span>
+
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-10 col-md-12 col-sm-12 d-flex flex-column">
-                <!-- <div class="row bg-lightblue top-bar-height">
-                    <div class="col d-flex align-items-center">
-                        <p class="me-1 mb-0 fw-bold">00%</p>
-                        <p class="mb-0"> wins | 12 - 8</p>
-                    </div>
-                </div> -->
 
+                <!-- SECTION other players section -->
                 <div class="row p-2  pb-3 text-light bg-mainblue flex-grow-1 rounded-bottom-3">
                     <h4 class="text-center mt-3 fw-bold">Other Players</h4>
                     <div v-for="onePlayer in cardPlayers" :key="onePlayer.id"
                         class="col-12 px-1 px-3 bg-darkblue rounded rounded-2 mb-3 league-card">
-                        <!-- <PlayerHead :player="onePlayer" /> -->
-                        <div class="row justify-content-start align-content-center p-2">{{ onePlayer.profile.name
-                            }}
+
+                        <!-- SECTION each player's card -->
+                        <div
+                            class="row justify-content-center border-bottom border-1 text-light align-content-center p-2 w-75 mb-3 mx-auto">
+                            {{ onePlayer.profile.name }}
                         </div>
                         <div class="row mb-3 justify-content-start align-content-center ps-2 mt-2">
-                            <div v-if="onePlayer.profile.picture" class="col-3">
+                            <div v-if="onePlayer.profile.picture" class="col w-auto p-0 m-0">
                                 <!-- <object class="pfp" data="src/assets/img/defaultPfp.png" type="image/png"> -->
                                 <img class="pfp rounded-pill" :src="onePlayer.profile.picture" alt="player headshot">
                                 <!-- </object> -->
@@ -111,17 +116,24 @@ onMounted(() => {
                                     alt="no image for this user">
                             </div>
 
-
-                            <div class="col text-gold border-end border-2">
+                            <!-- SECTION beginning of stats -->
+                            <div class="fs-4 col my-auto text-center text-gold">
                                 <span class="fw-bold fs-4">
-                                    {{ player.points }} <span class="text-white fs-4">pts</span>
+                                    {{ player.points }} <span class="text-light fs-5">pts</span>
                                 </span>
+
+
                             </div>
-                            <div class="col fs-4 d-flex justify-content-start align-items-center">
-                                <p class="m-0 fw-bold">4-2 <i class=" fs-5 mdi mdi-arrow-up text-green"></i></p>
+                            <div class="fs-4 col my-auto text-center border-2 border-start">
+                                <p class="m-0 text-light fw-bold">4-2 <i
+                                        class=" fs-5 m-0 mdi mdi-arrow-up text-green"></i></p>
                             </div>
+
+
                             <span class="fs-4 col my-auto text-center border-2 border-start"><i
                                     class="text-gold opacity-75 mdi mdi-medal"></i>1</span>
+
+
                         </div>
                     </div>
                 </div>
