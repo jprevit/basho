@@ -51,8 +51,8 @@ onMounted(() => {
                                     d="m10 265.972c5.523 0 10-4.492 10-10.015s-4.477-10-10-10-10 4.478-10 10v.028c0 5.523 4.477 9.987 10 9.987z" />
                             </g>
                         </svg>
-                        <button style="border-radius: 25px;"
-                            class="btn btn-grey border border-5 border-lightblue fs-2  w-75 py-3 mt-3 "
+                        <button
+                            class="btn btn-grey rounded rounded-4 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-3 w-75 p-3 "
                             data-bs-toggle="modal" title="Join a League" data-bs-target="#joinLeagueModal">Join
                             League</button>
                     </div>
@@ -72,8 +72,8 @@ onMounted(() => {
                                 </g>
                             </g>
                         </svg>
-                        <button style="border-radius: 25px;"
-                            class="btn btn-grey border border-5 border-lightblue  fs-2 w-75 py-3 mt-3"
+                        <button
+                            class="btn btn-grey rounded rounded-4 border border-3 border-lightblue  mt-md-3 mb-3 mb-md-0 fs-3 w-75 p-3 "
                             data-bs-toggle="modal" title="Create a League" data-bs-target="#createLeagueModal">Create
                             League</button>
 

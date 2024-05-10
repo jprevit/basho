@@ -18,7 +18,7 @@ const myPlayers = computed(() => AppState.myPlayers)
 <template>
   <div class="container-fluid sumostandingbg">
     <section class="row">
-      <div class="col-lg-2 col-md-4 d-none d-md-block full-height py-2 bg-mainblue ">
+      <!-- <div class="col-lg-2 col-md-4 d-none d-md-block full-height py-2 bg-mainblue ">
 
         <div class="">
           <div class="" v-if="account">
@@ -32,14 +32,14 @@ const myPlayers = computed(() => AppState.myPlayers)
             <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
           </div>
         </div>
-      </div>
-      <div class="col-12 col-md-8  col-lg-10  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
-        <h1 class="text-white text-center">My Leagues</h1>
-        <section v-for="player in myPlayers" :key="player.id" class="row mx-auto mx-lg-5">
-          <span class="d-none d-md-block">
+      </div> -->
+      <div class="col-12 d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
+        <h1 class="text-white text-center mt-3 mb-0">My Leagues</h1>
+        <section v-for="player in myPlayers" :key="player.id" class="row mx-auto mx-md-2 mx-sm-5">
+          <span class="d-none d-sm-block w-100">
             <MyLeaguesCard :player="player" class="mb-4" />
           </span>
-          <span class="d-block d-md-none">
+          <span class="d-block d-sm-none">
             <MyLeaguesCardMobile :player="player" />
           </span>
         </section>

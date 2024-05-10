@@ -52,13 +52,13 @@ onMounted(() => {
 <template>
     <div v-if="player && cardPlayers" class="container-fluid">
         <div class="row">
-            <div class="col-lg-2 col-md-12 col-sm-12  rounded-start bg-darkblue text-light text-center">
-                <div class="row">
+            <div class="col-2 rounded-start bg-darkblue text-light text-center">
+                <div class="row h-100 align-content-center">
                     <div class="col">
-                        <h2 class="mt-1"><i class="text-gold mdi mdi-medal"></i>1</h2>
-                        <hr />
-                        <PlayerHead :player="player" />
-                        <div class="text row justify-content-around">
+                        <h2 class="mt-1 border-bottom border-2"><i class="text-gold mdi mdi-medal"></i>1</h2>
+
+                        <PlayerHead :player="player" class="my-auto" />
+                        <!-- <div class="text row justify-content-around">
                             <div class="col-3">
                                 <span class="text-gold fw-bold fs-5">
                                     {{ player.points }}
@@ -68,28 +68,45 @@ onMounted(() => {
                                 <span>5</span>
                                 <i class="mdi mdi-arrow-up"></i>
                             </div>
+                        </div> -->
+                        <div class="row justify-content-around align-content-center pb-2">
+                            <div class="col-12 col-md-6 border-end border-2">
+                                <span class="text-gold fw-bold fs-5">
+                                    {{ player.points }} <span class="fs-6 text-white">pts</span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 fs-5">
+                                <p class="m-0 text-light fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
+                            </div>
+                            <!-- <div class="col text-green fs-5 border-end border-2">
+                                <span>5</span>
+                                <i class="mdi mdi-arrow-up"></i>
+                            </div> -->
+
+                            <!-- </div> -->
+                            <!-- <p class="me-1 mb-0 fw-bold">00%</p>
+                        <p class="mb-0"> wins | 12 - 8</p> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-12 col-sm-12 d-flex flex-column">
+            <div class="col-10 d-flex flex-column">
                 <div class="row bg-lightblue rounded rounded-bottom-0 rounded-start-0 top-bar-height">
-                    <div class="col d-flex align-items-center">
-                        <p class="me-1 mb-0 fw-bold">00%</p>
-                        <p class="mb-0"> wins | 12 - 8</p>
-                    </div>
+                    <!-- <div class="col d-flex align-items-center"> -->
+
                     <div class="col text-end">
                         <h4>{{ player.league.leagueName }}
                             <RouterLink :to="{ name: 'ActiveLeague', params: { leagueId: player.league.id } }">
                                 <span role="button" class="w-auto to-league-button">
-                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-2 outline"></i>
+                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-2 empty"></i>
                                     <i class="mdi mdi-arrow-right-bold-circle text-gold fs-2 filled"></i>
                                 </span>
                             </RouterLink>
                         </h4>
                     </div>
                 </div>
-                <div class="row text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
+                <div
+                    class="row justify-content-around text-light bg-mainblue flex-grow-1 rounded rounded-start-0 rounded-top-0">
                     <h6>Other Players</h6>
                     <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class=" col-3 pt-4">
                         <PlayerHead :player="onePlayer" />
@@ -142,7 +159,7 @@ onMounted(() => {
 .to-league-button:hover {
 
     // NOTE this is used for the button in the card so that the icon can be nice and big instead of being tiny inside the square of a button
-    .outline {
+    .empty {
         display: none;
     }
 

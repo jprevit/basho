@@ -52,7 +52,7 @@ onMounted(() => {
 
 <template>
     <div v-if="player && cardPlayers" class="container-fluid">
-        <div class="row p-0">
+        <div class="row p-0 mt-0">
             <div class="col-12 rounded-top-3 bg-darkblue border border-5 border-mainblue text-light text-center">
                 <div class="row">
 
@@ -60,7 +60,7 @@ onMounted(() => {
                         <h2 class="border-bottom pb-2 my-3 fs-1">{{ player.league.leagueName }}
                             <RouterLink :to="{ name: 'ActiveLeague', params: { leagueId: player.league.id } }">
                                 <span role="button" class="w-auto to-league-button">
-                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-1 outline"></i>
+                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-1 empty"></i>
                                     <i class="mdi mdi-arrow-right-bold-circle text-gold fs-1 filled"></i>
                                 </span>
                             </RouterLink>
@@ -70,16 +70,15 @@ onMounted(() => {
 
                         <h4>{{ AppState.account.name }}</h4>
                         <div class="row justify-content-around align-content-center pb-2">
-                            <div class="col border-end border-2">
-                                <span class="text-gold fw-bold fs-2">
-                                    {{ player.points }}
+                            <div class="col text-gold border-end border-2">
+                                <span class="fw-bold fs-3">
+                                    {{ player.points }} <span class="text-white fs-4">pts</span>
                                 </span>
                             </div>
-                            <div class="col text-green fs-2 border-end border-2">
-                                <span>5</span>
-                                <i class="mdi mdi-arrow-up"></i>
+                            <div class="col fs-3 border-end border-2">
+                                <p class="m-0 text-light fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
                             </div>
-                            <span class="fs-2 col"><i class="text-gold mdi mdi-medal"></i>1</span>
+                            <span class="fs-3 col"><i class="text-gold mdi mdi-medal"></i>1</span>
                         </div>
                     </div>
                 </div>
@@ -100,7 +99,7 @@ onMounted(() => {
                         <div class="row justify-content-start align-content-center p-2">{{ onePlayer.profile.name
                             }}
                         </div>
-                        <div class="row  mb-3 justify-content-start align-content-center ps-2 mt-2">
+                        <div class="row mb-3 justify-content-start align-content-center ps-2 mt-2">
                             <div v-if="onePlayer.profile.picture" class="col-3">
                                 <!-- <object class="pfp" data="src/assets/img/defaultPfp.png" type="image/png"> -->
                                 <img class="pfp rounded-pill" :src="onePlayer.profile.picture" alt="player headshot">
@@ -113,11 +112,15 @@ onMounted(() => {
                             </div>
 
 
-
-                            <div class="col-6 d-flex justify-content-start align-items-center">
-                                <p class="m-0 fw-bold">4-2 <i class="mdi mdi-arrow-up text-green"></i></p>
+                            <div class="col text-gold border-end border-2">
+                                <span class="fw-bold fs-4">
+                                    {{ player.points }} <span class="text-white fs-4">pts</span>
+                                </span>
                             </div>
-                            <span class="fs-3 col-3 my-auto text-center border-2 border-start"><i
+                            <div class="col fs-4 d-flex justify-content-start align-items-center">
+                                <p class="m-0 fw-bold">4-2 <i class=" fs-5 mdi mdi-arrow-up text-green"></i></p>
+                            </div>
+                            <span class="fs-4 col my-auto text-center border-2 border-start"><i
                                     class="text-gold opacity-75 mdi mdi-medal"></i>1</span>
                         </div>
                     </div>
@@ -170,7 +173,7 @@ onMounted(() => {
 .to-league-button:hover {
 
     // NOTE this is used for the button in the card so that the icon can be nice and big instead of being tiny inside the square of a button
-    .outline {
+    .empty {
         display: none;
     }
 
