@@ -215,7 +215,7 @@ onUnmounted(() => {
                         <div class="col-6 text-end">
                             <!-- FIXME This needs to be changed once we get players for the league -->
                             <p class="m-0 p-0">Remaining Positions: <i>{{ activeLeague.playerCapacity -
-                                    activePlayers.length }}</i></p>
+                                activePlayers.length }}</i></p>
                         </div>
                         <hr />
                         <div class="col-12">
@@ -225,7 +225,7 @@ onUnmounted(() => {
                                     <PlayerHead :player="player" />
                                 </div>
                             </div>
-                            <div class="row justify-content-end my-3">
+                            <div class="row justify-content-end my-3 p-3">
                                 <button v-if="account.id == activeLeague.creatorId"
                                     :disabled="activeLeague.isClosed === true"
                                     class="btn btn-mainblue rounded-pill col-3 text-light fw-bold"
@@ -293,7 +293,7 @@ onUnmounted(() => {
                 <div class="row justify-content-around">
                     <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
                 </div>
-                <div class="row justify-content-between px-5">
+                <div class="row justify-content-between my-1 px-5">
                     <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>
                     <button class="btn btn-mainblue rounded-pill col-2">Next Day</button>
                 </div>
