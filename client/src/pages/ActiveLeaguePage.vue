@@ -218,7 +218,7 @@ onUnmounted(() => {
                         </div>
                         <hr />
                         <div class="col-12">
-                            <div v-if="activeLeague.turn < activeLeague.players.length" class="row mt-2 ">
+                            <div v-if="activeLeague.turn < activeLeague.players.length" class="row mt-2">
                                 <div v-for="player in activePlayers" :key="player.id"
                                     class="col-2 mx-2 pt-2 bg-mainblue rounded">
                                     <PlayerHead :player="player" />
