@@ -48,10 +48,12 @@ async function createNewLeague() {
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-mainblue">
-                <div class="modal-header">
-                    <h1 class="modal-title text-light fs-5" id="createLeagueModalLabel">Create League</h1>
-                </div>
+
+
                 <div class="modal-body">
+                    <h1 class="modal-title text-center mb-4 p-3 border-bottom text-light fs-3"
+                        id="createLeagueModalLabel">
+                        Create League</h1>
                     <form class="container" @submit.prevent="createNewLeague()">
                         <div class="row mb-2">
                             <div class="form-floating">
@@ -60,10 +62,10 @@ async function createNewLeague() {
                                 <label for="leagueName" class="ms-3">League Name</label>
                             </div>
                         </div>
-                        <div class="row align-items-center">
+                        <div class="row mb-2 align-items-center">
                             <div class="col-6">
                                 <div class="form-check">
-                                    <label for="publicCheck" class="form-check-label d-block">Public</label>
+                                    <label for="publicCheck" class="form-check-label text-light d-block">Public</label>
                                     <input v-model="leagueData.public" id="publicCheck" type="checkbox"
                                         class="form-check-control ed-mcmahon">
                                 </div>
@@ -77,7 +79,7 @@ async function createNewLeague() {
                             </div>
                         </div>
 
-                        <div class="row justify-content-between mt-2">
+                        <div class="row justify-content-between border-top p-3 mt-4">
                             <button type="button" class="btn btn-outline-light col-5" data-bs-dismiss="modal"
                                 aria-label="Close">Cancel</button>
                             <button type="submit" class="btn btn-light col-5">Create</button>
