@@ -214,7 +214,8 @@ onUnmounted(() => {
                         </div>
                         <div class="col-6 text-end">
                             <!-- FIXME This needs to be changed once we get players for the league -->
-                            <p class="m-0 p-0">Remaining Positions: <i>{{ activeLeague.playerCapacity }}</i></p>
+                            <p class="m-0 p-0">Remaining Positions: <i>{{ activeLeague.playerCapacity -
+                                    activePlayers.length }}</i></p>
                         </div>
                         <hr />
                         <div class="col-12">

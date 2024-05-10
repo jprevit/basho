@@ -22,7 +22,7 @@ const props = defineProps({ player: { type: Player, required: true } })
 
     <section v-else class=" container-fluid">
         <section class="row p-0">
-            <div class="col p-0 text-center">
+            <div class="col p-0 text-center m-0">
                 <img class="pfp rounded-pill"
                     src="	https://s.gravatar.com/avatar/c9174347320c2d85224c…&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fis.png"
                     alt="placeholder">
@@ -36,6 +36,7 @@ const props = defineProps({ player: { type: Player, required: true } })
 
 <style lang="scss" scoped>
 .pfp {
+    width: 96px;
     max-width: 100%;
     height: auto;
     object-position: center;
