@@ -14,7 +14,7 @@ const props = defineProps({
 })
 
 const myStable = computed(() => AppState.activeStableWrestlers)
-watch(myStable.value, () => { getStableById() })
+
 
 async function getStableById() {
     try {

@@ -37,7 +37,7 @@ class LeaguesService {
 
     async createNewLeague(leagueData) {
         const newLeague = await dbContext.Leagues.create(leagueData)
-        await newLeague.populate('creator tournament')
+        await newLeague.populate('creator')
         return newLeague
     }
 

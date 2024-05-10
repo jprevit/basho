@@ -15,7 +15,8 @@ export class StableMembersController extends BaseController {
     async getStablebyProfileId(request, response, next) {
         try {
             const profileId = request.params.profileId
-            const stable = await stableMembersService.getStablebyProfileId(profileId)
+            const leagueId = request.body
+            const stable = await stableMembersService.getStablebyProfileId(profileId, leagueId)
             response.send(stable)
         } catch (error) {
             next(error)
