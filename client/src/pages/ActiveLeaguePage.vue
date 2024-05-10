@@ -26,11 +26,11 @@ const route = useRoute()
 // This function gets all data needed to draw data to the page. Sets active League and Tournament
 async function setupLeaguePage() {
     try {
-        await getLeagueById()
+        // await getLeagueById()
         await setActiveLeague()
+        getPlayersByLeagueId()
         await getTournamentByTournamentId()
         await assignWrestlerPictures()
-        await getPlayersByLeagueId()
     } catch (error) {
         Pop.toast('Could not Setup Page', 'error')
         logger.error(error)
