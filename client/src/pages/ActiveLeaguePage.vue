@@ -205,15 +205,11 @@ onMounted(() => {
                         </div>
                         <hr />
                         <div class="col-12">
-                            <div class="row mt-2 ">
-                                <div v-if="activeLeague.turn < activeLeague.players.length">
-
-                                    <div v-for="player in activePlayers" :key="player.id"
-                                        class="col-2 mx-2 pt-2 bg-mainblue rounded">
-                                        <PlayerHead :player="player" />
-                                    </div>
+                            <div v-if="activeLeague.turn < activeLeague.players.length" class="row mt-2 ">
+                                <div v-for="player in activePlayers" :key="player.id"
+                                    class="col-2 mx-2 pt-2 bg-mainblue rounded">
+                                    <PlayerHead :player="player" />
                                 </div>
-
                             </div>
                             <div class="row justify-content-end my-3">
                                 <button v-if="account.id == activeLeague.creatorId"
