@@ -291,7 +291,7 @@ onUnmounted(() => {
         <section class="row  bgopacitylight py-3 pb-4">
             <div class="col">
                 <div class="row justify-content-around">
-                    <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
+                    <h1 class="col-5">{{ activeLeague.leagueName }}: Day {{ activeLeague.currentDay }} Results</h1>
                 </div>
                 <div class="row justify-content-between my-1 px-5">
                     <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>

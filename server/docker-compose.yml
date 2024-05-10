@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: your-dockerhub-username/basho:latest
+    image: IDPAPE/basho:latest
     restart: unless-stopped
     env_file:
       - basho-env
