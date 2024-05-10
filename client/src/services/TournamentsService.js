@@ -97,6 +97,7 @@ class TournamentsService {
     }
 
     async getStableById(profileId) {
+        AppState.activeStableWrestlers = []
         logger.log('service attempting to get stable')
         const response = await api.get(`api/stablemembers/${profileId}/profile`)
         logger.log('service getstablebyId', response.data)
