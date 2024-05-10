@@ -215,7 +215,7 @@ onUnmounted(() => {
                         <div class="col-6 text-end">
                             <!-- FIXME This needs to be changed once we get players for the league -->
                             <p class="m-0 p-0">Remaining Positions: <i>{{ activeLeague.playerCapacity -
-                                    activePlayers.length }}</i></p>
+                                activePlayers.length }}</i></p>
                         </div>
                         <hr />
                         <div class="col-12">
@@ -291,7 +291,7 @@ onUnmounted(() => {
         <section class="row  bgopacitylight py-3 pb-4">
             <div class="col">
                 <div class="row justify-content-around">
-                    <h1 class="col-5">Jiggle Brothers: Day 4 Results</h1>
+                    <h1 class="col-5">{{ activeLeague.leagueName }}: Day {{ activeLeague.currentDay }} Results</h1>
                 </div>
                 <div class="row justify-content-between px-5">
                     <button class="btn btn-mainblue rounded-pill col-2">Prev Day</button>
