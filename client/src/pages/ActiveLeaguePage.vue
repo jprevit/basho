@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, watch } from 'vue';
+import { computed, onMounted, onUnmounted, watch } from 'vue';
 import PlayerHead from '../components/PlayerHead.vue';
 import { AppState } from '../AppState.js';
 import Pop from "../utils/Pop.js";
@@ -155,8 +155,21 @@ async function switchDraftingPlayer() {
     }
 }
 
+//clears active players before leaving, so they dont persist when you go to your next league
+async function clearActivePlayers() {
+    try {
+        await leaguesService.clearActivePlayers()
+    } catch (error) {
+        Pop.error(error)
+    }
+}
+
 onMounted(() => {
     setupLeaguePage()
+})
+
+onUnmounted(() => {
+    clearActivePlayers()
 })
 
 </script>

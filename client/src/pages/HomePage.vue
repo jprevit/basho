@@ -37,7 +37,8 @@ onMounted(() => {
       <section class="col-md-6 col-12 pt-5 p-md-5 d-flex flex-column justify-content-center text-light text-shadow">
         <div class="ms-5 mb-2 mb-md-5">
           <h1 class="header-font">Welcome to BASHO!</h1>
-          <p class="fs-3">Basho is the Japanese term for a sumo tournament. Here at BASHO! we make getting into sumo
+          <p class="fs-3">Basho is the Japanese term for a sumo tournament. Here at <em>BASHO!</em> we make getting into
+            sumo
             easy and
             fun!
             Don’t
