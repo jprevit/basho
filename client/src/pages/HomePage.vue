@@ -11,21 +11,21 @@ import { leaguesService } from "../services/LeaguesService.js";
 
 
 
-async function populateAllTournaments() {
-  try {
-    await tournamentsService.populateAllTournaments()
-  }
-  catch (error) {
-    Pop.toast(error);
-    console.error(error);
-  }
-}
+// async function populateAllTournaments() {
+//   try {
+//     await tournamentsService.populateAllTournaments()
+//   }
+//   catch (error) {
+//     Pop.toast(error);
+//     console.error(error);
+//   }
+// }
 
 
 
 
 onMounted(() => {
-  populateAllTournaments()
+  // populateAllTournaments()
 
 })
 </script>

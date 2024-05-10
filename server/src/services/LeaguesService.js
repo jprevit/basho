@@ -48,7 +48,7 @@ class LeaguesService {
 
     async getLeagueById(leagueId) {
         const league = await dbContext.Leagues.findById(leagueId)
-        await league.populate('creator tournament', '-email')
+        await league.populate('creator', '-email')
         return league
     }
 
