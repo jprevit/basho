@@ -34,6 +34,7 @@ const myPlayers = computed(() => AppState.myPlayers)
         </div>
       </div>
       <div class="col-12 col-md-8  col-lg-10  d-flex flex-column gap-5 bg-sand p-3 bgopacitydark">
+        <h1 class="text-white text-center">My Leagues</h1>
         <section v-for="player in myPlayers" :key="player.id" class="row mx-auto mx-lg-5">
           <span class="d-none d-md-block">
             <MyLeaguesCard :player="player" class="mb-4" />

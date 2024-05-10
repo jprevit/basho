@@ -53,23 +53,23 @@ onMounted(() => {
 <template>
     <div v-if="player && cardPlayers" class="container-fluid">
         <div class="row p-0">
-            <div class="col-12 rounded-top bg-darkblue text-light text-center">
+            <div class="col-12 rounded-top-3 bg-darkblue border border-5 border-mainblue text-light text-center">
                 <div class="row">
 
                     <div class="col text-center">
-                        <h4 class="border-bottom pb-2 mb-3">{{ player.league.leagueName }}
+                        <h2 class="border-bottom pb-2 my-3 fs-1">{{ player.league.leagueName }}
                             <RouterLink :to="{ name: 'ActiveLeague', params: { leagueId: player.league.id } }">
                                 <span role="button" class="w-auto to-league-button">
-                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-2 outline"></i>
-                                    <i class="mdi mdi-arrow-right-bold-circle text-gold fs-2 filled"></i>
+                                    <i class="mdi mdi-arrow-right-bold-circle-outline text-gold fs-1 outline"></i>
+                                    <i class="mdi mdi-arrow-right-bold-circle text-gold fs-1 filled"></i>
                                 </span>
                             </RouterLink>
-                        </h4>
+                        </h2>
 
 
 
                         <h4>{{ AppState.account.name }}</h4>
-                        <div class="text row justify-content-around align-content-center pb-2">
+                        <div class="row justify-content-around align-content-center pb-2">
                             <div class="col border-end border-2">
                                 <span class="text-gold fw-bold fs-2">
                                     {{ player.points }}
@@ -85,21 +85,22 @@ onMounted(() => {
                 </div>
             </div>
             <div class="col-lg-10 col-md-12 col-sm-12 d-flex flex-column">
-                <div class="row bg-lightblue top-bar-height">
+                <!-- <div class="row bg-lightblue top-bar-height">
                     <div class="col d-flex align-items-center">
                         <p class="me-1 mb-0 fw-bold">00%</p>
                         <p class="mb-0"> wins | 12 - 8</p>
                     </div>
+                </div> -->
 
-                </div>
-                <div class="row text-light bg-mainblue flex-grow-1 rounded-bottom">
-                    <h6 class="mt-3 fw-bold">Other Players</h6>
-                    <div v-for="onePlayer in cardPlayers" :key="onePlayer.id" class="col-12 pb-2 mb-0">
+                <div class="row p-2  pb-3 text-light bg-mainblue flex-grow-1 rounded-bottom-3">
+                    <h4 class="text-center mt-3 fw-bold">Other Players</h4>
+                    <div v-for="onePlayer in cardPlayers" :key="onePlayer.id"
+                        class="col-12 px-1 px-3 bg-darkblue rounded rounded-2 mb-3 league-card">
                         <!-- <PlayerHead :player="onePlayer" /> -->
                         <div class="row justify-content-start align-content-center p-2">{{ onePlayer.profile.name
                             }}
                         </div>
-                        <div class="row border-bottom pb-2 mb-3 justify-content-start align-content-center ps-2 mt-2">
+                        <div class="row  mb-3 justify-content-start align-content-center ps-2 mt-2">
                             <div v-if="onePlayer.profile.picture" class="col-3">
                                 <!-- <object class="pfp" data="src/assets/img/defaultPfp.png" type="image/png"> -->
                                 <img class="pfp rounded-pill" :src="onePlayer.profile.picture" alt="player headshot">
@@ -133,6 +134,10 @@ onMounted(() => {
 
 
 <style lang="scss" scoped>
+.league-card {
+    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.25);
+}
+
 .pfp {
     max-width: 100%;
     height: auto;
