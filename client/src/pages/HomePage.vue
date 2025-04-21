@@ -6,7 +6,7 @@ import { tournamentsService } from '../services/TournamentsService.js';
 import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
 import { leaguesService } from "../services/LeaguesService.js";
-
+import sumoKick from '../assets/img/sumo-kick.png'
 
 
 
@@ -52,7 +52,7 @@ onMounted(() => {
 
       </section>
       <section class="col-md-5 d-none d-md-flex">
-        <img src="src\assets\img\sumo-kick.png" class="sumoStomp">
+        <img :src="sumoKick" class="sumoStomp">
       </section>
     </section>
 

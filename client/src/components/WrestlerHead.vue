@@ -1,5 +1,6 @@
 <script setup>
 import { TournamentWrestler } from '../models/TournamentWrestler.js';
+import sumoNotFound from '../assets/img/sumo-not-found.png';
 
 
 const props = defineProps({ wrestler: { type: TournamentWrestler, required: true } })
@@ -29,7 +30,7 @@ const props = defineProps({ wrestler: { type: TournamentWrestler, required: true
             <div class="col p-0 text-center">
                 <div class="row justify-content-center">
                     <div class="col">
-                        <img class="pfp" src="src\assets\img\sumo-not-found.png">
+                        <img class="pfp" :src="sumoNotFound">
                     </div>
                 </div>
                 <p>Place Holder Wrestler</p>

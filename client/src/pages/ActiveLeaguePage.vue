@@ -9,6 +9,7 @@ import MyStable from '../components/MyStable.vue';
 import { logger } from "../utils/Logger.js";
 import { tournamentsService } from "../services/TournamentsService.js";
 import { wrestlersService } from '../services/WrestersService.js';
+import sumoAroundRing from '../assets/img/sumo-around-ring.jpg'
 
 const activeLeague = computed(() => AppState.activeLeague)
 const activePlayers = computed(() => AppState.activePlayers)
@@ -182,8 +183,7 @@ onUnmounted(() => {
         class="container-fluid bg-charcoal text-light">
         <section class="col">
             <section class="row">
-                <img src="src\assets\img\sumo-around-ring.jpg" alt="sumo wrestlers standing in circle around a ring"
-                    class="banner_img p-0">
+                <img :src=sumoAroundRing alt="sumo wrestlers standing in circle around a ring" class="banner_img p-0">
             </section>
             <section class="row justify-content-around mt-2">
                 <div class="col-lg-2 col-md-2 text-center">
@@ -265,7 +265,8 @@ onUnmounted(() => {
 
             <div v-if="account.id == activeLeague.players[currentPlayerTurn]" class="text-end text-light">
                 <button v-if="activeLeague.tournamentWrestlers && activeStable.length == 0"
-                    :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue" @click="draftWrestlers()">Draft
+                    :disabled="tournamentWrestlers.length < 5" class="btn btn-mainblue mt-1"
+                    @click="draftWrestlers()">Draft
                     5
                     Big Boys</button>
                 <button v-if="activeStable.length > 0" @click="switchDraftingPlayer()" class="btn btn-mainblue">Next
